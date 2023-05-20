@@ -1,0 +1,27 @@
+{
+  "name": "steam-shortcuts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+			"build":"bash ./build.sh",
+			"add:steam":"ts-node ./add/chrome.ts && ts-node ./add/tailscale.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "WTFPL",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "steam-binary-vdf": "^0.1.0",
+    "ts-node": "^10.9.1"
+  }
+}
