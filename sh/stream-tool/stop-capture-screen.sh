@@ -8,10 +8,17 @@ for container in ${containers[@]};do
 	docker rm $container
 done
 
-pids=`cat /tmp/ffmpeg-rtmp-copy.pid`
-if [ -n "${pid}" ];then
-	for pid in ${pids[@]};do
+gstreamer_pids=`cat /tmp/screen-copy-gstreamer.pid`
+if [ -n "${gstreamer_pids}" ];then
+	for pid in ${gstreamer_pids[@]};do
 		sudo kill "${pid}"
 	done
-	echo "" > /tmp/ffmpeg-rtmp-copy.pid
+	echo "" > /tmp/screen-copy-gstreamer.pid
+fi
+ffmpeg_pids=`cat /tmp/screen-copy-ffmpeg.pid`
+if [ -n "${ffmpeg_pids}" ];then
+	for pid in ${ffmpeg_pids[@]};do
+		sudo kill "${pid}"
+	done
+	echo "" > /tmp/screen-copy-ffmpeg.pid
 fi
