@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-			"build":"bash ./build.sh",
-			"add:steam":"ts-node ./add/chrome.ts && ts-node ./add/tailscale.ts"
+    "build": "bash ./build.sh",
+    "add:steam": "ts-node ./add/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "WTFPL",
   "devDependencies": {
+    "@types/node": "^20.2.3",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^34.0.1",
