@@ -1,7 +1,12 @@
 #!/bin/bash
 
-	sudo ps -A | grep tailscaled && \
-	sudo tailscale down || \
-	(sudo systemd-run tailscaled && \
-	sudo tailscale down
-
+function down(){
+	DAEMON_STATUS=`sudo ps -A | grep tailscaled`
+	if [ -n "${DAEMON_STATUS}" ];then
+		sudo tailscale down
+	else
+		sudo systemd-run tailscaled
+		down
+	fi
+}
+down
