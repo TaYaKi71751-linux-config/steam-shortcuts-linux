@@ -7,13 +7,22 @@ sudo usermod -aG docker $USER
 sudo docker pull alfg/nginx-rtmp
 sudo docker run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
+sudo pacman -Sy \
+	gst-plugins-good \
+	gst-plugins-bad \
+	gst-plugins-ugly \
+	gstreamer-vaapi \
+	gst-plugin-pipewire \
+	--noconfirm
+
 SOURCE=""
 if [ "${XDG_SESSION_TYPE}" == "x11" ];then
 	SOURCE="ximagesrc"
 else
 	SOURCE="pipewiresrc"
 fi
-nohup gst-launch-1.0 -e \
+#nohup \
+	gst-launch-1.0 -e \
     ${SOURCE} do-timestamp=True \
         ! queue \
         ! videoconvert \
@@ -27,7 +36,7 @@ nohup gst-launch-1.0 -e \
         ! mux. \
     flvmux name=mux streamable=True \
 				! rtmpsink location='rtmp://localhost/stream/gstreamer live=1' \
-				>/dev/null 2>&1 \
+#				>/dev/null 2>&1 \
 &
 while [ true ];do
 nohup sudo ffmpeg -f kmsgrab -i - -vaapi_device /dev/dri/renderD128 \
