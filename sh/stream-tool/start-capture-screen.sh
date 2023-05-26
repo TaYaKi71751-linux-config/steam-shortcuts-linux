@@ -21,7 +21,7 @@ if [ "${XDG_SESSION_TYPE}" == "x11" ];then
 else
 	SOURCE="pipewiresrc"
 fi
-#nohup \
+nohup \
 	gst-launch-1.0 -e \
     ${SOURCE} do-timestamp=True \
         ! queue \
@@ -36,7 +36,7 @@ fi
         ! mux. \
     flvmux name=mux streamable=True \
 				! rtmpsink location='rtmp://localhost/stream/gstreamer live=1' \
-#				>/dev/null 2>&1 \
+				>/dev/null 2>&1 \
 &
 while [ true ];do
 nohup sudo ffmpeg -f kmsgrab -i - -vaapi_device /dev/dri/renderD128 \
