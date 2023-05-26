@@ -4,7 +4,7 @@ source ./sh/docker/enable.sh
 source ./sh/stream-tool/stop-capture-screen.sh
 
 sudo usermod -aG docker $USER
-docker run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
+sudo docker run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
 SOURCE=""
 if [ "${XDG_SESSION_TYPE}" == "x11" ];then

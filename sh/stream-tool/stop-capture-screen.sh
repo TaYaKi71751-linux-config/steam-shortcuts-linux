@@ -2,10 +2,10 @@
 
 sudo usermod -aG docker $USER
 
-containers=`docker ps -aq --filter ancestor=alfg/nginx-rtmp`
+containers=`sudo docker ps -aq --filter ancestor=alfg/nginx-rtmp`
 for container in ${containers[@]};do
-	docker stop $container
-	docker rm $container
+	sudo docker stop $container
+	sudo docker rm $container
 done
 
 gstreamer_pids=`cat /tmp/screen-copy-gstreamer.pid`
