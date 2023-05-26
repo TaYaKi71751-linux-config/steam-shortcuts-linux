@@ -4,6 +4,7 @@ source ./sh/docker/enable.sh
 source ./sh/stream-tool/stop-capture-screen.sh
 
 sudo usermod -aG docker $USER
+sudo docker pull alfg/nginx-rtmp
 sudo docker run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
 SOURCE=""

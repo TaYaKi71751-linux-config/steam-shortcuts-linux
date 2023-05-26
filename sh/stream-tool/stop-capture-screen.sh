@@ -2,6 +2,8 @@
 
 sudo usermod -aG docker $USER
 
+sudo docker pull alfg/nginx-rtmp
+
 containers=`sudo docker ps -aq --filter ancestor=alfg/nginx-rtmp`
 for container in ${containers[@]};do
 	sudo docker stop $container
