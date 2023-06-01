@@ -1,13 +1,15 @@
 #!/bin/bash
 
+CONTAINER_BIN="podman"
+
 sudo usermod -aG docker $USER
 
-sudo docker pull alfg/nginx-rtmp
+sudo ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
 
-containers=`sudo docker ps -aq --filter ancestor=alfg/nginx-rtmp`
+containers=`sudo ${CONTAINER_BIN} ps -aq --filter ancestor=docker.io/alfg/nginx-rtmp`
 for container in ${containers[@]};do
-	sudo docker stop $container
-	sudo docker rm $container
+	sudo ${CONTAINER_BIN} stop $container
+	sudo ${CONTAINER_BIN} rm $container
 done
 
 gstreamer_pids=`cat /tmp/screen-copy-gstreamer.pid`

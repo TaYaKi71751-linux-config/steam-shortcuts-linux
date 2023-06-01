@@ -1,19 +1,39 @@
 #!/bin/bash
 
-source ./sh/docker/enable.sh
+CONTAINER_BIN="podman"
+
+CONTAINER_BIN_PATH=`which ${CONTAINER_BIN}`
+GST_DEPENDENCIES_PKG_NAMES=(\
+	"gst-plugins-good" \
+	"gst-plugins-bad" \
+	"gst-plugins-ugly" \
+	"gstreamer-vaapi" \
+	"gst-plugin-pipewire" \
+)
+
+if [ -n "${CONTAINER_BIN_PATH}" ];then
+	sudo pacman -Sy \
+		podman \
+		--noconfirm
+fi
+
+for gst_pkg in ${GST_DEPENDENCIES_PKG_NAMES[@]};do
+	PKG_EXISTS=`sudo pacman -Q ${gst_pkg}`
+	if [ "${PKG_EXISTS}" ];then
+		echo "Package ${gst_pkg} is already installed, Skipping install"
+		continue
+	else
+		echo "Package ${gst_pkg} is not installed, Installing ${gst_pkg}"
+		sudo pacman -Sy ${gst_pkg} --noconfirm
+	fi
+done
+
+#source ./sh/${CONTAINER_BIN}/enable.sh
 source ./sh/stream-tool/stop-capture-screen.sh
 
 sudo usermod -aG docker $USER
-sudo docker pull alfg/nginx-rtmp
-sudo docker run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
-
-sudo pacman -Sy \
-	gst-plugins-good \
-	gst-plugins-bad \
-	gst-plugins-ugly \
-	gstreamer-vaapi \
-	gst-plugin-pipewire \
-	--noconfirm
+sudo ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
+sudo ${CONTAINER_BIN} run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
 SOURCE=""
 if [ "${XDG_SESSION_TYPE}" == "x11" ];then
