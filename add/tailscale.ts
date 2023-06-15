@@ -23,7 +23,14 @@ outFiles
 		AddShortcut({ AppName, exe, StartDir });
 		if (filename.startsWith('up')) {
 			[{ name: ' Without Exit-Nodes',	LaunchOptions: 'export TAILSCALE_EXIT_NODE= && %command%' },
-				{ name: ` With Custom Exit-Node ${process.env.TAILSCALE_EXIT_NODE} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${process.env.TAILSCALE_EXIT_NODE} && %command%` }]
+
+				...(
+					`${process.env.TAILSCALE_EXIT_NODE}`
+						.split(',')
+						.map((node) => (node.trim()))
+						.map((e) => ({ name: ` With Custom Exit-Node ${e} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${e} && %command%` }))
+				)
+			]
 				.forEach(({ name, LaunchOptions }) => {
 					AddShortcut({ AppName: AppName + name, exe, StartDir, LaunchOptions });
 				});
