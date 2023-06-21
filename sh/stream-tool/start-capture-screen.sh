@@ -31,7 +31,8 @@ done
 #source ./sh/${CONTAINER_BIN}/enable.sh
 source ./sh/stream-tool/stop-capture-screen.sh
 
-sudo usermod -aG docker $USER
+sudo groupadd ${CONTAINER_BIN}
+sudo usermod -aG ${CONTAINER_BIN} $USER
 sudo ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
 sudo ${CONTAINER_BIN} run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
