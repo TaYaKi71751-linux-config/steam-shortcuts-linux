@@ -13,7 +13,7 @@ GST_DEPENDENCIES_PKG_NAMES=(\
 
 if [ -n "${CONTAINER_BIN_PATH}" ];then
 	sudo pacman -Sy \
-		podman \
+		${CONTAINER_BIN} \
 		--noconfirm
 fi
 
