@@ -29,7 +29,28 @@ for gst_pkg in ${GST_DEPENDENCIES_PKG_NAMES[@]};do
 done
 
 #source ./sh/${CONTAINER_BIN}/enable.sh
-source ./sh/stream-tool/stop-capture-screen.sh
+echo ${PWD}
+STOP_SCREEN_SHELL_PATH=`find ./ -name 'stop-capture-screen.sh'`
+STOP_SCREEN_OUT_PATH=`find ./ -name 'stop-capture-screen.out'`
+if [ -n "${STOP_SCREEN_SHELL_PATH}" ];then
+	for sh_path in ${STOP_SCREEN_SHELL_PATH[@]};do
+		echo "Running ${sh_path}"
+		source ${sh_path}
+		echo "Exited ${sh_path}"
+	done
+else
+	echo "Cannot find 'stop-capture-screen.sh' in path '${PWD}'"
+	if [ -n "${STOP_SCREEN_OUT_PATH}" ];then
+		for out_path in ${STOP_SCREEN_OUT_PATH[@]};do
+			echo "Running ${out_path}"
+			bash -c "${out_path}"
+			echo "Exited ${out_path}"
+		done
+	else
+		echo "Cannot find 'stop-capture-screen.{sh,out}' in path '${PWD}' aborting"
+		exit -1
+	fi
+fi
 
 sudo groupadd ${CONTAINER_BIN}
 sudo usermod -aG ${CONTAINER_BIN} $USER
