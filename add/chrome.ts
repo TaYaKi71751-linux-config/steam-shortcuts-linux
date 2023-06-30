@@ -17,6 +17,7 @@ const PAGE_URLS = [
 	{ name: '[OTT]Netflix', url: 'https://netflix.com' },
 	{ name: '[OTT]Laftel', url: 'https://laftel.net/profile' },
 	{ name: '[OTT]Watcha', url: 'https://watcha.com/manage_profiles' },
+	{ name: '[OTT]Wavve', url: 'https://www.wavve.com' },
 	{ name: '[Dashboard]Twitter Analytics', url: 'https://analytics.twitter.com' },
 	{ name: '[Dashboard]Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager' },
 	{ name: '[Dashboard]YouTube Studio', url: 'https://studio.youtube.com' },
