@@ -404,20 +404,20 @@ do
 	# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
 	while IFS= read -r line
 	do
-		echo "$line" >> "${STARTUP_META_PATH}"
+		echo -en "$line\r" >> "${STARTUP_META_PATH}"
 	done < <(printf '%s\n' "$STARTUP_META_CONFIG_XML")
 
 # https://gall.dcinside.com/mgallery/board/view/?id=rdr2&no=135261
 # https://gall.dcinside.com/mgallery/board/view/?id=rdr2&no=179677
 	while IFS= read -r line
 	do
-		echo "$line" >> "${BOOT_LAUNCHER_FLOW_PATH}"
+		echo -en "$line\r" >> "${BOOT_LAUNCHER_FLOW_PATH}"
 	done < <(printf '%s\n' "$BOOT_LAUNCHER_FLOW_CONFIG_XML")
 
 	if [ "${RDO_PW}" == "" ];then
 		continue
 	else
-		echo "<!-- ${RDO_PW} -->" >> "${STARTUP_META_PATH}"
+		echo -en "<!-- ${RDO_PW} -->" >> "${STARTUP_META_PATH}"
 	fi
 	echo "${line}"
 done < <(printf '%s\n' "${RDR2_PATHS}")
