@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash ./build.sh",
     "add:steam": "ts-node ./add/index.ts && npm run stop:steam",
-				"stop:steam": "sudo pkill steam"
+				"stop:steam": "sudo ps -A | grep steam && sudo pkill steam || true"
   },
   "keywords": [],
   "author": "",
