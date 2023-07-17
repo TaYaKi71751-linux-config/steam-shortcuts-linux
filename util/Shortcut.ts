@@ -35,7 +35,7 @@ export function AddShortcut (_opts:{
 				'shortcuts.vdf'
 			);
 			if (!fs.existsSync(shortcutsPath)) return;
-			console.log(`Add shortcuts to ${shortcutsPath}`);
+			console.log(`Add '${_opts?.AppName} (${_opts?.exe})' shortcuts to ${shortcutsPath}`);
 			const inBuffer = fs.readFileSync(shortcutsPath);
 			const { shortcuts }:any = readVdf(inBuffer);
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
