@@ -20,10 +20,10 @@ outFiles
 			case 'public-session.out': return 'Public Session';
 			}
 		})();
-		const LaunchOptions = (function (){
+		const LaunchOptions = (function () {
 			switch (filename) {
-				case 'private-session.out': return 'RDO_PW=""';
+			case 'private-session.out': return 'RDO_PW="" %command%';
 			}
-		})()
-		AddShortcut({ AppName, exe, StartDir, LaunchOptions });
+		})();
+		AddShortcut({ AppName, exe, StartDir, LaunchOptions: LaunchOptions || '' });
 	});
