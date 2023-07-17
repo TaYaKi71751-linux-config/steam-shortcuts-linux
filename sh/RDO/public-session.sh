@@ -17,5 +17,12 @@ do
 	else
 		continue
 	fi
+	if [ -d "$(dirname '${BOOT_LAUNCHER_FLOW_PATH}')" ];then
+		if [ -f "${BOOT_LAUNCHER_FLOW_PATH}" ];then
+			rm "${BOOT_LAUNCHER_FLOW_PATH}"
+		fi
+	else
+		continue
+	fi
 	# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
 done < <(printf '%s\n' "${RDR2_PATHS}")
