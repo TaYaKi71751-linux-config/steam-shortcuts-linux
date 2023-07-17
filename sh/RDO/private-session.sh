@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TODO TEST with Windows thing
+
 # https://www.youtube.com/watch?v=OFd2af8wINE
 # https://gall.dcinside.com/mgallery/board/view/?id=rdr2&no=135261
 STARTUP_META_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
