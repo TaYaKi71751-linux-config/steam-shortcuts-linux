@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "bash ./build.sh",
-    "add:steam": "ts-node ./add/index.ts"
+    "add:steam": "ts-node ./add/index.ts && npm run stop:steam",
+				"stop:steam": "sudo pkill steam"
   },
   "keywords": [],
   "author": "",
