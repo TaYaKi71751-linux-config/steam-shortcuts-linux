@@ -419,7 +419,7 @@ do
 	if [ "${RDO_PW}" == "" ];then
 		continue
 	else
-		echo -en "<!-- ${RDO_PW} -->" >> "${STARTUP_META_PATH}"
+		echo -en "<!-- ${RDO_PW} -->\r\n" >> "${STARTUP_META_PATH}"
 	fi
 	echo "${line}"
 done < <(printf '%s\n' "${RDR2_PATHS}")
