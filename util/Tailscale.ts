@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 
 export function getExitNodes () {
+	execSync(`bash ${process.env.PWD}/sh/tailscale/up.sh`);
 	const statusBuffer:Buffer = execSync('tailscale status --json');
 	if (!statusBuffer?.toString) return [];
 	const statusString:string = statusBuffer.toString();
