@@ -57,11 +57,11 @@ sudo pacman -Syu \
 ```
 mkdir -p ~/.local/tailscale/steamos
 cd ~/.local/tailscale/steamos
-wget https://pkgs.tailscale.com/stable/tailscale_1.24.2_amd64.tgz
+curl -LsSf https://pkgs.tailscale.com/stable/tailscale_1.24.2_amd64.tgz -o tailscale_1.24.2_amd64.tgz
 tar xzf tailscale_1.24.2_amd64.tgz
 cd tailscale_1.24.2_amd64
 touch ~/.bashrc
-find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'echo "export PATH=${PATH}:$(pwd)" >> {}' \;
+find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'echo "export PATH:\${PATH}:$(pwd)" >> {}' \;
 export PATH=${PATH}:$(pwd)
 ```
 ### #Microsoft Edge
