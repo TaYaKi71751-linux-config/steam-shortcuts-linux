@@ -27,9 +27,13 @@ sudo pacman -Syu \
   wget \
   --noconfirm
 ```
+### #nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+```
 ### #npm
 ```
-sudo pacman -S npm
+nvm use lts
 ```
 ### #pnpm
 ```
