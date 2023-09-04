@@ -36,7 +36,8 @@ export NVM_DIR="$HOME/.nvm"
 ```
 ### #npm
 ```
-nvm use lts
+nvm install --lts
+nvm use --lts
 ```
 ### #pnpm
 ```
