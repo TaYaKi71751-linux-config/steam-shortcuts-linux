@@ -34,14 +34,26 @@ export function AddShortcut (_opts:{
 				'config',
 				'shortcuts.vdf'
 			);
-			if (!fs.existsSync(shortcutsPath)) return;
-			console.log(`Add '${_opts?.AppName} (${_opts?.exe})' shortcuts to ${shortcutsPath}`);
-			const inBuffer = fs.readFileSync(shortcutsPath);
-			const { shortcuts }:any = readVdf(inBuffer);
+			let inBuffer:Buffer = Buffer.from([]);
+			let shortcuts:any = {};
+
+			if (!fs.existsSync(shortcutsPath)) {
+				if (!fs.existsSync(path.dirname(shortcutsPath))) {
+					fs.mkdirSync(path.dirname(shortcutsPath), { recursive: true });
+				}
+				fs.writeFileSync(shortcutsPath, '');
+			} else {
+				inBuffer = fs.readFileSync(shortcutsPath);
+				if (inBuffer.length) shortcuts = readVdf(inBuffer)?.shortcuts;
+			}
+
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
 				shortcut.AppName === _opts?.AppName ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'))[0];
 			shortcuts[`${typeof _i != 'undefined' ? _i : Object.entries(shortcuts).length}`] = _opts;
+
+			console.log(`Add '${_opts?.AppName} (${_opts?.exe})' shortcuts to ${shortcutsPath}`);
+
 			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(shortcuts), Buffer.from([0x08, 0x08])]);
 
 			fs.writeFileSync(shortcutsPath, outBuffer);
