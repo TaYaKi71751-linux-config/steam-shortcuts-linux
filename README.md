@@ -1,5 +1,6 @@
 # #steam-shortcuts
 ## #before
+https://gist.github.com/rondhi/f9163e7649aa734b5421a8f58bd6c49e
 ### #Disable read-only
 ```
 sudo steamos-readonly disable
