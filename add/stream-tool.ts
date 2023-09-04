@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs';
-import 'dotenv/config';
 import { AddShortcut } from '../util/Shortcut';
 
 const outPath = path.join(

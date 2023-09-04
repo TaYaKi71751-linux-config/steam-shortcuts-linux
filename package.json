@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash ./build.sh",
     "add:steam": "ts-node ./add/index.ts && npm run stop:steam",
-				"stop:steam": "sudo ps -A | grep steam && sudo pkill steam || true"
+    "stop:steam": "sudo ps -A | grep steam && sudo pkill steam || true"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
     "steam-binary-vdf": "^0.1.0",
     "ts-node": "^10.9.1"
   }

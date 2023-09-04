@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
-import 'dotenv/config';
 import { AddShortcut } from '../util/Shortcut';
+import { getExitNodes } from '../util/Tailscale';
 
 const outPath = path.join(
 	`${process.env.PWD}`,
@@ -22,13 +22,11 @@ outFiles
 		})();
 		AddShortcut({ AppName, exe, StartDir });
 		if (filename.startsWith('up')) {
+			const exitNodes = getExitNodes();
 			[{ name: ' Without Exit-Nodes',	LaunchOptions: 'export TAILSCALE_EXIT_NODE= && %command%' },
-
 				...(
-					`${process.env.TAILSCALE_EXIT_NODE}`
-						.split(',')
-						.map((node) => (node.trim()))
-						.map((e) => ({ name: ` With Custom Exit-Node ${e} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${e} && %command%` }))
+					exitNodes
+						.map(([DNSName, TailscaleIPs]) => ({ name: ` With Custom Exit-Node ${DNSName} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${TailscaleIPs[0]} && %command%` }))
 				)
 			]
 				.forEach(({ name, LaunchOptions }) => {
