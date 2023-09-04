@@ -58,7 +58,7 @@ sudo pacman -Syu \
 ```
 mkdir -p ~/.local/tailscale/steamos
 cd ~/.local/tailscale/steamos
-curl -LsSf https://pkgs.tailscale.com/stable/tailscale_1.24.2_amd64.tgz -o tailscale_1.24.2_amd64.tgz
+wget https://pkgs.tailscale.com/stable/tailscale_1.24.2_amd64.tgz
 tar xzf tailscale_1.24.2_amd64.tgz
 cd tailscale_1.24.2_amd64
 touch ~/.bashrc
