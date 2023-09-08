@@ -23,6 +23,7 @@ const PAGE_URLS = [
 	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com' },
 	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager' },
 	{ name: 'YouTube Studio', url: 'https://studio.youtube.com' },
+	{ name: 'Restream.io', url: 'https://app.restream.io' },
 	{ name: 'Twitter', url: 'https://twitter.com' }
 ];
 
