@@ -7,7 +7,7 @@ const outFiles = getOpenVPNConfigs();
 
 (function () {
 	const StartDir = `${process.env.HOME}`;
-	const exe = `${execSync('which pkill')?.toString()}`;
+	const exe = `${execSync('which pkill')?.toString().split('\n')[0]}`;
 	const AppName = '[OpenVPN] Kill';
 	AddShortcut({ AppName, exe, StartDir, LaunchOptions: 'sudo %command% openvpn' });
 })();
