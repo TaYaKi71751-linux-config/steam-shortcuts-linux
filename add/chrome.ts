@@ -8,6 +8,7 @@ const outPath = path.join(
 	'chrome'
 );
 const PAGE_URLS = [
+	{ name: 'Abema TV', url: 'https://abema.tv' },
 	{ name: 'Twitch', url: 'https://twitch.tv' },
 	{ name: 'YouTube', url: 'https://youtube.com/tv' },
 	{ name: 'bilibili', url: 'https://bilibili.com' },
