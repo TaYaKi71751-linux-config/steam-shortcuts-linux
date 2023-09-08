@@ -59,3 +59,45 @@ export function AddShortcut (_opts:{
 			fs.writeFileSync(shortcutsPath, outBuffer);
 		});
 }
+
+export function RemoveShortcutStartsWith (_opts:{AppName:string}) {
+	const user_ids = fs.readdirSync(userdataPath);
+	user_ids
+		.forEach((user_id) => {
+			const shortcutsPath = path.join(
+				userdataPath,
+				user_id,
+				'config',
+				'shortcuts.vdf'
+			);
+			let inBuffer:Buffer = Buffer.from([]);
+			let shortcuts:any = {};
+
+			if (!fs.existsSync(shortcutsPath)) {
+				if (!fs.existsSync(path.dirname(shortcutsPath))) {
+					fs.mkdirSync(path.dirname(shortcutsPath), { recursive: true });
+				}
+				fs.writeFileSync(shortcutsPath, '');
+			} else {
+				inBuffer = fs.readFileSync(shortcutsPath);
+				if (inBuffer.length) shortcuts = readVdf(inBuffer)?.shortcuts;
+			}
+
+			const _a = Object.entries(shortcuts).map(([index, shortcut]:any) => (
+				`${shortcut.AppName}`.startsWith(_opts?.AppName) ? index : undefined
+			)).filter((index) => (typeof index != 'undefined'));
+			_a.forEach((index) => {
+				console.log(`Remove '${shortcuts[`${index}`]?.AppName} (${shortcuts[`${index}`]?.exe})' shortcuts from ${shortcutsPath}`);
+				shortcuts[`${index}`] = undefined;
+			});
+			shortcuts = Object.fromEntries(Object.entries(shortcuts).filter(([index_string,shortcut])=>(
+				typeof shortcut != 'undefined'
+			)).map(([index_string, shortcut], index_number) => (
+				[`${index_number + 1}`, shortcut]
+			)));
+
+			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(shortcuts), Buffer.from([0x08, 0x08])]);
+
+			fs.writeFileSync(shortcutsPath, outBuffer);
+		});
+}
