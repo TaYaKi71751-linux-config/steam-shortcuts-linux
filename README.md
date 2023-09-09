@@ -30,6 +30,16 @@ sudo pacman -Syu \
   wget \
   --noconfirm
 ```
+### #yay
+```
+cd /tmp
+rm -rf /tmp/yay/
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd /tmp/yay
+makepkg -Si --force
+makepkg -i --noconfirm
+```
 ### #nvm
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
