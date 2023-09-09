@@ -14,6 +14,14 @@ RemoveShortcutStartsWith({ AppName: '[OpenVPN]' });
 	const AppName = '[OpenVPN] Kill';
 	AddShortcut({ AppName, exe, StartDir, LaunchOptions: 'sudo %command% openvpn' });
 })();
+
+(function () {
+	const StartDir = `${process.env.HOME}`;
+	const exe = `${execSync('which rm')?.toString().split('\n')[0]}`;
+	const AppName = '[OpenVPN] Remove All .ovpn';
+	AddShortcut({ AppName, exe, StartDir, LaunchOptions: 'find / -type f -name \'*.ovpn\' -exec %command% \'{}\' \\;' });
+})();
+
 outFiles
 	.forEach((OpenVPNConfigPath) => {
 		const StartDir = dirname(OpenVPNConfigPath);
