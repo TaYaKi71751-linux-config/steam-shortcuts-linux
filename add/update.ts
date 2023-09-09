@@ -72,7 +72,7 @@ const teePath = (() => {
 	AppName: '[steam-shortcuts][pnpm] Add Steam Shortcuts',
 	exe: `${pnpmPath}`,
 	StartDir,
-	LaunchOptions: `${bashPath} -c '${pnpmPath} i && ${pnpmPath} add:steam' | ${teePath} ${process.env.HOME}/log.pnpm`
+	LaunchOptions: `${bashPath} -c '${pnpmPath} i && ${pnpmPath} add:steam'`
 }]
 	.forEach((opts: {
 		AppName: string,
