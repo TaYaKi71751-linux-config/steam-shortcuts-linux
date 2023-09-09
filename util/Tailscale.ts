@@ -1,8 +1,12 @@
 import { execSync } from 'child_process';
 
 export function getExitNodes () {
-	execSync(`bash ${process.env.PWD}/sh/tailscale/up.sh`);
-	const statusBuffer:Buffer = execSync('tailscale status --json');
+	const up = execSync('bash sh/tailscale/up.sh').toString();
+	console.log(`${up}`);
+	const binPath = `${execSync('find / -type f -name \'tailscale\' 2> /dev/null || true')}`.split('\n')[0];
+	console.log(binPath);
+	if (!binPath) throw new Error('Cannot find tailscale');
+	const statusBuffer = execSync(`${binPath} status --json`);
 	if (!statusBuffer?.toString) return [];
 	const statusString:string = statusBuffer.toString();
 	const statusObject:any = JSON.parse(statusString);
