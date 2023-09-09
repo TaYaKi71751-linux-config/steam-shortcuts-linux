@@ -17,6 +17,7 @@ sudo pacman -Syu \
   fakeroot linux-api-headers \
   libarchive \
   go \
+  git \
   wget \
   --noconfirm
 ```
@@ -25,6 +26,7 @@ sudo pacman -Syu \
 sudo pacman -Syu \
   base-devel \
   go \
+  git \
   wget \
   --noconfirm
 ```
