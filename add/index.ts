@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path, { basename, parse } from 'path';
+import { TrimShortcuts } from '../util/Shortcut';
 
 const tsDirectory = path.join(
 	`${process.env.PWD}`,
@@ -14,3 +15,5 @@ tsFiles
 		const tsFilePath = path.join(tsDirectory, parse(filename).name);
 		require(tsFilePath);
 	});
+
+TrimShortcuts();

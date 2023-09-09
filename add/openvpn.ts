@@ -1,9 +1,11 @@
 import { basename, dirname } from 'path';
-import { AddShortcut } from '../util/Shortcut';
+import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { getOpenVPNConfigs, getWhichOpenVPN } from '../util/OpenVPN';
 import { execSync } from 'child_process';
 
 const outFiles = getOpenVPNConfigs();
+
+RemoveShortcutStartsWith({ AppName: '[OpenVPN]' });
 
 (function () {
 	const StartDir = `${process.env.HOME}`;
