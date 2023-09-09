@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { AddShortcut } from '../util/Shortcut';
+import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { getExitNodes } from '../util/Tailscale';
 
 const outPath = path.join(
@@ -8,6 +8,8 @@ const outPath = path.join(
 	'out',
 	'tailscale'
 );
+
+RemoveShortcutStartsWith({ AppName: '[Tailscale]' });
 
 const outFiles = fs.readdirSync(outPath);
 outFiles
