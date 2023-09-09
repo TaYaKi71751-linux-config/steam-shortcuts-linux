@@ -1,4 +1,5 @@
 import { execSync } from 'child_process';
+import { existsSync, readFileSync } from 'fs';
 
 export function getOpenVPNConfigs () {
 	let r:string = '';
@@ -12,4 +13,22 @@ export function getOpenVPNConfigs () {
 
 export function getWhichOpenVPN () {
 	return `${execSync('which openvpn')?.toString()}`.split('\n')[0];
+}
+
+export function getOpenVPNConfigRemote (path:string):{
+	address:string,
+	port:string
+} {
+	const _throw = (m:string) => { throw new Error(m); };
+	if (!existsSync(path)) { _throw('File not Exists'); }
+	const remote_line = `${readFileSync(path)}`.split('\n').filter((l:string) => (l.startsWith('remote')))[0];
+	if (
+		!remote_line.split(' ').length ||
+			!remote_line.split(' ')[1] ||
+			!remote_line.split(' ')[2]
+	) { _throw('Cannot find remote in file'); }
+	return {
+		address: remote_line.split(' ')[1],
+		port: remote_line.split(' ')[2]
+	};
 }
