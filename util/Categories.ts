@@ -13,8 +13,8 @@ const userdataPath = path.join(process.env.HOME, '.steam', 'steam', 'userdata');
 export async function AddToCats (appid:number, cat:string) {
 	console.log(appid, cat);
 	const is_steam_running = execSync('ps -A | grep steam || true').toString().split('\n').filter((t:any) => (t))?.length;
+	if (is_steam_running) execSync(`rm ${JSON.stringify(path.join(levelDBPath, 'LOCK'))}`).toString();
 	console.log(is_steam_running);
-	if (is_steam_running) return;
 	const user_ids = readdirSync(userdataPath);
 	for (let i = 0; i < user_ids?.length; i++) {
 		const user_id = user_ids[i];
