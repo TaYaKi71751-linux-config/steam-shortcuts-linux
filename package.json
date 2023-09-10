@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "steam-binary-vdf": "^0.1.0",
+    "steam-categories": "^1.1.4",
     "ts-node": "^10.9.1"
   }
 }
