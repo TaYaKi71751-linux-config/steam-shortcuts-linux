@@ -5,38 +5,11 @@ import { execSync, spawnSync } from 'child_process';
 
 const StartDir: string = `${process.cwd()}`;
 const gitPath = `${execSync('which git').toString().split('\n')[0]}`;
-const bashPath = (() => {
-	const arr = `${execSync('find / -type f -name \'bash\' 2> /dev/null || true')}`.split('\n');
-	const r = arr.filter((p) => (p)).filter((p) => {
-		const r = spawnSync(p, ['--help']);
-		if (r.stdout) return true;
-		return false;
-	});
-	console.log(r);
-	return r[0];
-})();
-const envPath = (() => {
-	const arr = `${execSync('find / -type f -name \'env\' 2> /dev/null || true')}`.split('\n');
-	const r = arr.filter((p) => (p)).filter((p) => {
-		const r = spawnSync(p, ['--help']);
-		if (r.stdout) return true;
-		return false;
-	});
-	console.log(r);
-	return r[0];
-})();
+const bashPath = `${execSync('which bash').toString().split('\n')[0]}`;
+const envPath = `${execSync('which env').toString().split('\n')[0]}`;
+const teePath = `${execSync('which tee').toString().split('\n')[0]}`;
 const pnpmPath = (() => {
 	const arr = `${execSync('find / -type f -name \'pnpm\' 2> /dev/null || true')}`.split('\n');
-	const r = arr.filter((p) => (p)).filter((p) => {
-		const r = spawnSync(p, ['--help']);
-		if (r.stdout) return true;
-		return false;
-	});
-	console.log(r);
-	return r[0];
-})();
-const teePath = (() => {
-	const arr = `${execSync('find / -type f -name \'tee\' 2> /dev/null || true')}`.split('\n');
 	const r = arr.filter((p) => (p)).filter((p) => {
 		const r = spawnSync(p, ['--help']);
 		if (r.stdout) return true;
