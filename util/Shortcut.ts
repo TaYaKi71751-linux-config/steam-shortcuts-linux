@@ -1,4 +1,4 @@
-import { readVdf, writeVdf } from 'steam-binary-vdf';
+import { getShortcutUrl, readVdf, writeVdf } from 'steam-binary-vdf';
 import fs from 'fs';
 import path from 'path';
 
@@ -10,6 +10,7 @@ const userdataPath = path.join(
 );
 
 export function AddShortcut (_opts:{
+		appid: number,
   AppName: string,
   exe: string,
   StartDir?: string,
@@ -23,7 +24,7 @@ export function AddShortcut (_opts:{
   Devkit?: number,
   DevkitGameID?: string,
   LastPlayTime?: number,
-  tags?: any
+  tags?: string[]
 }) {
 	const user_ids = fs.readdirSync(userdataPath);
 	user_ids
@@ -50,7 +51,11 @@ export function AddShortcut (_opts:{
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
 				shortcut.AppName === _opts?.AppName ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'))[0];
-			shortcuts[`${typeof _i != 'undefined' ? _i : Object.entries(shortcuts).length}`] = _opts;
+			shortcuts[`${typeof _i != 'undefined' ? _i : Object.entries(shortcuts).length}`] = Object.assign(
+				{},
+				_opts,
+				(_opts?.tags?.length ? {tags:Object.fromEntries(_opts?.tags.map((t,i:any)=>([`${i}`,t])))} : undefined
+			));
 
 			console.log(`Add '${_opts?.AppName} (${_opts?.exe})' shortcuts to ${shortcutsPath}`);
 

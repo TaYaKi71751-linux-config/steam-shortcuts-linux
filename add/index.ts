@@ -6,14 +6,17 @@ const tsDirectory = path.join(
 	`${process.env.PWD}`,
 	'add'
 );
-const tsFiles = fs.readdirSync(tsDirectory);
+let tsFiles = fs.readdirSync(tsDirectory);
 
-tsFiles
+tsFiles = tsFiles
 	.filter((filename) => (filename.endsWith('.ts')))
-	.filter((filename) => (!basename(filename).startsWith('index')))
-	.forEach((filename) => {
+	.filter((filename) => (!basename(filename).startsWith('index')));
+(async () => {
+	for (let i = 0; i < tsFiles?.length; i++) {
+		const filename = tsFiles[i];
 		const tsFilePath = path.join(tsDirectory, parse(filename).name);
-		require(tsFilePath);
-	});
-
-TrimShortcuts();
+		const { __main__ } = require(tsFilePath);
+		await __main__();
+	}
+	TrimShortcuts();
+})();
