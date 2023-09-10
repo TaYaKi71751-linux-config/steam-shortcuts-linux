@@ -130,7 +130,7 @@ export function TrimShortcuts () {
 			}
 
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
-				Object.entries(shortcut).filter(([key, value]) => (!value))?.length ? index : undefined
+				shortcut.AppName === '' ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'));
 			_i.forEach((index) => {
 				Object.entries(shortcuts[`${index}`]).forEach(([key, value]) => {
