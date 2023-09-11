@@ -27,7 +27,7 @@ export async function __main__ () {
 		AppName: '[steam-shortcuts][Git] Pull TaYaKi71751/steam-shortcuts',
 		exe: `${gitPath}`,
 		StartDir,
-		LaunchOptions: '%command% pull'
+		LaunchOptions: `cd ${JSON.stringify(StartDir)} && %command% pull`
 	},
 	{
 		AppName: '[steam-shortcuts][Bash] build bins',
