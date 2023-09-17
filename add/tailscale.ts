@@ -44,7 +44,7 @@ export async function __main__ () {
 			];
 			for (let k = 0; k < shortcuts?.length; k++) {
 				const { name, LaunchOptions } = shortcuts[k];
-				const appid = getShortcutAppID({ AppName, exe });
+				const appid = getShortcutAppID({ AppName: AppName + name, exe });
 				AddShortcut({ appid, AppName: AppName + name, exe, StartDir, LaunchOptions, tags });
 				for (let l = 0; l < tags?.length; l++) {
 					const tag = tags[l];
