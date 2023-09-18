@@ -17,7 +17,7 @@ export async function __main__ () {
 		const exe = `${execSync('which pkill')?.toString().split('\n')[0]}`;
 		const AppName = '[OpenVPN] Kill';
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'sudo %command% openvpn', tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0 && sudo %command% openvpn', tags });
 		for (let i = 0; i < tags?.length; i++) {
 			const tag = tags[i];
 			if (!tag) continue;
@@ -67,7 +67,7 @@ export async function __main__ () {
 			return `${remote_country},${remote_isp},${remote_address}`;
 		})()})`;
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `sudo %command% "${OpenVPNConfigPath}"`, tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo %command% "${OpenVPNConfigPath}"`, tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
