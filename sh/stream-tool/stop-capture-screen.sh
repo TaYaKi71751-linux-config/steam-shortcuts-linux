@@ -2,7 +2,7 @@
 
 CONTAINER_BIN="podman"
 
-sudo usermod -aG docker $USER
+sudo usermod -aG ${CONTAINER_BIN} $USER
 
 sudo ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
 
