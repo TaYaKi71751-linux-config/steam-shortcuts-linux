@@ -1,6 +1,20 @@
 #!/bin/bash
 
-CONTAINER_BIN="podman"
+CONTAINER_BIN="docker"
+CONTAINERD_BIN="dockerd"
+
+function run_daemon(){
+	IS_CONTAINERD_RUNNING=`ps -A | grep ${CONTAINERD_BIN}`
+	if [ -n "${IS_CONTAINERD_RUNNING}" ];then
+		echo ${CONTAINERD_BIN} already running
+	else
+		Running ${CONTAINERD_BIN} with systemd-run
+		sudo systemd-run ${CONTAINERD_BIN}
+		run_daemon
+	fi
+}
+
+run_daemon
 
 sudo usermod -aG ${CONTAINER_BIN} $USER
 

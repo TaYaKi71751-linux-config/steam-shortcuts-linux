@@ -1,6 +1,7 @@
 #!/bin/bash
 
-CONTAINER_BIN="podman"
+CONTAINER_BIN="docker"
+CONTAINERD_BIN="dockerd"
 
 CONTAINER_BIN_PATH=`which ${CONTAINER_BIN}`
 GST_DEPENDENCIES_PKG_NAMES=(\
@@ -11,22 +12,38 @@ GST_DEPENDENCIES_PKG_NAMES=(\
 	"gst-plugin-pipewire" \
 )
 
-if [ -n "${CONTAINER_BIN_PATH}" ];then
-	sudo pacman -Sy \
-		${CONTAINER_BIN} \
-		--noconfirm
-fi
-
-for gst_pkg in ${GST_DEPENDENCIES_PKG_NAMES[@]};do
-	PKG_EXISTS=`sudo pacman -Q ${gst_pkg}`
-	if [ "${PKG_EXISTS}" ];then
-		echo "Package ${gst_pkg} is already installed, Skipping install"
-		continue
+function run_daemon(){
+	IS_CONTAINERD_RUNNING=`ps -A | grep ${CONTAINERD_BIN}`
+	if [ -n "${IS_CONTAINERD_RUNNING}" ];then
+		echo ${CONTAINERD_BIN} already running
 	else
-		echo "Package ${gst_pkg} is not installed, Installing ${gst_pkg}"
-		sudo pacman -Sy ${gst_pkg} --noconfirm
+		Running ${CONTAINERD_BIN} with systemd-run
+		sudo systemd-run ${CONTAINERD_BIN}
+		run_daemon
 	fi
-done
+}
+
+function install_packages(){
+	if [ -n "${CONTAINER_BIN_PATH}" ];then
+		sudo pacman -Sy \
+			${CONTAINER_BIN} \
+			--noconfirm
+	fi
+	for gst_pkg in ${GST_DEPENDENCIES_PKG_NAMES[@]};do
+		PKG_EXISTS=`sudo pacman -Q ${gst_pkg}`
+		if [ "${PKG_EXISTS}" ];then
+			echo "Package ${gst_pkg} is already installed, Skipping install"
+			continue
+		else
+			echo "Package ${gst_pkg} is not installed, Installing ${gst_pkg}"
+			sudo pacman -Sy ${gst_pkg} --noconfirm
+		fi
+	done
+}
+
+install_packages
+run_daemon
+
 
 #source ./sh/${CONTAINER_BIN}/enable.sh
 echo ${PWD}
