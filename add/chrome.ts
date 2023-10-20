@@ -29,7 +29,9 @@ const PAGE_URLS = [
 	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'] },
 	{ name: 'MahjongSoul[EN]', url: 'https://mahjongsoul.game.yo-star.com/', tags: ['MahjongSoul'] },
 	{ name: 'MahjongSoul[KR]', url: 'https://mahjongsoul.game.yo-star.com/kr/index.html', tags: ['MahjongSoul'] },
-	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'] }
+	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'] },
+	{ name: 'Gmail', url: 'https://gmail.com', tags: ['Email'] },
+	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'] }
 ];
 
 export async function __main__ () {
