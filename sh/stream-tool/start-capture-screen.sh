@@ -55,7 +55,7 @@ fi
 sudo groupadd ${CONTAINER_BIN}
 sudo usermod -aG ${CONTAINER_BIN} $USER
 sudo ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
-sudo ${CONTAINER_BIN} run -d -p 1935:1935 alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
+sudo ${CONTAINER_BIN} run -d -p 1935:1935 docker.io/alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
 SOURCE=""
 if [ "${XDG_SESSION_TYPE}" == "x11" ];then
