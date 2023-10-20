@@ -26,7 +26,10 @@ const PAGE_URLS = [
 	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager', tags: ['Dashboard'] },
 	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'] },
 	{ name: 'Restream.io', url: 'https://app.restream.io', tags: ['Dashboard'] },
-	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'] }
+	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'] },
+	{ name: 'MahjongSoul[EN]', url: 'https://mahjongsoul.game.yo-star.com/', tags: ['MahjongSoul'] },
+	{ name: 'MahjongSoul[KR]', url: 'https://mahjongsoul.game.yo-star.com/kr/index.html', tags: ['MahjongSoul'] },
+	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'] }
 ];
 
 export async function __main__ () {
