@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://www.reddit.com/r/SteamDeck/comments/1409qdt/crunchyroll_getting_shak6002generic_on_steam_deck/
 WIDEVINECDM_PATHS=`sudo find ~/ -type d -name 'WidevineCdm'`
 while IFS= read -r widevinecdm_path
 do
