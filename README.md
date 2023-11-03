@@ -83,7 +83,7 @@ git checkout origin/main
 ./build_dist.sh tailscale.com/cmd/tailscale
 ./build_dist.sh tailscale.com/cmd/tailscaled
 touch ~/.bashrc
-find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
+find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
 export PATH=${PATH}:$(pwd)
 ```
 ### #Microsoft Edge
