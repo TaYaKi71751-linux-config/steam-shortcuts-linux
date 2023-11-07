@@ -25,9 +25,9 @@ export async function __main__ () {
 
 	const shortcuts = [{
 		AppName: '[steam-shortcuts][Git] Pull TaYaKi71751/steam-shortcuts',
-		exe: `${gitPath}`,
+		exe: `${bashPath}`,
 		StartDir,
-		LaunchOptions: `cd ${JSON.stringify(StartDir)} && %command% pull`
+		LaunchOptions: `cd ${JSON.stringify(StartDir)} && find / -name 'git' -type f -exec {} pull \\;`
 	},
 	{
 		AppName: '[steam-shortcuts][Bash] build bins',
@@ -37,9 +37,9 @@ export async function __main__ () {
 	},
 	{
 		AppName: '[steam-shortcuts][pnpm] Add Steam Shortcuts',
-		exe: `${pnpmPath}`,
+		exe: `${bashPath}`,
 		StartDir,
-		LaunchOptions: `${bashPath} -c '${pnpmPath} i && ${pnpmPath} add:steam'`
+		LaunchOptions: `cd ${StartDir} && find / -name 'pnpm' -type f -exec {} add:steam \\;`
 	}];
 	for (let i = 0; i < shortcuts?.length; i++) {
 		const opts: {
