@@ -37,9 +37,9 @@ export async function __main__ () {
 	},
 	{
 		AppName: '[steam-shortcuts][pnpm] Add Steam Shortcuts',
-		exe: `${bashPath}`,
+		exe: `${StartDir}/out/steam-shortcuts/add.out`,
 		StartDir,
-		LaunchOptions: `sudo -nv && export SUDO_EXECUTOR="sudo" || export SUDO_EXECUTOR="pkexec"; $SUDO_EXECUTOR bash -c "$(env) ; cd ${StartDir} && find / -name 'pnpm' -type f -exec ${bashPath} -c '{} add:steam &&  pkill find' \\;"`
+		LaunchOptions: `${envPath} && %command%`
 	}];
 	for (let i = 0; i < shortcuts?.length; i++) {
 		const opts: {
