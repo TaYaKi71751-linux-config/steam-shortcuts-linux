@@ -383,13 +383,10 @@ BOOT_LAUNCHER_FLOW_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
 </rage__fwuiFlowBlock>'
 
 function process_kill() {
-sudo pkill RDR2.exe
-sudo pkill PlayRDR2.exe
+find -name "${SUDO_EXECUTOR}" -type -f -exec pkill RDR2.exe \;
+find -name "${SUDO_EXECUTOR}" -type -f -exec pkill PlayRDR2.exe \;
 }
-
-# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
-PROCESS_KILL_FUNC=$(declare -f process_kill)
-${SUDO_EXECUTOR} bash -c "$FUNC; process_kill"
+process_kill
 
 RDR2_PATHS="$(find / 2> /dev/null | grep PlayRDR2.exe)"
 

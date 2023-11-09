@@ -11,18 +11,21 @@ for shrc in ${SHELL_RUN_COMMANDS[@]};do
 done
 
 function down(){
+SHELL_RUN_COMMANDS=`find ~ -maxdepth 1 -name '.*shrc' || true`
+for shrc in ${SHELL_RUN_COMMANDS[@]};do
+	echo "source ${shrc}"
+	source ${shrc}
+done
 	DAEMON_STATUS=`ps -A | grep tailscaled`
 	if [ -n "${DAEMON_STATUS}" ];then
 		echo "tailscaled already running"
-		${SUDO_EXECUTOR} tailscale down
+		find / -name 'tailscale' -type f -exec ${SUDO_EXECUTOR} tailscale down \; || true
 	else
 		echo "tailscaled not running, run tailscaled"
-		${SUDO_EXECUTOR} systemd-run tailscaled
+		find / -name 'tailscaled' -type f -exec ${SUDO_EXECUTOR} systemd-run {} \; || true
 		down
 	fi
 }
 
-# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
-FUNC=$(declare -f down)
-${SUDO_EXECUTOR} bash -c "$(env) ; $FUNC; down" || down
+down
 

@@ -1,9 +1,11 @@
 #!/bin/bash
 
+ORIG_HOME=${HOME}
+
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
 SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
 echo $SUDO_EXECUTOR
-SHELL_RUN_COMMANDS=`find ~ -maxdepth 1 -name '.*shrc'`
+SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	echo "source ${shrc}"
 	source ${shrc}
@@ -18,19 +20,24 @@ if [ -n "${TAILSCALE_EXIT_NODE}" ];then
 fi
 
 function up(){
-	echo A
-	DAEMON_STATUS=`ps -A | grep tailscaled`
+# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
+echo $SUDO_EXECUTOR
+SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
+for shrc in ${SHELL_RUN_COMMANDS[@]};do
+	echo "source ${shrc}"
+	source ${shrc}
+done
+
+	DAEMON_STATUS=`ps -A | grep tailscaled || true`
 	if [ -n "${DAEMON_STATUS}" ];then
 		echo "tailscaled already running"
 		echo ${TAILSCALE_OPTIONS}
-		${SUDO_EXECUTOR} tailscale up ${TAILSCALE_OPTIONS}
+		find / -name 'tailscale' -type f -exec ${SUDO_EXECUTOR} bash -c "{} up ${TAILSCALE_OPTIONS} && pkill find" \; || true
 	else
 		echo "tailscaled not running, run tailscaled"
-		${SUDO_EXECUTOR} systemd-run tailscaled
+		find / -name 'tailscaled' -type f -exec ${SUDO_EXECUTOR} systemd-run {} \; || true
 		up
 	fi
 }
-# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
-FUNC=$(declare -f up)
-${SUDO_EXECUTOR} bash -c "$(env) ; TAILSCALE_OPTIONS=\"${TAILSCALE_OPTIONS}\"; $FUNC; up" || up
-
+up

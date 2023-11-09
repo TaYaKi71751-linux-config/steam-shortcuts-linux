@@ -4,12 +4,10 @@
 SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
 
 function process_kill() {
-sudo pkill GTA5.exe
-sudo pkill PlayGTAV.exe
+find -name "${SUDO_EXECUTOR}" -type -f -exec pkill GTA5.exe \;
+find -name "${SUDO_EXECUTOR}" -type -f -exec pkill PlayGTAV.exe \;
 }
-# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
-PROCESS_KILL_FUNC=$(declare -f process_kill)
-${SUDO_EXECUTOR} bash -c "$PROCESS_KILL_FUNC; process_kill"
+process_kill
 
 GTAV_PATHS="$(find / 2> /dev/null | grep PlayGTAV.exe)"
 
