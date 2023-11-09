@@ -24,7 +24,7 @@ export async function __main__ () {
 	const tags = ['steam-shortcuts'];
 
 	const shortcuts = [{
-		AppName: '[steam-shortcuts][Git] Pull TaYaKi71751/steam-shortcuts',
+		AppName: '[steam-shortcuts][Git] Pull',
 		exe: `${bashPath}`,
 		StartDir,
 		LaunchOptions: `cd ${JSON.stringify(StartDir)} && find / -name 'git' -type f -exec {} pull \\;`
