@@ -54,3 +54,8 @@ export async function __main__ () {
 		}
 	}
 }
+
+// https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
+if (typeof require !== 'undefined' && require.main === module) {
+	__main__();
+}
