@@ -67,7 +67,7 @@ export async function __main__ () {
 			return `${remote_country},${remote_isp},${remote_address}`;
 		})()})`;
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo %command% "${OpenVPNConfigPath}"`, tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `sudo -nv && export SUDO_EXECUTOR="sudo" || export SUDO_EXECUTOR="pkexec" ;$SUDO_EXECUTOR bash -c "sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo %command% '${OpenVPNConfigPath}'"`, tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
@@ -80,4 +80,3 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
-
