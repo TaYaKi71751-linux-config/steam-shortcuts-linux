@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
+
+
 SHELL_RUN_COMMANDS=`find ~ -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	echo "source ${shrc}"
@@ -17,4 +21,8 @@ function down(){
 		down
 	fi
 }
-down
+
+# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
+FUNC=$(declare -f down)
+${SUDO_EXECUTOR} bash -c "$FUNC; down"
+

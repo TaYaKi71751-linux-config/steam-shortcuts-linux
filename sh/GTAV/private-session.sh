@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
+
 #TODO TEST with Windows thing
 
 # https://www.youtube.com/watch?v=OFd2af8wINE
@@ -24,8 +27,15 @@ STARTUP_META_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
  <patchFiles />
 </CDataFileMgr__ContentsOfDataFileXml>'
 
+function process_kill(){
 sudo pkill GTA5.exe
 sudo pkill PlayGTAV.exe
+}
+
+# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
+PROCESS_KILL_FUNC=$(declare -f process_kill)
+${SUDO_EXECUTOR} bash -c "$PROCESS_KILL_FUNC; process_kill"
+
 GTAV_PATHS="$(find / 2> /dev/null | grep PlayGTAV.exe)"
 
 echo ${GTAV_PATHS}
@@ -55,3 +65,4 @@ do
 	fi
 	echo "${line}"
 done < <(printf '%s\n' "${GTAV_PATHS}")
+

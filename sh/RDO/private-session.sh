@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
+
 #TODO TEST with Windows thing
 
 # https://www.youtube.com/watch?v=OFd2af8wINE
@@ -379,8 +382,15 @@ BOOT_LAUNCHER_FLOW_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
  </FlowRoot>
 </rage__fwuiFlowBlock>'
 
+function process_kill() {
 sudo pkill RDR2.exe
 sudo pkill PlayRDR2.exe
+}
+
+# https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
+PROCESS_KILL_FUNC=$(declare -f process_kill)
+${SUDO_EXECUTOR} bash -c "$FUNC; process_kill"
+
 RDR2_PATHS="$(find / 2> /dev/null | grep PlayRDR2.exe)"
 
 echo ${RDR2_PATHS}
@@ -423,3 +433,4 @@ do
 	fi
 	echo "${line}"
 done < <(printf '%s\n' "${RDR2_PATHS}")
+
