@@ -33,5 +33,5 @@ function up(){
 
 # https://unix.stackexchange.com/questions/269078/executing-a-bash-script-function-with-sudo
 FUNC=$(declare -f up)
-${SUDO_EXECUTOR} bash -c "TAILSCALE_OPTIONS=\"${TAILSCALE_OPTIONS}\"; $FUNC; up"
+pkexec bash -c "$(env) ; TAILSCALE_OPTIONS=\"${TAILSCALE_OPTIONS}\"; $FUNC; up"
 
