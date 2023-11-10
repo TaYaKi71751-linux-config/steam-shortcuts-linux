@@ -4,7 +4,9 @@ CONTAINER_BIN="docker"
 CONTAINERD_BIN="dockerd"
 
 function check_sudo() {
-	sudo -nv && exit
+	if ( `sudo -nv` );then
+		return "0"
+	fi
 	SUDO_PASSWORD="$(zenity --password)"
 	# https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/user_install_script.sh…
 	if ( echo ${SUDO_PASSWORD} | sudo -S echo A | grep A );then
@@ -16,7 +18,7 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
 
 CONTAINER_BIN_PATH=`which ${CONTAINER_BIN}`
 GST_DEPENDENCIES_PKG_NAMES=(\
