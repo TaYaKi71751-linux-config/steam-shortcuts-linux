@@ -1,7 +1,19 @@
 #!/bin/bash
 
+function check_sudo() {
+	sudo -nv && exit
+	SUDO_PASSWORD="$(zenity --password)"
+	# https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/user_install_script.sh…
+	if ( echo ${SUDO_PASSWORD} | sudo -S echo A | grep A );then
+		export SUDO_PASSWORD=${SUDO_PASSWORD}
+	else
+		check_sudo
+	fi
+}
+check_sudo
+
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
 
 #TODO TEST with Windows thing
 

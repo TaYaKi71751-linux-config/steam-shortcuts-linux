@@ -2,9 +2,21 @@
 
 ORIG_HOME=${HOME}
 
+function check_sudo() {
+	sudo -nv && exit
+	SUDO_PASSWORD="$(zenity --password)"
+	# https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/user_install_script.sh…
+	if ( echo ${SUDO_PASSWORD} | sudo -S echo A | grep A );then
+		export SUDO_PASSWORD=${SUDO_PASSWORD}
+	else
+		check_sudo
+	fi
+}
+check_sudo
+
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
-echo $SUDO_EXECUTOR
+SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+
 SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	echo "source ${shrc}"
@@ -20,15 +32,6 @@ if [ -n "${TAILSCALE_EXIT_NODE}" ];then
 fi
 
 function up(){
-# https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo pkexec)"
-echo $SUDO_EXECUTOR
-SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
-for shrc in ${SHELL_RUN_COMMANDS[@]};do
-	echo "source ${shrc}"
-	source ${shrc}
-done
-
 	DAEMON_STATUS=`ps -A | grep tailscaled || true`
 	if [ -n "${DAEMON_STATUS}" ];then
 		echo "tailscaled already running"
