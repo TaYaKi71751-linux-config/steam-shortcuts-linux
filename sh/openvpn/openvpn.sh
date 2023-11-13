@@ -8,6 +8,12 @@ done
 
 ORIG_HOME=${HOME}
 
+function check_openvpn(){
+	export OPENVPN_USABLE=`find / -name 'openvpn' -type f -exec {} --help \;`
+	export OPENVPN_USABLE="$(echo $OPENVPN_USABLE | grep OpenVPN)"
+}
+check_openvpn
+
 # https://github.com/ValveSoftware/SteamOS/issues/1039
 function check_kdialog(){
 	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
@@ -19,9 +25,24 @@ function check_zenity(){
 	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep Usage)"
 	env | grep STEAM_DECK\= && unset $ZENITY_USABLE
 }
-
 check_kdialog
 check_zenity
+
+if [ -z "${OPENVPN_USABLE}" ];then
+	if [ -n "${KDIALOG_USABLE}" ];then
+		find / -name 'kdialog' -type f -exec bash -c "{} --error 'openvpn binary not found. please install openvpn.' && pkill find" \;
+	elif [ -n "${ZENITY_USABLE}" ];then
+		find / -name 'zenity' -type f -exec bash -c "{} --error --text='openvpn binary not found. please install openvpn.' && pkill find" \;
+	fi
+fi
+
+if [ -z "${OPENVPN_CONFIG_PATH}" ];then
+	if [ -n "${KDIALOG_USABLE}" ];then
+		find / -name 'kdialog' -type f -exec bash -c "{} --error 'openvpn config not found. please select openvpn config.' && pkill find" \;
+	elif [ -n "${ZENITY_USABLE}" ];then
+		find / -name 'zenity' -type f -exec bash -c "{} --error --text='openvpn config not found. please select openvpn config.' && pkill find" \;
+	fi
+fi
 
 function get_password(){
 	if [ -n "${KDIALOG_USABLE}" ];then
@@ -49,24 +70,5 @@ check_sudo
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
 export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo "echo \${SUDO_PASSWORD} \| sudo -S")"
 
-TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --reset "
-TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --exit-node=${TAILSCALE_EXIT_NODE} "
-TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --ssh "
-TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --operator=${HOSTNAME} "
-if [ -n "${TAILSCALE_EXIT_NODE}" ];then
-	TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --exit-node-allow-lan-access "
-fi
-
-function up(){
-	DAEMON_STATUS=`ps -A | grep tailscaled || true`
-	if [ -n "${DAEMON_STATUS}" ];then
-		echo "tailscaled already running"
-		echo ${TAILSCALE_OPTIONS}
-		find / -name 'tailscale' -type f -exec ${SUDO_EXECUTOR} {} up ${TAILSCALE_OPTIONS} \; || true
-	else
-		echo "tailscaled not running, run tailscaled"
-		find / -name 'tailscaled' -type f -exec ${SUDO_EXECUTOR} systemd-run {} \; || true
-		up
-	fi
-}
-up
+${SUDO_EXECUTOR} sysctl -w net.ipv6.conf.all.disable_ipv6=1
+find / -name 'openvpn' -type f -exec ${SUDO_EXECUTOR} {} "${OPENVPN_CONFIG_PATH}" \;

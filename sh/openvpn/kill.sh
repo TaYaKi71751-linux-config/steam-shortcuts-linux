@@ -1,5 +1,19 @@
 #!/bin/bash
 
+SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
+for shrc in ${SHELL_RUN_COMMANDS[@]};do
+	echo "source ${shrc}"
+	source ${shrc}
+done
+
+ORIG_HOME=${HOME}
+
+function check_openvpn(){
+	export OPENVPN_USABLE=`find / -name 'openvpn' -type f -exec {} --help \;`
+	export OPENVPN_USABLE="$(echo $OPENVPN_USABLE | grep OpenVPN)"
+}
+check_openvpn
+
 # https://github.com/ValveSoftware/SteamOS/issues/1039
 function check_kdialog(){
 	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
@@ -11,9 +25,16 @@ function check_zenity(){
 	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep Usage)"
 	env | grep STEAM_DECK\= && unset $ZENITY_USABLE
 }
-
 check_kdialog
 check_zenity
+
+if [ -z "${OPENVPN_USABLE}" ];then
+	if [ -n "${KDIALOG_USABLE}" ];then
+		find / -name 'kdialog' -type f -exec bash -c "{} --error 'openvpn binary not found. please install openvpn.' && pkill find" \;
+	elif [ -n "${ZENITY_USABLE}" ];then
+		find / -name 'zenity' -type f -exec bash -c "{} --error --text='openvpn binary not found. please install openvpn.' && pkill find" \;
+	fi
+fi
 
 function get_password(){
 	if [ -n "${KDIALOG_USABLE}" ];then
@@ -39,35 +60,7 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo "echo \${SUDO_PASSWORD} \| sudo -S")"
 
-function process_kill() {
-find -name "${SUDO_EXECUTOR}" -type -f -exec pkill GTA5.exe \;
-find -name "${SUDO_EXECUTOR}" -type -f -exec pkill PlayGTAV.exe \;
-}
-process_kill
-
-GTAV_PATHS="$(find / 2> /dev/null | grep PlayGTAV.exe)"
-
-echo ${GTAV_PATHS}
-while IFS= read -r PLAY_GTAV_PATH
-do
-	GTAV_PATH=`dirname "${PLAY_GTAV_PATH}"`
-	STARTUP_PATH="${GTAV_PATH}/x64/data/startup.meta"
-	if [ -d "$(dirname '${STARTUP_PATH}')" ];then
-		if [ -f "${STARTUP_PATH}" ];then
-			rm "${STARTUP_PATH}"
-		fi
-	else
-		continue
-	fi
-	if [ -d "$(dirname '${BOOT_LAUNCHER_FLOW_PATH}')" ];then
-		if [ -f "${BOOT_LAUNCHER_FLOW_PATH}" ];then
-			rm "${BOOT_LAUNCHER_FLOW_PATH}"
-		fi
-	else
-		continue
-	fi
-	# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
-done < <(printf '%s\n' "${GTAV_PATHS}")
-
+${SUDO_EXECUTOR} sysctl -w net.ipv6.conf.all.disable_ipv6=0
+${SUDO_EXECUTOR} pkill openvpn

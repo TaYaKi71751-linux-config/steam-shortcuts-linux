@@ -12,12 +12,12 @@ export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[OpenVPN]' });
 
 	const tags = ['OpenVPN'];
+	const StartDir = `${process.env.PWD}/out/openvpn/kill.out`;
 	await (async function () {
-		const StartDir = `${process.env.HOME}`;
-		const exe = `${execSync('which pkill')?.toString().split('\n')[0]}`;
+		const exe = `${StartDir}`;
 		const AppName = '[OpenVPN] Kill';
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'sudo -nv && export SUDO_EXECUTOR="sudo" || export SUDO_EXECUTOR="pkexec"; $SUDO_EXECUTOR bash -c "sysctl -w net.ipv6.conf.all.disable_ipv6=0 && %command% openvpn', tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
 		for (let i = 0; i < tags?.length; i++) {
 			const tag = tags[i];
 			if (!tag) continue;
@@ -26,7 +26,6 @@ export async function __main__ () {
 	})();
 
 	await (async function () {
-		const StartDir = `${process.env.HOME}`;
 		const exe = `${execSync('which rm')?.toString().split('\n')[0]}`;
 		const AppName = '[OpenVPN] Remove All .ovpn';
 		const appid = getShortcutAppID({ AppName, exe });
@@ -41,7 +40,7 @@ export async function __main__ () {
 	for (let i = 0; i < outFiles?.length; i++) {
 		const OpenVPNConfigPath = outFiles[i];
 		const StartDir = dirname(OpenVPNConfigPath);
-		const exe = getWhichOpenVPN();
+		const exe = `${process.env.PWD}/out/openvpn/openvpn.out`;
 		let remote_address = '';
 		let remote_isp = '';
 		let remote_country = '';
@@ -67,7 +66,7 @@ export async function __main__ () {
 			return `${remote_country},${remote_isp},${remote_address}`;
 		})()})`;
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `sudo -nv && export SUDO_EXECUTOR="sudo" || export SUDO_EXECUTOR="pkexec" ;$SUDO_EXECUTOR bash -c "sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo %command% '${OpenVPNConfigPath}'"`, tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `export OPENVPN_CONFIG_PATH='${OpenVPNConfigPath}' && %command%`, tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
