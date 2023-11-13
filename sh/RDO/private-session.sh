@@ -39,7 +39,13 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+function sudo_executor(){
+	if ( `sudo -nv` );then
+		sudo $@
+	else
+		echo ${SUDO_PASSWORD} | sudo -S $@
+	fi
+}
 
 #TODO TEST with Windows thing
 
@@ -421,8 +427,8 @@ BOOT_LAUNCHER_FLOW_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
 </rage__fwuiFlowBlock>'
 
 function process_kill() {
-find -name "${SUDO_EXECUTOR}" -type -f -exec pkill RDR2.exe \;
-find -name "${SUDO_EXECUTOR}" -type -f -exec pkill PlayRDR2.exe \;
+	sudo_executor pkill RDR2.exe || true
+	sudo_executor pkill PlayRDR2.exe || true
 }
 process_kill
 

@@ -12,9 +12,9 @@ export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[OpenVPN]' });
 
 	const tags = ['OpenVPN'];
-	const StartDir = `${process.env.PWD}/out/openvpn/kill.out`;
+	const StartDir = `${process.env.PWD}/`;
 	await (async function () {
-		const exe = `${StartDir}`;
+		const exe = `${StartDir}/out/openvpn/kill.out`;
 		const AppName = '[OpenVPN] Kill';
 		const appid = getShortcutAppID({ AppName, exe });
 		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
@@ -39,7 +39,7 @@ export async function __main__ () {
 
 	for (let i = 0; i < outFiles?.length; i++) {
 		const OpenVPNConfigPath = outFiles[i];
-		const StartDir = dirname(OpenVPNConfigPath);
+		// const StartDir = dirname(OpenVPNConfigPath);
 		const exe = `${process.env.PWD}/out/openvpn/openvpn.out`;
 		let remote_address = '';
 		let remote_isp = '';

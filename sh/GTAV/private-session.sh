@@ -39,7 +39,13 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+function sudo_executor(){
+	if ( `sudo -nv` );then
+		sudo $@
+	else
+		echo ${SUDO_PASSWORD} | sudo -S $@
+	fi
+}
 
 #TODO TEST with Windows thing
 
@@ -66,8 +72,8 @@ STARTUP_META_CONFIG_XML='<?xml version="1.0" encoding="UTF-8"?>
 </CDataFileMgr__ContentsOfDataFileXml>'
 
 function process_kill(){
-	find / -name "${SUDO_EXECUTOR}" -type f -exec {} pkill GTA5.exe \; || true
-	find / -name "${SUDO_EXECUTOR}" -type f -exec {} pkill PlayGTAV.exe \; || true
+	sudo_executor pkill GTA5.exe || true
+	sudo_executor pkill PlayGTAV.exe || true
 }
 process_kill
 

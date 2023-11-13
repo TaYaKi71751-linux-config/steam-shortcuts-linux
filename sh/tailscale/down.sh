@@ -46,7 +46,13 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
+function sudo_executor(){
+	if ( `sudo -nv` );then
+		sudo $@
+	else
+		echo ${SUDO_PASSWORD} | sudo -S $@
+	fi
+}
 
 
 function down(){
@@ -58,10 +64,17 @@ done
 	DAEMON_STATUS=`ps -A | grep tailscaled`
 	if [ -n "${DAEMON_STATUS}" ];then
 		echo "tailscaled already running"
-		find / -name 'tailscale' -type f -exec ${SUDO_EXECUTOR} tailscale down \; || true
+		while IFS= read -r line
+		do
+			sudo_executor "$line" down
+		done <<< "$(find / -name 'tailscale' -type f)"
 	else
 		echo "tailscaled not running, run tailscaled"
-		find / -name 'tailscaled' -type f -exec ${SUDO_EXECUTOR} systemd-run {} \; || true
+		while IFS= read -r line
+		do
+			kdialog --error "$line"
+			sudo_executor systemd-run "$line"
+		done <<< "$(find / -name 'tailscaled' -type f)"
 		down
 	fi
 }

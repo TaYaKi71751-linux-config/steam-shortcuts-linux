@@ -68,7 +68,13 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
-export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo "echo \${SUDO_PASSWORD} \| sudo -S")"
+function sudo_executor(){
+	if ( `sudo -nv` );then
+		sudo $@
+	else
+		echo ${SUDO_PASSWORD} | sudo -S $@
+	fi
+}
 
-${SUDO_EXECUTOR} sysctl -w net.ipv6.conf.all.disable_ipv6=1
-find / -name 'openvpn' -type f -exec ${SUDO_EXECUTOR} {} "${OPENVPN_CONFIG_PATH}" \;
+sudo_executor sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo_executor openvpn "${OPENVPN_CONFIG_PATH}"

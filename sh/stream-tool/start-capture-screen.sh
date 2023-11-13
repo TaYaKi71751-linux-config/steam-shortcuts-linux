@@ -42,6 +42,13 @@ function check_sudo() {
 check_sudo
 
 # https://superuser.com/questions/553932/how-to-check-if-i-have-sudo-access
+function sudo_executor(){
+	if ( `sudo -nv` );then
+		sudo $@
+	else
+		echo ${SUDO_PASSWORD} | sudo -S $@
+	fi
+}
 export SUDO_EXECUTOR="$(sudo -nv && echo sudo || echo echo \${SUDO_PASSWORD} \| sudo -S)"
 
 CONTAINER_BIN_PATH=`which ${CONTAINER_BIN}`
@@ -59,25 +66,25 @@ function run_daemon(){
 		echo ${CONTAINERD_BIN} already running
 	else
 		Running ${CONTAINERD_BIN} with systemd-run
-		${SUDO_EXECUTOR} systemd-run ${CONTAINERD_BIN}
+		sudo_executor systemd-run ${CONTAINERD_BIN}
 		run_daemon
 	fi
 }
 
 function install_packages(){
 	if [ -n "${CONTAINER_BIN_PATH}" ];then
-		${SUDO_EXECUTOR} pacman -Sy \
+		sudo_executor pacman -Sy \
 			${CONTAINER_BIN} \
 			--noconfirm
 	fi
 	for gst_pkg in ${GST_DEPENDENCIES_PKG_NAMES[@]};do
-		PKG_EXISTS=`${SUDO_EXECUTOR} pacman -Q ${gst_pkg}`
+		PKG_EXISTS=$(sudo_executor pacman -Q ${gst_pkg})
 		if [ "${PKG_EXISTS}" ];then
 			echo "Package ${gst_pkg} is already installed, Skipping install"
 			continue
 		else
 			echo "Package ${gst_pkg} is not installed, Installing ${gst_pkg}"
-			${SUDO_EXECUTOR} pacman -Sy ${gst_pkg} --noconfirm
+			sudo_executor pacman -Sy ${gst_pkg} --noconfirm
 		fi
 	done
 }
@@ -110,10 +117,10 @@ else
 	fi
 fi
 
-${SUDO_EXECUTOR} groupadd ${CONTAINER_BIN}
-${SUDO_EXECUTOR} usermod -aG ${CONTAINER_BIN} $USER
-${SUDO_EXECUTOR} ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
-${SUDO_EXECUTOR} ${CONTAINER_BIN} run -d -p 1935:1935 docker.io/alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
+sudo_executor groupadd ${CONTAINER_BIN}
+sudo_executor usermod -aG ${CONTAINER_BIN} $USER
+sudo_executor ${CONTAINER_BIN} pull docker.io/alfg/nginx-rtmp
+sudo_executor ${CONTAINER_BIN} run -d -p 1935:1935 docker.io/alfg/nginx-rtmp # https://linderud.dev/blog/streaming-the-steam-deck-to-obs/
 
 SOURCE=""
 if [ "${XDG_SESSION_TYPE}" == "x11" ];then
@@ -139,7 +146,7 @@ nohup \
 				>/dev/null 2>&1 \
 &
 while [ true ];do
-${SUDO_EXECUTOR} ffmpeg -f kmsgrab -i - -vaapi_device /dev/dri/renderD128 \
+sudo_executor ffmpeg -f kmsgrab -i - -vaapi_device /dev/dri/renderD128 \
 -vf hwmap=derive_device=vaapi,scale_vaapi=format=nv12 -c:v h264_vaapi -bf 1 \
 -f flv rtmp://localhost/stream/ffmpeg \
 >/dev/null 2>&1
