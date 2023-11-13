@@ -72,7 +72,6 @@ done
 		echo "tailscaled not running, run tailscaled"
 		while IFS= read -r line
 		do
-			kdialog --error "$line"
 			sudo_executor systemd-run "$line"
 		done <<< "$(find / -name 'tailscaled' -type f)"
 		down
