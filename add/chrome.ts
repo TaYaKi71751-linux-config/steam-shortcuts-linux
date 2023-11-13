@@ -31,7 +31,8 @@ const PAGE_URLS = [
 	{ name: 'MahjongSoul[KR]', url: 'https://mahjongsoul.game.yo-star.com/kr/index.html', tags: ['MahjongSoul'] },
 	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'] },
 	{ name: 'Gmail', url: 'https://gmail.com', tags: ['Email'] },
-	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'] }
+	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'] },
+	{ name: 'Geolocation(Netflix)', url: 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location', tags: ['geolocation'] }
 ];
 
 export async function __main__ () {
@@ -59,3 +60,4 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
+
