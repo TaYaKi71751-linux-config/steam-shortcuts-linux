@@ -26,6 +26,18 @@ export async function __main__ () {
 	})();
 
 	await (async function () {
+		const exe = `${StartDir}/out/openvpn/reload.out`;
+		const AppName = '[OpenVPN] Reload';
+		const appid = getShortcutAppID({ AppName, exe });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
+		for (let i = 0; i < tags?.length; i++) {
+			const tag = tags[i];
+			if (!tag) continue;
+			await AddToCats(appid, tag);
+		}
+	})();
+
+	await (async function () {
 		const exe = `${execSync('which rm')?.toString().split('\n')[0]}`;
 		const AppName = '[OpenVPN] Remove All .ovpn';
 		const appid = getShortcutAppID({ AppName, exe });
