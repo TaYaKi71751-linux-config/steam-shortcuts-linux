@@ -96,6 +96,10 @@ flatpak install com.obsproject.Studio.Plugin.OBSVkCapture --assumeyes
 flatpak install org.freedesktop.Platform.VulkanLayer.OBSVkCapture --assumeyes
 flatpak install flathub com.obsproject.Studio --assumeyes
 ```
+### #Discord
+```
+flatpak install flathub com.discordapp.Discord --assumeyes
+```
 
 ## #Build
 ```
