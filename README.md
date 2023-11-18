@@ -1,4 +1,8 @@
 # #steam-shortcuts
+## Run with one line command
+```
+bash -c "$(curl -LsSf https://raw.githubusercontent.com/TaYaKi71751/steam-shortcuts/main/sh/prerun/index.sh)"
+```
 ## #before
 https://gist.github.com/rondhi/f9163e7649aa734b5421a8f58bd6c49e
 ### #Disable read-only
