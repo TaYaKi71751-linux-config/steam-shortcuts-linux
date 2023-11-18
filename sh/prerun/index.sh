@@ -99,12 +99,14 @@ sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Sy --noconfirm
 sudo_executor rm -rf /var/cache/*
 
+HOLO_REL="$(sudo_executor cat /etc/pacman.conf | grep "^\[holo" | sed 's/\[//g' | sed 's/\]//g')"
+if [ -n "${HOLO_REL}" ];then
 sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
-  holo-*/linux-headers \
+  ${HOLO_REL}/linux-headers \
   linux-neptune-headers \
-  holo-*/linux-lts-headers \
+  ${HOLO_REL}/linux-lts-headers \
   git glibc gcc gcc-libs \
   fakeroot linux-api-headers \
   libarchive \
@@ -112,6 +114,7 @@ sudo_executor pacman -Syu \
   git \
   wget \
   --noconfirm
+fi
 
 sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
