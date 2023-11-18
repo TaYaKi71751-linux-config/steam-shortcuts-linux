@@ -55,6 +55,27 @@ function sudo_executor(){
 	fi
 }
 
+function install_flatpak_package(){
+	PACKAGE_NAME="$1"
+RESULT="$(bash << EOF
+flatpak install ${PACKAGE_NAME} --assumeyes
+EOF
+)"
+if ( echo ${RESULT} | grep already\ installed );then
+	echo A
+	return
+elif ( echo ${RESULT} | grep ${PACKAGE_NAME} | grep Similar );then
+	PACKAGE_LINES="$(echo "${RESULT}" | grep "${PACKAGE_NAME}/")"
+while IFS= read -r line
+do
+bash << EOF
+	flatpak install $(echo $line | rev | cut -d ' ' -f1 | rev) --assumeyes
+EOF
+done < <(printf '%s\n' "$PACKAGE_LINES")
+fi
+
+}
+
 sudo_executor steamos-readonly disable
 
 ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
@@ -179,18 +200,17 @@ find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${
 export PATH=${PATH}:$(pwd)
 
 #Microsoft Edge
-flatpak install flathub com.microsoft.Edge --assumeyes
+install_flatpak_package flathub com.microsoft.Edge
 
 #OBS Studio
-flatpak install com.obsproject.Studio.Plugin.OBSVkCapture --assumeyes
-flatpak install org.freedesktop.Platform.VulkanLayer.OBSVkCapture --assumeyes
-flatpak install flathub com.obsproject.Studio --assumeyes
-
+install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
+install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+install_flatpak_package com.obsproject.Studio
 #obs-vkcapture
 sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
 
 #Discord
-flatpak install flathub com.discordapp.Discord --assumeyes
+install_flatpak_package com.discordapp.Discord
 
 #Build
 cd ~/
