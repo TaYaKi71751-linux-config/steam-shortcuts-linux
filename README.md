@@ -100,6 +100,10 @@ flatpak install com.obsproject.Studio.Plugin.OBSVkCapture --assumeyes
 flatpak install org.freedesktop.Platform.VulkanLayer.OBSVkCapture --assumeyes
 flatpak install flathub com.obsproject.Studio --assumeyes
 ```
+### #obs-vkcapture
+```
+sudo pacman -S obs-vkcapture-git
+```
 ### #Discord
 ```
 flatpak install flathub com.discordapp.Discord --assumeyes

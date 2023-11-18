@@ -152,14 +152,14 @@ nvm install --lts
 nvm use --lts
 
 #pnpm
-sudo npm i -g pnpm
+sudo_executor npm i -g pnpm
 
 #brew
 curl -LsSf https://raw.githubusercontent.com/raccl/packages/archlinux/packages/brew.sh | sh
 
 sudo_executor rm -rf /var/cache/*
 #flatpak
-sudo pacman -Syu \
+sudo_executor pacman -Syu \
   flatpak \
   --noconfirm
 
@@ -185,6 +185,9 @@ flatpak install flathub com.microsoft.Edge --assumeyes
 flatpak install com.obsproject.Studio.Plugin.OBSVkCapture --assumeyes
 flatpak install org.freedesktop.Platform.VulkanLayer.OBSVkCapture --assumeyes
 flatpak install flathub com.obsproject.Studio --assumeyes
+
+#obs-vkcapture
+sudo_executor pacman -Sy obs-vkcapture-git
 
 #Discord
 flatpak install flathub com.discordapp.Discord --assumeyes
