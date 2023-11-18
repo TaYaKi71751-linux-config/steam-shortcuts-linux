@@ -129,6 +129,7 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
+sudo_executor pacman -Sy --noconfirm
 
 
 #shc
