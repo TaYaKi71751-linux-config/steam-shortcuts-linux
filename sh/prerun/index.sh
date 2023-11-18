@@ -187,7 +187,7 @@ flatpak install org.freedesktop.Platform.VulkanLayer.OBSVkCapture --assumeyes
 flatpak install flathub com.obsproject.Studio --assumeyes
 
 #obs-vkcapture
-sudo_executor pacman -Sy obs-vkcapture-git
+sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
 
 #Discord
 flatpak install flathub com.discordapp.Discord --assumeyes
