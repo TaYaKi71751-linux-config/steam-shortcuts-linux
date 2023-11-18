@@ -117,8 +117,12 @@ do
 	echo $line
 	sudo_executor $line
 done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
+
 # Add chaotic-aur to pacman.conf
 if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
+	echo Skipping to add chaotic-aur to /etc/pacman.conf
+else
+	echo Adding chaotic-aur to /etc/pacman.conf
 	RESULT_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
 sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
 ${RESULT_PACMAN_CONF}
