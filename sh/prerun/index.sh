@@ -58,7 +58,7 @@ function sudo_executor(){
 function install_flatpak_package(){
 	PACKAGE_NAME="$1"
 RESULT="$(bash << EOF
-flatpak install ${PACKAGE_NAME} --assumeyes
+flatpak install --system ${PACKAGE_NAME} --assumeyes
 EOF
 )"
 if ( echo ${RESULT} | grep already\ installed );then
@@ -69,7 +69,7 @@ elif ( echo ${RESULT} | grep ${PACKAGE_NAME} | grep Similar );then
 while IFS= read -r line
 do
 bash << EOF
-	flatpak install $(echo $line | rev | cut -d ' ' -f1 | rev) --assumeyes
+	flatpak install --system $(echo $line | rev | cut -d ' ' -f1 | rev) --assumeyes
 EOF
 done < <(printf '%s\n' "$PACKAGE_LINES")
 fi
