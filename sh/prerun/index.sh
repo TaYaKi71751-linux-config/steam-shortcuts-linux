@@ -102,9 +102,9 @@ sudo_executor rm -rf /var/cache/*
 sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
-  holo-rel/linux-headers \
+  holo-*/linux-headers \
   linux-neptune-headers \
-  holo-rel/linux-lts-headers \
+  holo-*/linux-lts-headers \
   git glibc gcc gcc-libs \
   fakeroot linux-api-headers \
   libarchive \
