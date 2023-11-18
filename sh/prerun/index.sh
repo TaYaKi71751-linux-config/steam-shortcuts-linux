@@ -74,8 +74,11 @@ fi
 
 sudo_executor pacman-key --init
 sudo_executor pacman-key --populate
+sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Sy --noconfirm
+sudo_executor rm -rf /var/cache/*
 
+sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
   holo-rel/linux-headers \
@@ -89,6 +92,7 @@ sudo_executor pacman -Syu \
   wget \
   --noconfirm
 
+sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
   go \
@@ -129,9 +133,11 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
+sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Sy --noconfirm
 
 
+sudo_executor rm -rf /var/cache/*
 #shc
 yay -S shc --noconfirm
 
@@ -151,6 +157,7 @@ sudo npm i -g pnpm
 #brew
 curl -LsSf https://raw.githubusercontent.com/raccl/packages/archlinux/packages/brew.sh | sh
 
+sudo_executor rm -rf /var/cache/*
 #flatpak
 sudo pacman -Syu \
   flatpak \
