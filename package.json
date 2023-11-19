@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "bash ./build.sh",
-    "add:steam": "ts-node ./add/index.ts && npm run stop:steam",
-    "stop:steam": "for p in `pgrep steam*`; do kill -9 $p; done"
+    "add:steam": "ts-node ./add/index.ts || true && npm run stop:steam",
+    "stop:steam": "pgrep steam && kill -9 $(pgrep steam) || true; pkill steam || true"
   },
   "keywords": [],
   "author": "",
