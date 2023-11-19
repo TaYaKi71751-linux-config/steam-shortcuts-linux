@@ -14,6 +14,9 @@ dependencies:
   ts-node:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@20.2.3)(typescript@5.0.4)
+  vdf-parser:
+    specifier: ^1.2.1
+    version: 1.2.1
 
 devDependencies:
   '@types/node':
@@ -1924,6 +1927,10 @@ packages:
 
   /v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+    dev: false
+
+  /vdf-parser@1.2.1:
+    resolution: {integrity: sha512-g5c73LP8NSebruEiVjOpV6KlN6xgVXBXc5UbexHWzjkatLJR++gUBhg76YqfJ9j4ZLfZ+Hv00592uiDywR+dWg==}
     dev: false
 
   /which-boxed-primitive@1.0.2:

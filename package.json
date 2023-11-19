@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bash ./build.sh",
     "add:steam": "ts-node ./add/index.ts && npm run stop:steam",
-				"stop:steam": "sudo -nv && export SUDO_EXECUTOR=sudo || export SUDO_EXECUTOR=pkexec ; ps -A | grep steam && pkill steam || true"
+    "stop:steam": "sudo -nv && export SUDO_EXECUTOR=sudo || export SUDO_EXECUTOR=pkexec ; ps -A | grep steam && pkill steam || true"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
   "dependencies": {
     "steam-binary-vdf": "^0.1.0",
     "steam-categories": "^1.1.4",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "vdf-parser": "^1.2.1"
   }
 }
