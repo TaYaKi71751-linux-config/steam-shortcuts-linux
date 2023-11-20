@@ -1,4 +1,6 @@
 #!/bin/bash
+# exec 2>&1
+# exec > >(tee file.log)
 
 SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
@@ -6,23 +8,46 @@ for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	source ${shrc}
 done
 
+function auto_path() {
+	TARGET_PATHS="$(find / -name "$1" -type f)"
+	echo $TARGET_PATHS
+	while IFS= read -r line
+	do
+		export PATH=${PATH}:$(dirname ${line})
+	done < <(printf '%s\n' "$TARGET_PATHS")
+}
+auto_path openvpn
+auto_path node
+auto_path kdialog
+auto_path zenity
+
 ORIG_HOME=${HOME}
 
 function check_openvpn(){
 	export OPENVPN_USABLE=`find / -name 'openvpn' -type f -exec {} --help \;`
-	export OPENVPN_USABLE="$(echo $OPENVPN_USABLE | grep OpenVPN)"
+	if ( which openvpn );then
+		export OPENVPN_USABLE="true"
+	else
+		unset OPENVPN_USABLE
+	fi
 }
 check_openvpn
 
 # https://github.com/ValveSoftware/SteamOS/issues/1039
 function check_kdialog(){
-	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
-	export KDIALOG_USABLE="$(echo $KDIALOG_USABLE | grep Usage)"
+	if ( which kdialog );then
+		export KDIALOG_USABLE="true"
+	else
+		unset KDIALOG_USABLE
+	fi
 }
 
 function check_zenity(){
-	export ZENITY_USABLE=`find / -name 'zenity' -type f -exec {} --help \;`
-	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep Usage)"
+	if ( which zenity );then
+		export ZENITY_USABLE="true"
+	else
+		unset ZENITY_USABLE="true"
+	fi
 	env | grep STEAM_DECK\= && unset $ZENITY_USABLE
 }
 check_kdialog
@@ -30,25 +55,25 @@ check_zenity
 
 if [ -z "${OPENVPN_USABLE}" ];then
 	if [ -n "${KDIALOG_USABLE}" ];then
-		find / -name 'kdialog' -type f -exec bash -c "{} --error 'openvpn binary not found. please install openvpn.' && pkill find" \;
+		kdialog --error 'openvpn binary not found. please install openvpn.'
 	elif [ -n "${ZENITY_USABLE}" ];then
-		find / -name 'zenity' -type f -exec bash -c "{} --error --text='openvpn binary not found. please install openvpn.' && pkill find" \;
+		zenity --error --text='openvpn binary not found. please install openvpn.'
 	fi
 fi
 
 if [ -z "${OPENVPN_CONFIG_PATH}" ];then
 	if [ -n "${KDIALOG_USABLE}" ];then
-		find / -name 'kdialog' -type f -exec bash -c "{} --error 'openvpn config not found. please select openvpn config.' && pkill find" \;
+		kdialog --error 'openvpn config not found. please select openvpn config.'
 	elif [ -n "${ZENITY_USABLE}" ];then
-		find / -name 'zenity' -type f -exec bash -c "{} --error --text='openvpn config not found. please select openvpn config.' && pkill find" \;
+		zenity --error --text='openvpn config not found. please select openvpn config.'
 	fi
 fi
 
 function get_password(){
 	if [ -n "${KDIALOG_USABLE}" ];then
-		find / -name 'kdialog' -type f -exec bash -c "{} --password 'Enter Password' && pkill find " \;
+		kdialog --password 'Enter Password'
 	elif [ -n "${ZENITY_USABLE}" ];then
-		find / -name 'zenity' -type f -exec bash -c "{} --password && pkill find"
+		zenity --password
 	fi
 }
 
@@ -75,6 +100,15 @@ function sudo_executor(){
 		echo ${SUDO_PASSWORD} | sudo -S $@
 	fi
 }
+TARGET_CIPHER="$(cat "${OPENVPN_CONFIG_PATH}" | grep "^cipher" | rev | cut -d ' ' -f1 | rev | tr -d ' ' | tr -d '\r' | tr -d '\n')"
+function run_openvpn(){
+		sudo_executor openvpn \
+			--data-ciphers ${TARGET_CIPHER} \
+			--data-ciphers-fallback ${TARGET_CIPHER} \
+			--config "${OPENVPN_CONFIG_PATH}"
+}
+echo $TARGET_CIPHER
 
 sudo_executor sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sudo_executor openvpn "${OPENVPN_CONFIG_PATH}"
+# https://www.reddit.com/r/PrivateInternetAccess/comments/j1iyl7/openvpn_client_no_longer_connects_cipher_not/?rdt=54856
+run_openvpn

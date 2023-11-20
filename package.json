@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bash ./build.sh",
-    "add:steam": "ts-node ./add/index.ts || true && npm run stop:steam",
+    "add:steam": "ts-node ./add/index.ts | tee /home/deck/a.log && npm run stop:steam",
     "stop:steam": "pgrep steam && kill -9 $(pgrep steam) || true; pkill steam || true"
   },
   "keywords": [],
