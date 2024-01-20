@@ -11,28 +11,28 @@ const outPath = path.join(
 );
 const PAGE_URLS = [
 	{ name: 'VPNGate', url: 'https://vpngate.net', tags: ['VPN'] },
-	{ name: 'Abema TV', url: 'https://abema.tv', tags: ['Live', 'OTT'] },
-	{ name: 'Twitch', url: 'https://twitch.tv', tags: ['Live', 'Video'] },
-	{ name: 'YouTube', url: 'https://youtube.com/tv', tags: ['Live', 'Video'] },
-	{ name: 'bilibili', url: 'https://bilibili.com', tags: ['Video'] },
-	{ name: 'Coupang Play', url: 'https://coupangplay.com/profiles', tags: ['OTT'] },
-	{ name: 'Crunchyroll', url: 'https://crunchyroll.com', tags: ['OTT'] },
-	{ name: 'Netflix', url: 'https://netflix.com', tags: ['OTT'] },
-	{ name: 'Laftel', url: 'https://laftel.net/profile', tags: ['OTT'] },
-	{ name: 'Watcha', url: 'https://watcha.com/manage_profiles', tags: ['OTT'] },
-	{ name: 'Wavve', url: 'https://www.wavve.com', tags: ['OTT'] },
-	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'] },
-	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com', tags: ['Dashboard'] },
-	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager', tags: ['Dashboard'] },
-	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'] },
-	{ name: 'Restream.io', url: 'https://app.restream.io', tags: ['Dashboard'] },
-	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'] },
-	{ name: 'MahjongSoul[EN]', url: 'https://mahjongsoul.game.yo-star.com/', tags: ['MahjongSoul'] },
-	{ name: 'MahjongSoul[KR]', url: 'https://mahjongsoul.game.yo-star.com/kr/index.html', tags: ['MahjongSoul'] },
-	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'] },
-	{ name: 'Gmail', url: 'https://gmail.com', tags: ['Email'] },
-	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'] },
-	{ name: 'Geolocation(Netflix)', url: 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location', tags: ['geolocation'] }
+	{ name: 'Abema TV', url: 'https://abema.tv', tags: ['Live', 'OTT'], icon: `${process.env.PWD}/image/icon/abema.ico` },
+	{ name: 'Twitch', url: 'https://twitch.tv', tags: ['Live', 'Video'], icon: `${process.env.PWD}/image/icon/twitch.png` },
+	{ name: 'YouTube', url: 'https://youtube.com/tv', tags: ['Live', 'Video'], icon: `${process.env.PWD}/image/icon/youtube.ico` },
+	{ name: 'bilibili', url: 'https://bilibili.com', tags: ['Video'], icon: `${process.env.PWD}/image/icon/bilibili.ico` },
+	{ name: 'Coupang Play', url: 'https://coupangplay.com/profiles', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/coupangplay.ico` },
+	{ name: 'Crunchyroll', url: 'https://crunchyroll.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/crunchyroll.png` },
+	{ name: 'Netflix', url: 'https://netflix.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/netflix.ico` },
+	{ name: 'Laftel', url: 'https://laftel.net/profile', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/laftel.png` },
+	{ name: 'Watcha', url: 'https://watcha.com/manage_profiles', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/watcha.ico` },
+	{ name: 'Wavve', url: 'https://www.wavve.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/wavve.ico` },
+	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/tubi.ico` },
+	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitter.ico` },
+	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitch.png` },
+	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/youtube.png` },
+	{ name: 'Restream.io', url: 'https://app.restream.io', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/restream.ico` },
+	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'], icon: `${process.env.PWD}/image/icon/twitter.ico` },
+	{ name: 'MahjongSoul[EN]', url: 'https://mahjongsoul.game.yo-star.com/', tags: ['MahjongSoul'], icon: `${process.env.PWD}/image/icon/mahjongsoul.png` },
+	{ name: 'MahjongSoul[KR]', url: 'https://mahjongsoul.game.yo-star.com/kr/index.html', tags: ['MahjongSoul'], icon: `${process.env.PWD}/image/icon/mahjongsoul.png` },
+	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'], icon: `${process.env.PWD}/image/icon/mahjongsoul.png` },
+	{ name: 'Gmail', url: 'https://gmail.com', tags: ['Email'], icon: `${process.env.PWD}/image/icon/gmail.ico` },
+	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'], icon: `${process.env.PWD}/image/icon/neteasemail.ico` },
+	{ name: 'Geolocation(Netflix)', url: 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location', tags: ['geolocation'], icon: `${process.env.PWD}/image/icon/netflix.ico` }
 ];
 
 export async function __main__ () {
@@ -43,9 +43,9 @@ export async function __main__ () {
 		const exe = path.join(outPath, filename);
 		if (filename == 'kiosk.out') {
 			for (let j = 0; j < PAGE_URLS?.length; j++) {
-				const { name, url, tags } = PAGE_URLS[j];
+				const { name, url, tags, icon } = PAGE_URLS[j];
 				const appid = getShortcutAppID({ AppName: name, exe });
-				AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: `PAGE_URL="${url}" %command%`, tags });
+				AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: `PAGE_URL="${url}" %command%`, tags, icon: icon ?? '' });
 				for (let k = 0; k < tags?.length; k++) {
 					const tag = tags[k];
 					if (!tag) continue;
@@ -60,4 +60,3 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
-
