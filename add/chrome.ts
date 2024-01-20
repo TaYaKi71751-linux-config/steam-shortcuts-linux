@@ -21,7 +21,7 @@ const PAGE_URLS = [
 	{ name: 'Laftel', url: 'https://laftel.net/profile', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/laftel.png` },
 	{ name: 'Watcha', url: 'https://watcha.com/manage_profiles', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/watcha.ico` },
 	{ name: 'Wavve', url: 'https://www.wavve.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/wavve.ico` },
-	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/tubi.ico` },
+	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/tubi.webp` },
 	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitter.ico` },
 	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitch.png` },
 	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/youtube.png` },
