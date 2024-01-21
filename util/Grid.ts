@@ -15,14 +15,17 @@ export function setBackground (input:{
 	const user_ids = FS.readdirSync(userdataPath);
 	user_ids
 		.forEach((user_id) => {
-			const backgroundPath = PATH.join(
+			const targetPath = PATH.join(
 				userdataPath,
 				user_id,
 				'config',
 				'grid',
 				`${input.appid}_hero${PATH.extname(input.path)}`
 			);
-			FS.writeFileSync(backgroundPath, FS.readFileSync(input.path));
+			if (!FS.existsSync(PATH.dirname(targetPath))) {
+				FS.mkdirSync(PATH.dirname(targetPath), { recursive: true });
+			}
+			FS.writeFileSync(targetPath, FS.readFileSync(input.path));
 		});
 }
 
@@ -33,14 +36,17 @@ export function setLogo (input:{
 	const user_ids = FS.readdirSync(userdataPath);
 	user_ids
 		.forEach((user_id) => {
-			const backgroundPath = PATH.join(
+			const targetPath = PATH.join(
 				userdataPath,
 				user_id,
 				'config',
 				'grid',
 				`${input.appid}_logo${PATH.extname(input.path)}`
 			);
-			FS.writeFileSync(backgroundPath, FS.readFileSync(input.path));
+			if (!FS.existsSync(PATH.dirname(targetPath))) {
+				FS.mkdirSync(PATH.dirname(targetPath), { recursive: true });
+			}
+			FS.writeFileSync(targetPath, FS.readFileSync(input.path));
 		});
 }
 
@@ -51,14 +57,17 @@ export function setWideCapsule (input:{
 	const user_ids = FS.readdirSync(userdataPath);
 	user_ids
 		.forEach((user_id) => {
-			const backgroundPath = PATH.join(
+			const targetPath = PATH.join(
 				userdataPath,
 				user_id,
 				'config',
 				'grid',
 				`${input.appid}${PATH.extname(input.path)}`
 			);
-			FS.writeFileSync(backgroundPath, FS.readFileSync(input.path));
+			if (!FS.existsSync(PATH.dirname(targetPath))) {
+				FS.mkdirSync(PATH.dirname(targetPath), { recursive: true });
+			}
+			FS.writeFileSync(targetPath, FS.readFileSync(input.path));
 		});
 }
 
@@ -69,13 +78,16 @@ export function setCapsule (input:{
 	const user_ids = FS.readdirSync(userdataPath);
 	user_ids
 		.forEach((user_id) => {
-			const backgroundPath = PATH.join(
+			const targetPath = PATH.join(
 				userdataPath,
 				user_id,
 				'config',
 				'grid',
 				`${input.appid}p${PATH.extname(input.path)}`
 			);
-			FS.writeFileSync(backgroundPath, FS.readFileSync(input.path));
+			if (!FS.existsSync(PATH.dirname(targetPath))) {
+				FS.mkdirSync(PATH.dirname(targetPath), { recursive: true });
+			}
+			FS.writeFileSync(targetPath, FS.readFileSync(input.path));
 		});
 }
