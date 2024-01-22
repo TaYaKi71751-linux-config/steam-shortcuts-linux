@@ -1,11 +1,4 @@
 
-# YouTube Studio
-- [ ] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # bilibili
 - [x] Icon
 - [ ] Background
@@ -113,3 +106,11 @@
 - [x] Capsule
 - [x] WideCapsule
 - [x] Logo
+
+# YouTube Studio
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+

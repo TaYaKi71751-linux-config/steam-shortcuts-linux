@@ -25,7 +25,7 @@ const PAGE_URLS = [
 	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/tubi.webp` },
 	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitter.ico` },
 	{ name: 'Twitch Dashboard', url: 'https://dashboard.twitch.tv/stream-manager', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitch.png`, logo: `${process.env.PWD}/image/logo/twitch.png`, capsule: `${process.env.PWD}/image/capsule/twitch.png`, widecapsule: `${process.env.PWD}/image/widecapsule/twitch.png`, background: `${process.env.PWD}/image/background/twitch.png` },
-	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/youtube.png` },
+	{ name: 'YouTube Studio', url: 'https://studio.youtube.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/youtube.png`, logo: `${process.env.PWD}/image/logo/youtubestudio.png`, capsule: `${process.env.PWD}/image/capsule/youtubestudio.png`, widecapsule: `${process.env.PWD}/image/widecapsule/youtubestudio.png`, background: `${process.env.PWD}/image/background/youtubestudio.png` },
 	{ name: 'Restream.io', url: 'https://app.restream.io', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/restream.ico` },
 	{ name: 'Twitter', url: 'https://twitter.com', tags: ['SNS', 'Social'], icon: `${process.env.PWD}/image/icon/twitter.ico` },
 	{ name: 'MahjongSoul[EN]', url: 'https://mahjongsoul.game.yo-star.com/', tags: ['MahjongSoul'], icon: `${process.env.PWD}/image/icon/mahjongsoul.png` },
