@@ -1,11 +1,4 @@
 
-# YouTube
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # YouTube Studio
 - [ ] Icon
 - [ ] Background
@@ -107,6 +100,14 @@
 - [x] Logo
 
 # Laftel
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+
+# YouTube
 - [x] Icon
 - [x] Background
 - [x] Capsule
