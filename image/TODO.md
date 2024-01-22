@@ -12,13 +12,6 @@
 - [ ] WideCapsule
 - [ ] Logo
 
-# Restream
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 <!-- DONE -->
 
 # Abema
@@ -107,6 +100,13 @@
 - [x] Logo
 
 # Tubi
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# Restream
 - [x] Icon
 - [x] Background
 - [x] Capsule
