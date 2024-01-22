@@ -1,10 +1,3 @@
-# Wavve
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # Tubi
 - [x] Icon
 - [ ] Background
@@ -107,6 +100,13 @@
 - [x] Logo
 
 # Watcha
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# Wavve
 - [x] Icon
 - [x] Background
 - [x] Capsule
