@@ -1,10 +1,3 @@
-# Twitter
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # TwitterAnalytics
 - [x] Icon
 - [ ] Background
@@ -107,6 +100,13 @@
 - [x] Logo
 
 # Restream
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# Twitter
 - [x] Icon
 - [x] Background
 - [x] Capsule
