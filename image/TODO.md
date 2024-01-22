@@ -1,9 +1,9 @@
 # TwitterAnalytics
 - [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
 
 <!-- DONE -->
 
