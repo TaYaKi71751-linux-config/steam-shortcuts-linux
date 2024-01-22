@@ -1,10 +1,3 @@
-# Tubi
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # Twitter
 - [x] Icon
 - [ ] Background
@@ -107,6 +100,13 @@
 - [x] Logo
 
 # Wavve
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# Tubi
 - [x] Icon
 - [x] Background
 - [x] Capsule
