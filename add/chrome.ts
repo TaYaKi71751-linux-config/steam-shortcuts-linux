@@ -12,6 +12,7 @@ const outPath = path.join(
 );
 const PAGE_URLS = [
 	{ name: 'VPNGate', url: 'https://vpngate.net', tags: ['VPN'] },
+	{ name: '爱壹帆', url: 'https://www.iyf.tv', tags: ['OTT', 'Video'], icon: `${process.env.PWD}/image/icon/iyf.png`, background: `${process.env.PWD}/image/background/iyf.png`, capsule: `${process.env.PWD}/image/capsule/iyf.png`, widecapsule: `${process.env.PWD}/image/widecapsule/iyf.png`, logo: `${process.env.PWD}/image/logo/iyf.png` },
 	{ name: 'Abema TV', url: 'https://abema.tv', tags: ['Live', 'OTT'], icon: `${process.env.PWD}/image/icon/abema.ico`, logo: `${process.env.PWD}/image/logo/abema.png`, capsule: `${process.env.PWD}/image/capsule/abema.png`, background: `${process.env.PWD}/image/background/abema.png`, widecapsule: `${process.env.PWD}/image/widecapsule/abema.png` },
 	{ name: 'Twitch', url: 'https://twitch.tv', tags: ['Live', 'Video'], icon: `${process.env.PWD}/image/icon/twitch.png`, logo: `${process.env.PWD}/image/logo/twitch.png`, capsule: `${process.env.PWD}/image/capsule/twitch.png`, widecapsule: `${process.env.PWD}/image/widecapsule/twitch.png`, background: `${process.env.PWD}/image/background/twitch.png` },
 	{ name: 'YouTube', url: 'https://youtube.com/tv', tags: ['Live', 'Video'], icon: `${process.env.PWD}/image/icon/youtube.png`, logo: `${process.env.PWD}/image/logo/youtube.png`, capsule: `${process.env.PWD}/image/capsule/youtube.png`, widecapsule: `${process.env.PWD}/image/widecapsule/youtube.png`, background: `${process.env.PWD}/image/background/youtube.png` },
