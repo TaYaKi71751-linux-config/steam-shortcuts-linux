@@ -1,11 +1,3 @@
-
-# Watcha
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # Wavve
 - [x] Icon
 - [ ] Background
@@ -108,6 +100,13 @@
 - [x] Logo
 
 # bilibili
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# Watcha
 - [x] Icon
 - [x] Background
 - [x] Capsule
