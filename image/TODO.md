@@ -1,11 +1,4 @@
 
-# bilibili
-- [x] Icon
-- [ ] Background
-- [ ] Capsule
-- [ ] WideCapsule
-- [ ] Logo
-
 # Watcha
 - [x] Icon
 - [ ] Background
@@ -108,6 +101,13 @@
 - [x] Logo
 
 # YouTube Studio
+- [x] Icon
+- [x] Background
+- [x] Capsule
+- [x] WideCapsule
+- [x] Logo
+
+# bilibili
 - [x] Icon
 - [x] Background
 - [x] Capsule
