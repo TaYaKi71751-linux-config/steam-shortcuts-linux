@@ -178,9 +178,6 @@ nvm use --lts
 #pnpm
 sudo_executor npm i -g pnpm
 
-#brew
-curl -LsSf https://raw.githubusercontent.com/raccl/packages/archlinux/packages/brew.sh | sh
-
 sudo_executor rm -rf /var/cache/*
 
 #Build
