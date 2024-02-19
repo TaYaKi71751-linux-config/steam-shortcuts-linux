@@ -24,6 +24,7 @@ export async function __main__ () {
 			switch (filename) {
 			case 'up.out': return 'Up';
 			case 'down.out': return 'Down';
+			case 'install.out': return 'Install';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
@@ -60,3 +61,4 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
+
