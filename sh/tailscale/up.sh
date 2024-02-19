@@ -70,6 +70,25 @@ function up(){
 		echo ${TAILSCALE_OPTIONS}
 		while IFS= read -r line
 		do
+			sudo_executor node << EOF
+	const { execSync, spawn } = require('child_process');
+	const check = spawn('tailscale', ['up']);
+	let stdout = '';
+	check.stdout.on('data', (data) => {
+		stdout += data;
+		if (stdout.includes('\\n\\n')) {
+			console.log(stdout);
+			try{execSync(\`zenity --info --text='\${stdout}'\`);}catch(e){try{execSync(\`kdialog --msgbox '\${stdout}'\`)}catch(e){console.error(e)}}
+		}
+	});
+	check.stderr.on('data', (data) => {
+		stdout += data;
+		if (stdout.includes('\\n\\n')) {
+			console.log(stdout);
+			try{execSync(\`zenity --info --text='\${stdout}'\`);}catch(e){try{execSync(\`kdialog --msgbox '\${stdout}'\`)}catch(e){console.error(e)}}
+		}
+	});
+EOF
 			sudo_executor "$line" up ${TAILSCALE_OPTIONS}
 		done <<< "$(find / -name 'tailscale' -type f)"
 	else
