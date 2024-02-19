@@ -25,6 +25,15 @@ export async function __main__ () {
 				if (!tag) continue;
 				await AddToCats(appid, tag);
 			}
+		} else if (filename == 'install.out') {
+			const { name, tags } = { name: '[OBS Studio] Install', tags: ['Install'] };
+			const appid = getShortcutAppID({ AppName: name, exe });
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
 		}
 	}
 }
