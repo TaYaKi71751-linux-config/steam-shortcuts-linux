@@ -24,9 +24,9 @@ check_kdialog
 check_zenity
 
 function get_password(){
-	if [ -n "${KDIALOG_USABLE}" ];then
-		find / -name 'kdialog' -type f -exec bash -c "{} --password 'Enter Password' && pkill find " \;
-	elif [ -n "${ZENITY_USABLE}" ];then
+	if [ -n "${kdialog_usable}" ];then
+		find / -name 'kdialog' -type f -exec bash -c "{} --password 'enter password' && pkill find " \;
+	elif [ -n "${zenity_usable}" ];then
 		find / -name 'zenity' -type f -exec bash -c "{} --password && pkill find"
 	fi
 }
@@ -70,25 +70,28 @@ function up(){
 		echo ${TAILSCALE_OPTIONS}
 		while IFS= read -r line
 		do
-			sudo_executor node << EOF
+			while IFS= read -r node_bin
+			do
+			sudo_executor "${node_bin}" << EOF
 	const { execSync, spawn } = require('child_process');
-	const check = spawn('tailscale', ['up']);
+	const check = spawn('${line}', ['up']);
 	let stdout = '';
 	check.stdout.on('data', (data) => {
 		stdout += data;
 		if (stdout.includes('\\n\\n')) {
 			console.log(stdout);
-			try{execSync(\`zenity --info --text='\${stdout}'\`);}catch(e){try{execSync(\`kdialog --msgbox '\${stdout}'\`)}catch(e){console.error(e)}}
+			try{execSync(\`find / -name 'zenity' -type f --exec {} --info --text='\${stdout}' \\;\`);}catch(e){try{execSync(\`find / -name 'kdialog' -type f --exec {} --msgbox '\${stdout}' \\;\`)}catch(e){console.error(e)}}
 		}
 	});
 	check.stderr.on('data', (data) => {
 		stdout += data;
 		if (stdout.includes('\\n\\n')) {
 			console.log(stdout);
-			try{execSync(\`zenity --info --text='\${stdout}'\`);}catch(e){try{execSync(\`kdialog --msgbox '\${stdout}'\`)}catch(e){console.error(e)}}
+			try{execSync(\`find / -name 'zenity' -type f --exec {} --info --text='\${stdout}' \\;\`);}catch(e){try{execSync(\`find / -name 'kdialog' -type f --exec {} --msgbox '\${stdout}' \\;\`)}catch(e){console.error(e)}}
 		}
 	});
 EOF
+			done <<< "$(find / -name 'node' -type f)"
 			sudo_executor "$line" up ${TAILSCALE_OPTIONS}
 		done <<< "$(find / -name 'tailscale' -type f)"
 	else
