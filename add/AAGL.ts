@@ -17,10 +17,10 @@ export async function __main__ () {
 		const filename = outFiles[i];
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
-		const AppName = '' + (function () {
+		const AppName = '[AAGL]' + (function () {
 			switch (filename) {
-		 case 'install_aagl.out': return 'Install AAGL';
-		 case 'launch_aagl.out': return 'Genshin Impact Launcher (AAGL)';
+		 case 'install_aagl.out': return 'Install';
+		 case 'launch_aagl.out': return 'Genshin Impact Launcher';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
