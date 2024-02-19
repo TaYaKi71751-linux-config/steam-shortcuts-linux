@@ -78,6 +78,16 @@ export async function __main__ () {
 					await AddToCats(appid, tag);
 				}
 			}
+		} else if (filename == 'install.out') {
+			const name = '[Microsoft Edge] Install';
+			const appid = getShortcutAppID({ AppName: name, exe });
+			const tags = ['Install'];
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
 		}
 	}
 }
