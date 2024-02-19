@@ -182,38 +182,6 @@ sudo_executor npm i -g pnpm
 curl -LsSf https://raw.githubusercontent.com/raccl/packages/archlinux/packages/brew.sh | sh
 
 sudo_executor rm -rf /var/cache/*
-#flatpak
-sudo_executor pacman -Syu \
-  flatpak \
-  --noconfirm
-
-#tailscale
-mkdir -p ~/.local/tailscale/steamos
-cd ~/.local/tailscale/steamos
-mkdir -p tailscale
-cd tailscale
-git init
-git remote add origin https://github.com/tailscale/tailscale.git
-git pull origin main
-git checkout origin/main
-./build_dist.sh tailscale.com/cmd/tailscale
-./build_dist.sh tailscale.com/cmd/tailscaled
-touch ~/.bashrc
-find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
-export PATH=${PATH}:$(pwd)
-
-#Microsoft Edge
-install_flatpak_package flathub com.microsoft.Edge
-
-#OBS Studio
-install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
-install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-install_flatpak_package com.obsproject.Studio
-#obs-vkcapture
-sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
-
-#Discord
-install_flatpak_package com.discordapp.Discord
 
 #Build
 cd ~/
