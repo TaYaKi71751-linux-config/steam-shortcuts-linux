@@ -98,7 +98,7 @@ fi
 system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 user_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-user__install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-system_install_flatpak_package flathub com.obsproject.Studio
-user_install_flatpak_package flathub com.obsproject.Studio
+user_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+system_install_flatpak_package com.obsproject.Studio
+user_install_flatpak_package com.obsproject.Studio
 sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
