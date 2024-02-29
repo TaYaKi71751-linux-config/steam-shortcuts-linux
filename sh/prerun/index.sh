@@ -182,7 +182,7 @@ sudo_executor rm -rf /var/cache/*
 
 #Build
 cd ~/
-git clone https://github.com/TaYaKi71751/steam-shortcuts.git
+git clone https://github.com/TaYaKi71751-linux-config/steam-shortcuts.git
 cd ~/steam-shortcuts
 bash ./build.sh
 
