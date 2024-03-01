@@ -114,7 +114,7 @@ flatpak install flathub com.discordapp.Discord --assumeyes
 ## #Build
 ```
 cd ~/
-git clone https://github.com/TaYaKi71751-linux/steam-shortcuts.git
+git clone https://github.com/TaYaKi71751-linux-config/steam-shortcuts.git
 cd ~/steam-shortcuts
 bash ./build.sh
 ```
