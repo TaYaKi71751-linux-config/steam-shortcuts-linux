@@ -95,13 +95,10 @@ fi
 
 sudo_executor pacman-key --init
 sudo_executor pacman-key --populate
-sudo_executor rm -rf /var/cache/*
-sudo_executor pacman -Sy --noconfirm
-sudo_executor rm -rf /var/cache/*
+sudo_executor pacman -Sy --noconfirm --overwrite '*'
 
 HOLO_REL="$(sudo_executor cat /etc/pacman.conf | grep "^\[holo" | sed 's/\[//g' | sed 's/\]//g')"
 if [ -n "${HOLO_REL}" ];then
-sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
   ${HOLO_REL}/linux-headers \
@@ -113,16 +110,17 @@ sudo_executor pacman -Syu \
   go \
   git \
   wget \
-  --noconfirm
+  --noconfirm \
+		--overwrite '*'
 fi
 
-sudo_executor rm -rf /var/cache/*
 sudo_executor pacman -Syu \
   base-devel \
   go \
   git \
   wget \
-  --noconfirm
+  --noconfirm \
+		--overwrite '*'
 
 # Install yay
 cd /tmp
@@ -131,7 +129,7 @@ cd /tmp
 git clone https://aur.archlinux.org/yay.git
 cd /tmp/yay
 makepkg -Si --force
-makepkg -i --noconfirm
+makepkg -i --noconfirm --overwrite '*'
 
 go get github.com/ericchiang/pup
 go install github.com/ericchiang/pup@latest
@@ -157,13 +155,10 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
-sudo_executor rm -rf /var/cache/*
-sudo_executor pacman -Sy --noconfirm
+sudo_executor pacman -Sy --noconfirm --overwrite '*'
 
-
-sudo_executor rm -rf /var/cache/*
 #shc
-yay -S shc --noconfirm
+yay -S shc --noconfirm --overwrite '*'
 
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
@@ -178,7 +173,6 @@ nvm use --lts
 #pnpm
 sudo_executor npm i -g pnpm
 
-sudo_executor rm -rf /var/cache/*
 
 #Build
 cd ~/

@@ -23,7 +23,8 @@ sudo pacman -Syu \
   go \
   git \
   wget \
-  --noconfirm
+  --noconfirm \
+  --overwrite '*'
 ```
 ### #for All
 ```
@@ -32,7 +33,8 @@ sudo pacman -Syu \
   go \
   git \
   wget \
-  --noconfirm
+  --noconfirm \
+  --overwrite '*'
 ```
 ### #yay
 ```
@@ -42,11 +44,11 @@ cd /tmp
 git clone https://aur.archlinux.org/yay.git
 cd /tmp/yay
 makepkg -Si --force
-makepkg -i --noconfirm
+makepkg -i --noconfirm --overwrite '*'
 ```
 ### #shc
 ```
-yay -S shc --noconfirm
+yay -S shc --noconfirm --overwrite '*'
 ```
 ### #nvm
 ```
@@ -72,7 +74,7 @@ curl -LsSf https://raw.githubusercontent.com/raccl/packages/archlinux/packages/b
 ```
 sudo pacman -Syu \
   flatpak \
-  --noconfirm
+  --noconfirm --overwrite '*'
 ```
 ### #tailscale
 ```
