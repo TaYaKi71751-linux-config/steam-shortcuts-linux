@@ -95,7 +95,7 @@ fi
 
 sudo_executor pacman-key --init
 sudo_executor pacman-key --populate
-sudo_executor pacman -Sy --noconfirm --overwrite '*'
+sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
 HOLO_REL="$(sudo_executor cat /etc/pacman.conf | grep "^\[holo" | sed 's/\[//g' | sed 's/\]//g')"
 if [ -n "${HOLO_REL}" ];then
@@ -111,7 +111,7 @@ sudo_executor pacman -Syu \
   git \
   wget \
   --noconfirm \
-		--overwrite '*'
+		--overwrite \\\'*\\\'
 fi
 
 sudo_executor pacman -Syu \
@@ -120,7 +120,7 @@ sudo_executor pacman -Syu \
   git \
   wget \
   --noconfirm \
-		--overwrite '*'
+		--overwrite \\\'*\\\'
 
 # Install yay
 cd /tmp
@@ -129,7 +129,7 @@ cd /tmp
 git clone https://aur.archlinux.org/yay.git
 cd /tmp/yay
 makepkg -Si --force
-makepkg -i --noconfirm --overwrite '*'
+makepkg -i --noconfirm
 
 go get github.com/ericchiang/pup
 go install github.com/ericchiang/pup@latest
@@ -155,7 +155,7 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
-sudo_executor pacman -Sy --noconfirm --overwrite '*'
+sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
 #shc
 yay -S shc --noconfirm --overwrite '*'
