@@ -96,31 +96,28 @@ fi
 sudo_executor pacman-key --init
 sudo_executor pacman-key --populate
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
-
 HOLO_REL="$(sudo_executor cat /etc/pacman.conf | grep "^\[holo" | sed 's/\[//g' | sed 's/\]//g')"
 if [ -n "${HOLO_REL}" ];then
-sudo_executor pacman -Syu \
-  base-devel \
-  ${HOLO_REL}/linux-headers \
-  linux-neptune-headers \
-  ${HOLO_REL}/linux-lts-headers \
-  git glibc gcc gcc-libs \
-  fakeroot linux-api-headers \
-  libarchive \
-  go \
-  git \
-  wget \
-  --noconfirm \
-		--overwrite \\\'*\\\'
+sudo_executor pacman -S base-devel --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S ${HOLO_REL}/linux-headers --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S linux-neptune-headers --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S ${HOLO_REL}/linux-lts-headers --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S glibc --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S gcc --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S gcc-libs --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S fakeroot --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S linux-api-headers --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S libarchive --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S go --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
 fi
 
-sudo_executor pacman -Syu \
-  base-devel \
-  go \
-  git \
-  wget \
-  --noconfirm \
-		--overwrite \\\'*\\\'
+sudo_executor pacman -S base-devel --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S go --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
 
 # Install yay
 cd /tmp
