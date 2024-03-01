@@ -157,6 +157,8 @@ EOF
 fi
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
+sudo_executor pacman -S yay --noconfirm --overwrite \\\'*\\\'
+
 #shc
 yay -S shc --noconfirm --overwrite '*'
 
