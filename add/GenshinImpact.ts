@@ -4,6 +4,7 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
+import { dirname } from 'path';
 
 export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[Proton] Genshin Impact' });
@@ -21,8 +22,8 @@ export async function __main__ () {
 			return false;
 		});
 	for (const filename of filenames) {
-		const StartDir = filename;
-		const exe = filename;
+		const StartDir = dirname(filename);
+		const exe = JSON.stringify(filename);
 		const AppName = `[Proton] Genshin Impact (${filename})`;
 		const appid = getShortcutAppID({ AppName, exe });
 		AddShortcut({ appid, AppName, exe, StartDir });
