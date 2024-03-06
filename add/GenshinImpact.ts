@@ -1,13 +1,14 @@
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import { getShortcutAppID } from '../util/AppID';
-import { AddShortcut } from '../util/Shortcut';
+import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
 
 export async function __main__ () {
+	RemoveShortcutStartsWith({ AppName: '[Proton] Genshin Impact' });
 	let filenames = execSync('find / -name \'GenshinImpact.exe\' -type f || true').toString().split('\n');
-	const tags = ['Genshin Impact'];
+	const tags = ['Genshin Impact', 'Proton'];
 	filenames = filenames
 		.map((filename) => (filename.trim()))
 		.filter((filename) => (filename.length))
@@ -22,7 +23,7 @@ export async function __main__ () {
 	for (const filename of filenames) {
 		const StartDir = filename;
 		const exe = filename;
-		const AppName = `Genshin Impact (${filename})`;
+		const AppName = `[Proton] Genshin Impact (${filename})`;
 		const appid = getShortcutAppID({ AppName, exe });
 		AddShortcut({ appid, AppName, exe, StartDir });
 		for (let j = 0; j < tags?.length; j++) {
