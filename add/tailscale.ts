@@ -4,6 +4,7 @@ import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { getExitNodes } from '../util/Tailscale';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
+import { execSync } from 'child_process';
 
 const outPath = path.join(
 	`${process.env.PWD}`,
@@ -53,6 +54,8 @@ export async function __main__ () {
 					await AddToCats(appid, tag);
 				}
 			}
+			const down = execSync('bash sh/tailscale/down.sh').toString();
+			console.log(`${down}`);
 		}
 	}
 }
@@ -61,4 +64,3 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
-
