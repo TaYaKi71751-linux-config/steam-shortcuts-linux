@@ -11,11 +11,11 @@ const outPath = path.join(
 	'lutris'
 );
 const DEEPLINK_URLS = [
-	{ name: 'Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
-	{ name: 'NexonPlug', url: 'lutris:nexonplug-standard-kr-region', tags: ['Nexon', 'Lutris'] },
-	{ name: 'Grand Theft Auto V (EGS)', url: 'lutris:grand-theft-auto-v-epic-games-launcher', tags: ['Grand Theft Auto V', 'Lutris'] },
-	{ name: 'Grand Theft Auto V (Rockstar)', url: 'lutris:grand-theft-auto-v-rockstar-games-launc', tags: ['Grand Theft Auto V', 'Lutris'] },
-	{ name: 'Grand Theft Auto V (PS3)', url: 'lutris:grand-theft-auto-v-ps3', tags: ['Grand Theft Auto V', 'Lutris'] },
+	{ name: '[Lutris] Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
+	{ name: '[Lutris] NexonPlug', url: 'lutris:nexonplug-standard-kr-region', tags: ['Nexon', 'Lutris'] },
+	{ name: '[Lutris] Grand Theft Auto V (EGS)', url: 'lutris:grand-theft-auto-v-epic-games-launcher', tags: ['Grand Theft Auto V', 'Lutris'] },
+	{ name: '[Lutris] Grand Theft Auto V (Rockstar)', url: 'lutris:grand-theft-auto-v-rockstar-games-launc', tags: ['Grand Theft Auto V', 'Lutris'] },
+	{ name: '[Lutris] Grand Theft Auto V (PS3)', url: 'lutris:grand-theft-auto-v-ps3', tags: ['Grand Theft Auto V', 'Lutris'] },
 	{ name: 'Lutris', url: '', tags: ['Lutris'] }
 ];
 
