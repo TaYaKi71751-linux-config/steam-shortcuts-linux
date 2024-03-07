@@ -36,12 +36,17 @@ export async function __main__ () {
 			await AddToCats(appid, tag);
 		}
 		if (filename.startsWith('up')) {
-			const exitNodes = getExitNodes();
+			let exitNodes:any;
+			try {
+				exitNodes = getExitNodes();
+			} catch (e) {
+				continue;
+			}
 
 			const shortcuts = [{ name: ' Without Exit-Nodes',	LaunchOptions: 'export TAILSCALE_EXIT_NODE= && %command%' },
 				...(
 					exitNodes
-						.map(([DNSName, TailscaleIPs]) => ({ name: ` With Custom Exit-Node ${DNSName} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${TailscaleIPs[0]} && %command%` }))
+						.map(([DNSName, TailscaleIPs]:any) => ({ name: ` With Custom Exit-Node ${DNSName} `, LaunchOptions: `export TAILSCALE_EXIT_NODE=${TailscaleIPs[0]} && %command%` }))
 				)
 			];
 			for (let k = 0; k < shortcuts?.length; k++) {
