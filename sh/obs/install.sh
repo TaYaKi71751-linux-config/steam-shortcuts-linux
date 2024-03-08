@@ -99,3 +99,10 @@ system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
 sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
+uname -a | grep x86_64 || exit
+cd ~/.local/
+rm glibc.tar.zst
+curl https://archlinux.org/packages/core/x86_64/glibc/download/ -LsSf -o glibc.tar.zst
+rm lib32-glibc.tar.zst
+curl https://archlinux.org/packages/core/x86_64/lib32-glibc/download/ -LsSf -o lib32-glibc.tar.zst
+sudo_executor pacman -U glibc.tar.zst lib32-glibc.tar.zst --noconfirm
