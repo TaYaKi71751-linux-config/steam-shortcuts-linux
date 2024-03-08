@@ -25,7 +25,17 @@ export async function __main__ () {
 		const filename = outFiles[i];
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
-		if (filename == 'url.out') {
+		if (filename == 'install.out') {
+			const AppName = '[Lutris] Install';
+			const tags = ['Install', 'Lutris'];
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir, tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		} else if (filename == 'url.out') {
 			for (let j = 0; j < DEEPLINK_URLS?.length; j++) {
 				const { name, url, tags, icon, background, widecapsule, logo, capsule }:any = DEEPLINK_URLS[j];
 				const appid = getShortcutAppID({ AppName: name, exe });
