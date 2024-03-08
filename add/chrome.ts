@@ -11,6 +11,7 @@ const outPath = path.join(
 	'chrome'
 );
 const PAGE_URLS = [
+	{ name: 'Genshin Impact Daily Check', url: 'https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=en-us', tags:['Genshin Impact'] }
 	{ name: 'VPNGate', url: 'https://vpngate.net', tags: ['VPN'] },
 	{ name: '爱壹帆', url: 'https://www.iyf.tv', tags: ['OTT', 'Video'], icon: `${process.env.PWD}/image/icon/iyf.png`, background: `${process.env.PWD}/image/background/iyf.png`, capsule: `${process.env.PWD}/image/capsule/iyf.png`, widecapsule: `${process.env.PWD}/image/widecapsule/iyf.png`, logo: `${process.env.PWD}/image/logo/iyf.png` },
 	{ name: 'Abema TV', url: 'https://abema.tv', tags: ['Live', 'OTT'], icon: `${process.env.PWD}/image/icon/abema.ico`, logo: `${process.env.PWD}/image/logo/abema.png`, capsule: `${process.env.PWD}/image/capsule/abema.png`, background: `${process.env.PWD}/image/background/abema.png`, widecapsule: `${process.env.PWD}/image/widecapsule/abema.png` },
