@@ -118,6 +118,7 @@ sudo_executor pacman -S base-devel --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S go --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S gamescope --noconfirm --overwrite \\\'*\\\'
 
 # Install yay
 cd /tmp
