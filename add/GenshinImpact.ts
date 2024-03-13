@@ -26,7 +26,7 @@ export async function __main__ () {
 		const exe = JSON.stringify(filename);
 		const AppName = `[Proton] Genshin Impact (${filename})`;
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'obs-gamecapture %command%' });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
