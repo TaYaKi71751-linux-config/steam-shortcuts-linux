@@ -20,6 +20,7 @@ export async function __main__ () {
 		const AppName = '[steamos-waydroid] ' + (function () {
 			switch (filename) {
 			case 'install.out': return 'Install';
+			case 'plasma-wayland-session.out': return 'Plasma Wayland Session';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
