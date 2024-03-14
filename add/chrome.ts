@@ -11,6 +11,7 @@ const outPath = path.join(
 	'chrome'
 );
 const PAGE_URLS = [
+	{ name: 'GameBanana', url: 'https://gamebanana.com', tags: ['Mod', 'Mods'] },
 	{ name: 'Genshin Impact Daily Check', url: 'https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=en-us', tags: ['Genshin Impact'] },
 	{ name: 'VPNGate', url: 'https://vpngate.net', tags: ['VPN'] },
 	{ name: '爱壹帆', url: 'https://www.iyf.tv', tags: ['OTT', 'Video'], icon: `${process.env.PWD}/image/icon/iyf.png`, background: `${process.env.PWD}/image/background/iyf.png`, capsule: `${process.env.PWD}/image/capsule/iyf.png`, widecapsule: `${process.env.PWD}/image/widecapsule/iyf.png`, logo: `${process.env.PWD}/image/logo/iyf.png` },
