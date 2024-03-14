@@ -1,5 +1,6 @@
 #!/bin/sh
 # All Rights to /usr/bin/steamos-nested-desktop
+unset LD_PRELOAD
 
 CURRENT_WIDTH_HEIGHT="$(xrandr --current | grep connected | cut -d '+' -f1 | rev | cut -d ' ' -f1 | rev | tr -d '\n' | tr -d '\r')"
 
