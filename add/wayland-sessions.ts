@@ -3,7 +3,6 @@ import fs from 'fs';
 import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
-import { execSync } from 'child_process';
 import { getWaylandSessions } from '../util/Sessions';
 
 const outPath = path.join(
