@@ -67,6 +67,7 @@ function sudo_executor(){
 }
 
 sudo_executor bash << EOF
+mkdir -p /etc/sddm.conf.d/
 echo "[Autologin]" > /etc/sddm.conf.d/steamos.conf
 echo "Relogin=true" >> /etc/sddm.conf.d/steamos.conf
 echo "User=${USER}" >> /etc/sddm.conf.d/steamos.conf
