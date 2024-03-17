@@ -73,6 +73,8 @@ echo "Relogin=true" >> /etc/sddm.conf.d/steamos.conf
 echo "User=${USER}" >> /etc/sddm.conf.d/steamos.conf
 echo "Session=${SESSION}" >> /etc/sddm.conf.d/steamos.conf
 pkill steam
+if ( \`echo $XDG_SESSION_TYPE \| grep wayland\` );then
 pkill -9 wayland
+fi
 systemctl restart sddm
 EOF
