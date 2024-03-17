@@ -71,11 +71,7 @@ echo "[Autologin]" > /etc/sddm.conf.d/steamos.conf
 echo "Relogin=true" >> /etc/sddm.conf.d/steamos.conf
 echo "User=${USER}" >> /etc/sddm.conf.d/steamos.conf
 echo "Session=${SESSION}" >> /etc/sddm.conf.d/steamos.conf
-if [ -n "$KDE_APPLICATIONS_AS_SCOPE" ];then
-pkill -9 wayland
-pkill -9 shell
-else
 pkill steam
-fi
+pkill -9 wayland
 systemctl restart sddm
 EOF
