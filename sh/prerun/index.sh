@@ -79,7 +79,7 @@ fi
 
 sudo_executor mkdir -p /var/lib/pacman/
 
-sudo_executor fzfr-unlock
+sudo_executor frzr-unlock
 
 sudo_executor steamos-readonly disable
 
