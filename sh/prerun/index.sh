@@ -1,5 +1,6 @@
 #!/bin/bash
 
+touch ~/.bashrc
 
 SHELL_RUN_COMMANDS=`find	~ -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
