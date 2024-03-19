@@ -79,6 +79,8 @@ fi
 
 sudo_executor mkdir -p /var/lib/pacman/
 
+sudo_executor fzfr-unlock
+
 sudo_executor steamos-readonly disable
 
 ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
