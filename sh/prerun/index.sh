@@ -160,7 +160,9 @@ EOF
 fi
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
-sudo_executor pacman -S yay --noconfirm --overwrite \\\'*\\\'
+if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PATH
+	sudo_executor pacman -S yay --noconfirm --overwrite \\\'*\\\'
+fi
 
 #shc
 yay -S shc --noconfirm --overwrite '*'
