@@ -70,6 +70,16 @@ export async function __main__ () {
 					await AddToCats(appid, tag);
 				}
 			}
+		} else if (filename == 'reset.out') {
+			const AppName = '[Lutris] Reset Data';
+			const tags = ['Lutris'];
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir, tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
 		}
 	}
 }
