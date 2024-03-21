@@ -32,7 +32,7 @@ export async function __main__ () {
 			if (!tag) continue;
 			await AddToCats(appid, tag);
 		}
-		AddCompat({ appid: `${appid}`, compat: 'proton_experimental' });
+		AddCompat({ appid: `${appid}`, compat: 'proton_7' });
 	}
 }
 
