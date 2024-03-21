@@ -23,7 +23,7 @@ try{config.game.path.china = \`\${process.env.HOME}/AAGL/YuanShen\`;}catch(e){co
 try{config.game.wine.prefix = \`\${process.env.HOME}/AAGL/prefix\`;}catch(e){console.error(e);}
 try{config.game.wine.builds = \`\${process.env.HOME}/AAGL/runners\`;}catch(e){console.error(e);}
 try{config.game.dxvk.builds = \`\${process.env.HOME}/AAGL/dxvks\`;}catch(e){console.error(e);}
-try{config.enhancements.fps_unlocker.path = \`\${process.env.HOME}/AAGL/fps-unlocker\`;}catch(e){console.error(e);}
+try{config.game.enhancements.fps_unlocker.path = \`\${process.env.HOME}/AAGL/fps-unlocker\`;}catch(e){console.error(e);}
 try{config.components.path = \`\${process.env.HOME}/AAGL/components\`;}catch(e){console.error(e);}
 writeFileSync(CONFIG_FILE_PATH, JSON.stringify(config, null, 2));
 EOF
