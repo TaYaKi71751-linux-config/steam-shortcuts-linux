@@ -17,14 +17,14 @@ node << EOF
 const { readFileSync, writeFileSync } = require("fs");
 const CONFIG_FILE_PATH = \`\${process.env.HOME}/.var/app/moe.launcher.an-anime-game-launcher/data/anime-game-launcher/config.json\`;
 let config = JSON.parse(readFileSync(CONFIG_FILE_PATH));
-config.launcher.temp = \`\${process.env.HOME}/AAGL\`;
-config.game.path.global = \`\${process.env.HOME}/AAGL/Genshin Impact\`;
-config.game.path.china = \`\${process.env.HOME}/AAGL/YuanShen\`;
-config.game.wine.prefix = \`\${process.env.HOME}/AAGL/prefix\`;
-config.game.wine.builds = \`\${process.env.HOME}/AAGL/runners\`;
-config.dxvk.builds = \`\${process.env.HOME}/AAGL/dxvks\`;
-config.enhancements.fps_unlocker.path = \`\${process.env.HOME}/AAGL/fps-unlocker\`;
-config.components.path = \`\${process.env.HOME}/AAGL/components\`;
+try{config.launcher.temp = \`\${process.env.HOME}/AAGL\`;} catch(e){console.error(e);}
+try{config.game.path.global = \`\${process.env.HOME}/AAGL/Genshin Impact\`;}catch(e){console.error(e);}
+try{config.game.path.china = \`\${process.env.HOME}/AAGL/YuanShen\`;}catch(e){console.error(e);}
+try{config.game.wine.prefix = \`\${process.env.HOME}/AAGL/prefix\`;}catch(e){console.error(e);}
+try{config.game.wine.builds = \`\${process.env.HOME}/AAGL/runners\`;}catch(e){console.error(e);}
+try{config.dxvk.builds = \`\${process.env.HOME}/AAGL/dxvks\`;}catch(e){console.error(e);}
+try{config.enhancements.fps_unlocker.path = \`\${process.env.HOME}/AAGL/fps-unlocker\`;}catch(e){console.error(e);}
+try{config.components.path = \`\${process.env.HOME}/AAGL/components\`;}catch(e){console.error(e);}
 writeFileSync(CONFIG_FILE_PATH, JSON.stringify(config, null, 2));
 EOF
 
