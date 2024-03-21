@@ -67,7 +67,7 @@ export async function __main__ () {
 	})();
 	await (async function () {
 		const AppName: string = 'YoiTV clear compat';
-		const tags = ['YoiTV'];
+		const tags = ['YoiTV', 'TV'];
 		const StartDir: string = `${process.env.HOME}`;
 		const exe: string = '/usr/bin/true';
 		const ycp = path.join(compatdataPath, `${yappid}`);
