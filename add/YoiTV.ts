@@ -22,16 +22,21 @@ const compatdataPath:string = path.join(
 function __check_file__ ():any {
 	execSync(`mkdir -p ${yoitv_path}`);
 	const zip = path.join(yoitv_path, 'yoitv.zip');
-	const extract = `cd ${JSON.stringify(yoitv_path)} && unzip yoitv.zip`;
+	const extract = `cd ${JSON.stringify(yoitv_path)} && unzip yoitv`;
 	const findexe = `cd ${JSON.stringify(yoitv_path)} && find . -name '*.exe' -type f | head -n 1`;
-	if (existsSync(zip)) {
-		if (!execSync(findexe).toString().replaceAll('\n', '')) {
-			execSync(extract).toString();
+	try {
+		if (existsSync(zip)) {
+			if (!execSync(findexe).toString().replaceAll('\n', '')) {
+				execSync(extract).toString();
+			}
+			const exe = `${path.join(yoitv_path, execSync(findexe).toString().replaceAll('\n', ''))}`;
+			return `${exe}`;
 		}
-		const exe = `${path.join(yoitv_path, execSync(findexe).toString().replaceAll('\n', ''))}`;
-		return `${exe}`;
+		__download__();
+	} catch (e) {
+		execSync(`rm -rf ${yoitv_path} && mkdir -p ${yoitv_path}`);
+		__download__();
 	}
-	__download__();
 	return `${__check_file__()}`;
 }
 
@@ -44,36 +49,36 @@ function __download__ () {
 
 export async function __main__ () {
 	let yappid:any = null;
-	await (async function (){
-	const AppName: string = 'YoiTV';
-	const exe: string = `${__check_file__()}`;
-	const StartDir: string = `${exe}`;
-	const tags = ['YoiTV'];
-	const opts = { AppName, exe, StartDir, LaunchOptions: '%command%' };
-	const appid = getShortcutAppID(opts);
-	yappid = appid;
-	AddCompat({ appid: `${appid}`, compat: 'proton_experimental' });
-	AddShortcut(Object.assign({ appid, tags }, opts));
-	for (let j = 0; j < tags?.length; j++) {
-		const tag = tags[j];
-		if (!tag) continue;
-		await AddToCats(appid, tag);
-	}
+	await (async function () {
+		const AppName: string = 'YoiTV';
+		const exe: string = `${__check_file__()}`;
+		const StartDir: string = `${exe}`;
+		const tags = ['YoiTV'];
+		const opts = { AppName, exe, StartDir, LaunchOptions: '%command%' };
+		const appid = getShortcutAppID(opts);
+		yappid = appid;
+		AddCompat({ appid: `${appid}`, compat: 'proton_experimental' });
+		AddShortcut(Object.assign({ appid, tags }, opts));
+		for (let j = 0; j < tags?.length; j++) {
+			const tag = tags[j];
+			if (!tag) continue;
+			await AddToCats(appid, tag);
+		}
 	})();
-	await (async function (){
-	const AppName: string = 'YoiTV clear compat';
-	const tags = ['YoiTV'];
-	const StartDir: string = `${process.env.HOME}`;
-	const exe: string = '/usr/bin/true';
-	const ycp = path.join(compatdataPath,`${yappid}`);
-	const opts = { AppName, exe, StartDir, LaunchOptions: `cd ${ycp} && rm -rf ${ycp}` };
-	const appid = getShortcutAppID(opts);
-	AddShortcut(Object.assign({ appid, tags }, opts));
-	for (let j = 0; j < tags?.length; j++) {
-		const tag = tags[j];
-		if (!tag) continue;
-		await AddToCats(appid, tag);
-	}
+	await (async function () {
+		const AppName: string = 'YoiTV clear compat';
+		const tags = ['YoiTV'];
+		const StartDir: string = `${process.env.HOME}`;
+		const exe: string = '/usr/bin/true';
+		const ycp = path.join(compatdataPath, `${yappid}`);
+		const opts = { AppName, exe, StartDir, LaunchOptions: `cd ${ycp} && rm -rf ${ycp}` };
+		const appid = getShortcutAppID(opts);
+		AddShortcut(Object.assign({ appid, tags }, opts));
+		for (let j = 0; j < tags?.length; j++) {
+			const tag = tags[j];
+			if (!tag) continue;
+			await AddToCats(appid, tag);
+		}
 	})();
 }
 
