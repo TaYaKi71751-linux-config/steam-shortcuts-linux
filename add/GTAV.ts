@@ -42,3 +42,4 @@ export async function __main__ () {
 if (typeof require !== 'undefined' && require.main === module) {
 	__main__();
 }
+

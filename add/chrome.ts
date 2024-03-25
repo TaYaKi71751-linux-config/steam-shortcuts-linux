@@ -80,6 +80,7 @@ export async function __main__ () {
 					if (!tag) continue;
 					await AddToCats(appid, tag);
 				}
+				await AddToCats(appid, 'Microsoft Edge');
 			}
 		} else if (filename == 'install.out') {
 			const name = '[Microsoft Edge] Install';

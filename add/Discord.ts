@@ -17,7 +17,7 @@ export async function __main__ () {
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
 		if (filename == 'discord.out') {
-			const { name, tags } = { name: 'Discord', tags: ['Social'] };
+			const { name, tags } = { name: 'Discord', tags: ['Discord'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {
@@ -26,7 +26,7 @@ export async function __main__ () {
 				await AddToCats(appid, tag);
 			}
 		} else if (filename == 'install.out') {
-			const { name, tags } = { name: '[Discord] Install', tags: ['Install'] };
+			const { name, tags } = { name: '[Discord] Install', tags: ['Discord', 'Install'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {

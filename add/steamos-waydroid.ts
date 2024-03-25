@@ -11,7 +11,7 @@ const outPath = path.join(
 );
 
 export async function __main__ () {
-	const tags = ['steamos-waydroid'];
+	let tags = ['steamos-waydroid'];
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];
@@ -19,8 +19,12 @@ export async function __main__ () {
 		const exe = path.join(outPath, filename);
 		const AppName = '[steamos-waydroid] ' + (function () {
 			switch (filename) {
-			case 'install.out': return 'Install';
-			case 'plasma-wayland-session.out': return 'Plasma Wayland Session';
+			case 'install.out':
+				tags = ['steamos-waydroid', 'Install'];
+				return 'Install';
+			case 'plasma-wayland-session.out':
+				tags = ['steamos-waydroid', 'wayland-sessions'];
+				return 'Plasma Wayland Session';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });

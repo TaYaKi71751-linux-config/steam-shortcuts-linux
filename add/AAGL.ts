@@ -10,7 +10,7 @@ export async function __main__ () {
 		'out',
 		'AAGL'
 	);
-	const tags = ['Genshin Impact', 'AAGL'];
+	let tags = ['Genshin Impact', 'AAGL'];
 
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
@@ -19,8 +19,12 @@ export async function __main__ () {
 		const exe = path.join(outPath, filename);
 		const AppName = '[AAGL]' + (function () {
 			switch (filename) {
-		 case 'install_aagl.out': return 'Install';
-		 case 'launch_aagl.out': return 'Genshin Impact Launcher';
+			case 'install_aagl.out':
+				tags = ['Genshin Impact', 'AAGL'];
+				return 'Install';
+			case 'launch_aagl.out':
+				tags = ['Install', 'Genshin Impact', 'AAGL'];
+				return 'Genshin Impact Launcher';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });

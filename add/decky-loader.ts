@@ -11,7 +11,7 @@ const outPath = path.join(
 );
 
 export async function __main__ () {
-	const tags = ['decky-loader'];
+	const tags = ['decky-loader', 'Install'];
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];

@@ -53,7 +53,7 @@ export async function __main__ () {
 		const AppName: string = 'YoiTV';
 		const exe: string = `${__check_file__()}`;
 		const StartDir: string = `${exe}`;
-		const tags = ['YoiTV'];
+		const tags = ['YoiTV', 'TV'];
 		const opts = { AppName, exe, StartDir, LaunchOptions: '%command%' };
 		const appid = getShortcutAppID(opts);
 		yappid = appid;

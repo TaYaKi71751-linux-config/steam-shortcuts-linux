@@ -17,7 +17,7 @@ export async function __main__ () {
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
 		if (filename == 'obs.out') {
-			const { name, tags } = { name: 'OBS Studio', tags: ['Stream'] };
+			const { name, tags } = { name: 'OBS Studio', tags: ['Stream', 'OBS Studio'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {
@@ -26,7 +26,7 @@ export async function __main__ () {
 				await AddToCats(appid, tag);
 			}
 		} else if (filename == 'install.out') {
-			const { name, tags } = { name: '[OBS Studio] Install', tags: ['Install'] };
+			const { name, tags } = { name: '[OBS Studio] Install', tags: ['Stream', 'OBS Studio', 'Install'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {
