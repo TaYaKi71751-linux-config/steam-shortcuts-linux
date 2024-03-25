@@ -165,7 +165,13 @@ if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PAT
 fi
 
 #shc
-yay -S shc --noconfirm --overwrite '*'
+cd $HOME
+git clone https://aur.archlinux.org/shc.git
+cd shc
+git pull
+makepkg -Sfi
+makepkg -i --noconfirm --overwrite '*'
+
 
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash

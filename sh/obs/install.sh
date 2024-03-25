@@ -98,7 +98,14 @@ fi
 system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
-sudo_executor pacman -Sy obs-vkcapture-git --noconfirm
+
+cd ~/
+git clone https://aur.archlinux.org/obs-vkcapture-git.git
+cd obs-vkcapture-git
+git pull
+makepkg -Sfi
+makepkg -Si --noconfirm --overwrite '*'
+
 uname -a | grep x86_64 || exit
 cd ~/.local/
 rm glibc.tar.zst
