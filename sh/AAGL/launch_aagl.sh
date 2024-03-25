@@ -9,6 +9,7 @@ function auto_path() {
 }
 
 auto_path node
+mkdir -p $HOME/AAGL
 
 pkill -9 flatpak
 
