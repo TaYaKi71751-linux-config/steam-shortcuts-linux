@@ -99,12 +99,17 @@ system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
 
+
 cd ~/
-git clone https://aur.archlinux.org/obs-vkcapture-git.git
-cd obs-vkcapture-git
+git clone https://github.com/nowrep/obs-vkcapture
+cd obs-vkcapture
 git pull
-makepkg -Sfi
-makepkg -Si --noconfirm --overwrite '*'
+mkdir build && cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make 
+touch ~/.bashrc
+find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
+export PATH=${PATH}:$(pwd)
 
 uname -a | grep x86_64 || exit
 cd ~/.local/
