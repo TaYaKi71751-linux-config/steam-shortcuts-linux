@@ -111,7 +111,10 @@ touch ~/.bashrc
 find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
 export PATH=${PATH}:$(pwd)
 
+which obs-gamecapture && exit 0
 uname -a | grep x86_64 || exit
+
+sudo_executor pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite \\\'*\\\'
 cd ~/.local/
 rm glibc.tar.zst
 curl https://archlinux.org/packages/core/x86_64/glibc/download/ -LsSf -o glibc.tar.zst
