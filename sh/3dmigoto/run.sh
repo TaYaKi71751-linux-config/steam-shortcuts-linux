@@ -1,8 +1,9 @@
 #!/bin/bash
 
-rm -rf $HOME/Games/genshin-impact/
-mkdir -p $HOME/Games/genshin-impact/prefix/drive_c/
-ln -sf $HOME/AAGL/Genshin\ Impact $HOME/Games/genshin-impact/prefix/drive_c/
+mkdir -p "$HOME/Games/genshin-impact/prefix/drive_c/"
+__GI_PATH__="$(find / -name 'GenshinImpact.exe' -type f | tail -n 1)"
+echo $__GI_PATH__
+ln -sf "$(dirname "$__GI_PATH__")" "$HOME/Games/genshin-impact/prefix/drive_c/"
 __3DMIGOTO_PATH__="$(find $HOME/ -name '3DMigoto Loader.exe' | tail -n 1)"
 echo $__3DMIGOTO_PATH__
 ln -sf "$(dirname "$__3DMIGOTO_PATH__")" "$HOME/Games/genshin-impact/prefix/drive_c/"
