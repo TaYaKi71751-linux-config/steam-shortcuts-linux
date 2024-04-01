@@ -189,7 +189,7 @@ sudo_executor npm i -g pnpm
 
 #Build
 cd ~/
-git clone https://github.com/TaYaKi71751-linux-config/steam-shortcuts.git
+git clone https://github.com/TaYaKi71751-linux-config/steam-shortcuts-linux.git
 cd ~/steam-shortcuts
 bash ./build.sh
 
