@@ -13,7 +13,7 @@ const outPath = path.join(
 const DEEPLINK_URLS = [
 	{ name: 'MapleStory', url: 'lutris:steam', tags: ['MapleStory', 'Lutris'] },
 	{ name: 'Mabinogi', url: 'lutris:steam', tags: ['Mabinogi', 'Lutris'] },
-	{ name: '[Lutris] Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
+//	{ name: '[Lutris] Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
 	{ name: '[Lutris] NexonPlug', url: 'lutris:nexonplug-standard-kr-region', tags: ['Nexon', 'Lutris'] },
 	{ name: '[Lutris] Grand Theft Auto V (EGS)', url: 'lutris:grand-theft-auto-v-epic-games-launcher', tags: ['Grand Theft Auto V', 'Lutris'] },
 	{ name: '[Lutris] Grand Theft Auto V (Rockstar)', url: 'lutris:grand-theft-auto-v-rockstar-games-launc', tags: ['Grand Theft Auto V', 'Lutris'] },
