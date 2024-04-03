@@ -11,6 +11,10 @@ export async function __main__ () {
 	{
 		RemoveShortcutStartsWith({ AppName: '[Proton] Genshin Impact' });
 		let filenames = execSync('find / -name \'GenshinImpact.exe\' -type f || true').toString().split('\n');
+		try {
+		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'GenshinImpact.exe\' -type f || true`).toString().split('\n')];
+		} catch(e){}
+		console.log(filenames);
 		const tags = ['Genshin Impact', 'Proton'];
 		filenames = filenames
 			.map((filename) => (filename.trim()))
