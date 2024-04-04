@@ -49,6 +49,8 @@ function sudo_executor(){
 sudo_executor pacman -Sy
 sudo_executor pacman -S python3 --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S python-yaml --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S python-sphinx --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S cmake --noconfirm --overwrite \\\'*\\\'
 FIRST_PATH=`pwd`
 
 
