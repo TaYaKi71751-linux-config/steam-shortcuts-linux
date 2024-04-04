@@ -21,6 +21,7 @@ export async function __main__ () {
 		const AppName = '[Zelda Install] ' + (function () {
 			switch (filename) {
 			case 'ladx.out': return 'Links Awakening DX';
+			case 'oracles.out': return 'Oracle of Ages and Seasons';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
