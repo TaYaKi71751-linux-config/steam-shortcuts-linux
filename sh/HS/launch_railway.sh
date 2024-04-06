@@ -1,8 +1,8 @@
 #!/bin/bash
 
-__GAME_NAME__="AAGL"
-__LAUNCHER_PACKAGE__="moe.launcher.an-anime-game-launcher"
-__LAUNCHER_NAME__="anime-game-launcher"
+__GAME_NAME__="Railway"
+__LAUNCHER_PACKAGE__="moe.launcher.the-honkers-railway-launcher"
+__LAUNCHER_NAME__="honkers-railway-launcher"
 
 function auto_path() {
 	TARGET_PATHS="$(find / -name "$1" -type f)"
