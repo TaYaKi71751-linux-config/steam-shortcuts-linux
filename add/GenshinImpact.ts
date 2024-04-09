@@ -106,6 +106,33 @@ export async function __main__ () {
 			}
 		}
 	}
+
+	// Reload
+	{
+		let tags = ['Genshin Impact'];
+
+		const outPath = path.join(`${process.env.PWD}`,'out','GI');
+		const outFiles = ['reload.out'];
+		for (let i = 0; i < outFiles?.length; i++) {
+			const filename = outFiles[i];
+			const StartDir = outPath;
+			const exe = path.join(outPath, filename);
+			const AppName = '[Genshin Impact]' + (function () {
+				switch (filename) {
+					case 'reload.out':
+						tags = ['Reload', 'Genshin Impact'];
+					return 'Reload';
+				}
+			})();
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let j = 0; j < tags?.length; j++) {
+				const tag = tags[j];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		}
+	}
 }
 
 // https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
