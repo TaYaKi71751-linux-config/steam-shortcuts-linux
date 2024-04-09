@@ -1,5 +1,8 @@
 #!/bin/bash
 
+__ORG_NAME__="TaYaKi71751-linux-config"
+__REPO_NAME__="steam-shortcuts-linux"
+
 touch ~/.bashrc
 
 SHELL_RUN_COMMANDS=`find	~ -maxdepth 1 -name '.*shrc'`
@@ -189,8 +192,8 @@ sudo_executor npm i -g pnpm
 
 #Build
 cd ~/
-git clone https://github.com/TaYaKi71751-linux-config/steam-shortcuts-linux.git
-cd ~/steam-shortcuts
+git clone https://github.com/${__ORG_NAME__}/${__REPO_NAME__}.git
+cd ~/${__REPO_NAME__}
 bash ./build.sh
 
 
