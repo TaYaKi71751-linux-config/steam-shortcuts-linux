@@ -30,9 +30,9 @@ done < <(printf '%s\n' "${GI_CONF_PATHS}")
 
 export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat"
 
-echo "cd C:\\3dmigoto" > $BATCH_PATH
+echo "cd C:\\$(dirname "${__3DMIGOTO_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
 echo "start \"\" \"3DMigoto Loader.exe\"" >> $BATCH_PATH
-echo "cd C:\\Genshin Impact" >> $BATCH_PATH
+echo "cd C:\\$(dirname "${__GI_PATH__}" | rev | cut -d '/' -f1 | rev)" >> $BATCH_PATH
 echo "start \"\" GenshinImpact.exe" >> $BATCH_PATH
 
 
