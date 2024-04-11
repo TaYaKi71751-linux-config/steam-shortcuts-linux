@@ -115,7 +115,7 @@ export async function __main__ () {
 		const outFiles = ['reload.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
-			const StartDir = outPath;
+			const StartDir = `${process.env.PWD}`;
 			const exe = path.join(outPath, filename);
 			const AppName = '[Genshin Impact]' + (function () {
 				switch (filename) {
