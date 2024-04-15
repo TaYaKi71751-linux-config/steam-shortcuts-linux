@@ -95,6 +95,18 @@ export async function __main__ () {
 				if (!tag) continue;
 				await AddToCats(appid, tag);
 			}
+		} else if (outfile.endsWith('download_firmware.out')) {
+			const tags = ['Ryujinx', 'Install'];
+			const StartDir = __path__.dirname(outfile);
+			const exe = JSON.stringify(outfile);
+			const AppName = '[Ryujinx] Download Firmware';
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir });
+			for (let j = 0; j < tags?.length; j++) {
+				const tag = tags[j];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
 		}
 	}
 }

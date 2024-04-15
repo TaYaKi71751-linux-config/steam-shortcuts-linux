@@ -62,20 +62,13 @@ if ( which wget );then
 else
 	sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
 fi
-if ( which unzip );then
-	echo ALready installed unzip
-else
-	sudo_executor pacman -S unzip --noconfirm --overwrite \\\'*\\\'
-fi
 
-echo mkdir -p ${HOME}/.var/app/org.ryujinx.Ryujinx/config/Ryujinx/system
-mkdir -p ${HOME}/.var/app/org.ryujinx.Ryujinx/config/Ryujinx/system
-echo cd ${HOME}/.var/app/org.ryujinx.Ryujinx/config/Ryujinx/system
-cd ${HOME}/.var/app/org.ryujinx.Ryujinx/config/Ryujinx/system
+echo rm -rf ${HOME}/Downloads/switch-firmware
+rm -rf ${HOME}/Downloads/switch-firmware
+echo mkdir -p ${HOME}/Downloads/switch-firmware
+mkdir -p ${HOME}/Downloads/switch-firmware
+echo cd ${HOME}/Downloads/switch-firmware
+cd ${HOME}/Downloads/switch-firmware
 
-echo wget https://prodkeys.net/wp-content/uploads/2024/04/ProdKeys.net-v18.0.0.zip -q --show-progress
-wget https://prodkeys.net/wp-content/uploads/2024/04/ProdKeys.net-v18.0.0.zip -q --show-progress
-echo unzip *.zip
-unzip *.zip
-echo rm *.zip
-rm *.zip
+echo wget https://archive.org/download/firmware.-18.0.0/Firmware.18.0.0.zip -q --show-progress
+wget https://archive.org/download/firmware.-18.0.0/Firmware.18.0.0.zip -q --show-progress
