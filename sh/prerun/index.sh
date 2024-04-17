@@ -142,7 +142,7 @@ sudo_executor pacman -S ${HOLO_REL}/linux-headers --noconfirm --overwrite \\\'*\
 sudo_executor pacman -S linux-neptune-headers --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S ${HOLO_REL}/linux-lts-headers --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S glibc --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -S lib32-glibc glibc --noconfirm
 sudo_executor pacman -S gcc --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S gcc-libs --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -S fakeroot --noconfirm --overwrite \\\'*\\\'
