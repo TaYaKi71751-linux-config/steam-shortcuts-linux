@@ -173,7 +173,7 @@ git clone https://aur.archlinux.org/shc.git
 cd shc
 git pull
 makepkg -Sfi
-makepkg -i --noconfirm --overwrite '*'
+makepkg -i --noconfirm
 
 
 #nvm
