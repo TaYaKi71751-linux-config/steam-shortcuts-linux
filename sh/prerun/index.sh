@@ -101,6 +101,37 @@ ${RESULT_PACMAN_CONF}
 EOF
 fi
 
+ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+if ( sudo_executor cat /etc/pacman.conf | grep "holoiso\-next" );then
+	echo Removing holoiso-next from /etc/pacman.conf
+	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[holoiso-next\]//g')"
+sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+${RESULT_PACMAN_CONF}
+EOF
+ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Server = https:\/\/cd2\.holoiso\.ru\.eu\.org\/pkg\/\$repo\/os\/\$arch//g")"
+sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+${RESULT_PACMAN_CONF}
+EOF
+fi
+
+ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+if ( sudo_executor cat /etc/pacman.conf | grep "holostaging" );then
+	echo Removing holoiso-next from /etc/pacman.conf
+	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[holostaging\]//g')"
+sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+${RESULT_PACMAN_CONF}
+EOF
+ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Server = https:\/\/cd2\.holoiso\.ru\.eu\.org\/pkg\/\$repo\/os\/\$arch//g")"
+sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+${RESULT_PACMAN_CONF}
+EOF
+fi
+
+
 sudo_executor pacman-key --init
 sudo_executor pacman-key --populate
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
@@ -161,6 +192,8 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
+
+
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
 if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PATH
