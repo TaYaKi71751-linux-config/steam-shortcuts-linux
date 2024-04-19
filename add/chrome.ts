@@ -27,6 +27,7 @@ const PAGE_URLS = [
 	{ name: 'Wavve', url: 'https://www.wavve.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/wavve.ico`, background: `${process.env.PWD}/image/background/wavve.png`, capsule: `${process.env.PWD}/image/capsule/wavve.png`, widecapsule: `${process.env.PWD}/image/widecapsule/wavve.png`, logo: `${process.env.PWD}/image/logo/wavve.png` },
 	{ name: 'TVING', url: 'https://user.tving.com/pc/user/profiles.tving', tags: ['OTT', 'TV'] },
 	{ name: 'Tubi', url: 'https://www.tubitv.com', tags: ['OTT'], icon: `${process.env.PWD}/image/icon/tubi.webp`, logo: `${process.env.PWD}/image/logo/tubi.png`, capsule: `${process.env.PWD}/image/capsule/tubi.png`, widecapsule: `${process.env.PWD}/image/widecapsule/tubi.png`, background: `${process.env.PWD}/image/background/tubi.png` },
+	{ name: 'KissAnime', url: 'https://kissanime.com.ru/kissanime-home.html', tags: ['OTT'] },
 	{ name: 'AQStream (KR)', url: 'https://www.aqstream.com/', tags: ['TV'] },
 	{ name: 'AQStream (JP)', url: 'https://www.aqstream.com/jp', tags: ['TV'] },
 	{ name: 'Twitter Analytics', url: 'https://analytics.twitter.com', tags: ['Dashboard'], icon: `${process.env.PWD}/image/icon/twitter.ico`, background: `${process.env.PWD}/image/background/twitteranalytics.png`, capsule: `${process.env.PWD}/image/capsule/twitteranalytics.png`, widecapsule: `${process.env.PWD}/image/widecapsule/twitteranalytics.png`, logo: `${process.env.PWD}/image/logo/twitteranalytics.png` },
