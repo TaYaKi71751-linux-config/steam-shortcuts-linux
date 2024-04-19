@@ -16,7 +16,7 @@ export async function __main__ () {
 		const filename = outFiles[i];
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
-		if (filename == 'discord.out') {
+		if (filename == 'launch_discord.out') {
 			const { name, tags } = { name: 'Discord', tags: ['Discord'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
@@ -25,8 +25,26 @@ export async function __main__ () {
 				if (!tag) continue;
 				await AddToCats(appid, tag);
 			}
-		} else if (filename == 'install.out') {
+		} else if (filename == 'install_discord.out') {
 			const { name, tags } = { name: '[Discord] Install', tags: ['Discord', 'Install'] };
+			const appid = getShortcutAppID({ AppName: name, exe });
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		} else if (filename == 'install_vesktop.out') {
+			const { name, tags } = { name: '[Vesktop] Install', tags: ['Discord', 'Install'] };
+			const appid = getShortcutAppID({ AppName: name, exe });
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		} else if (filename == 'launch_discord.out') {
+			const { name, tags } = { name: 'Vesktop', tags: ['Discord', 'Install'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {
