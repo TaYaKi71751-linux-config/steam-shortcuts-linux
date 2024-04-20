@@ -75,6 +75,7 @@ sudo_executor pacman -Sy libpng --noconfirm
 sudo_executor pacman -Sy lzo --noconfirm
 sudo_executor pacman -Sy sdl2 --noconfirm
 sudo_executor pacman -Sy xz --noconfirm
+sudo_executor pacman -Sy zlib lib32-zlib --noconfirm
 sudo_executor pacman -Sy go-yq --noconfirm
 sudo_executor pacman -Sy ninja --noconfirm
 sudo_executor pacman -Sy fluidsynth --noconfirm
