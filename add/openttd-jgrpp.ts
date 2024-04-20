@@ -17,12 +17,13 @@ export async function __main__ () {
 		const filename = outFiles[i];
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
-		const AppName = '[openttd-jgrpp] ' + (function () {
+		const AppName = '' + (function () {
 			switch (filename) {
-			case 'openttd-jgrpp-install.out': return 'Install';
-			case 'openttd-jgrpp-remove.out': return 'Remove';
-			case 'openttd-jgrpp-update.out': return 'Update';
-			case 'openttd-jgrpp-launch.out': return 'Launch';
+			case 'openttd-jgrpp-install.out': return '[openttd-jgrpp] Install';
+			case 'openttd-jgrpp-remove.out': return '[openttd-jgrpp] Remove';
+			case 'openttd-jgrpp-update.out': return '[openttd-jgrpp] Update';
+			case 'openttd-jgrpp-launch.out': return '[openttd-jgrpp] Launch';
+			case 'opengfx-install.out': return '[opengfx] Install';
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
