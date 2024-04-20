@@ -78,6 +78,8 @@ sudo_executor pacman -Sy xz --noconfirm
 sudo_executor pacman -Sy go-yq --noconfirm
 sudo_executor pacman -Sy ninja --noconfirm
 sudo_executor pacman -Sy fluidsynth --noconfirm
+sudo_executor pacman -Sy wget --noconfirm
+sudo_executor pacman -Sy unzip --noconfirm
 
 
 mkdir -p ${HOME}/.local
@@ -87,6 +89,7 @@ which git || exit -1
 
 git clone https://github.com/JGRennison/OpenTTD-patches.git
 cd ${HOME}/.local/OpenTTD-patches/ || exit -1
+
 
 git pull
 
@@ -98,3 +101,8 @@ which make || exit -1
 cmake ..
 make -j $(nproc)
 
+mkdir -p ${HOME}/.local/share/openttd/baseset/
+cd ${HOME}/.local/share/openttd/baseset/
+
+ls opengfx*.zip || wget https://cdn.openttd.org/opengfx-releases/7.1/opengfx-7.1-all.zip
+unzip *.zip
