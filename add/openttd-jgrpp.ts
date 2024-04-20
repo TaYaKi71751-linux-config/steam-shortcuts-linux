@@ -26,8 +26,15 @@ export async function __main__ () {
 			case 'opengfx-install.out': return '[opengfx] Install';
 			}
 		})();
+		const LaunchOptions = '' + (function () {
+			switch (filename) {
+			case 'openttd-jgrpp-install.out': return 'export CHECKOUT_BRANCH="jgrpp" && %command%';
+			case 'openttd-jgrpp-update.out': return 'export CHECKOUT_BRANCH="jgrpp" && %command%';
+			default: return '';
+			}
+		})();
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;

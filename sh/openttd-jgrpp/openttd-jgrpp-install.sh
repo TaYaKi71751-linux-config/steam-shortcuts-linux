@@ -92,6 +92,9 @@ which git || exit -1
 
 git clone https://github.com/JGRennison/OpenTTD-patches.git
 cd ${HOME}/.local/OpenTTD-patches/ || exit -1
+if [ -n "${CHECKOUT_BRANCH}" ];then
+	git checkout "${CHECKOUT_BRANCH}"
+fi
 
 
 git pull
