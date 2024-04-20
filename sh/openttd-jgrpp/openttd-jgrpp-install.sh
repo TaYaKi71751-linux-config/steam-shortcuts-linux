@@ -73,7 +73,7 @@ sudo_executor pacman -Sy hicolor-icon-theme --noconfirm
 sudo_executor pacman -Sy icu --noconfirm
 sudo_executor pacman -Sy libpng --noconfirm
 sudo_executor pacman -Sy lzo --noconfirm
-sudo_executor pacman -Sy sdl --noconfirm
+sudo_executor pacman -Sy sdl2 --noconfirm
 sudo_executor pacman -Sy xz --noconfirm
 sudo_executor pacman -Sy go-yq --noconfirm
 sudo_executor pacman -Sy ninja --noconfirm
