@@ -100,9 +100,3 @@ which cmake || exit -1
 which make || exit -1
 cmake ..
 make -j $(nproc)
-
-mkdir -p ${HOME}/.local/share/openttd/baseset/
-cd ${HOME}/.local/share/openttd/baseset/
-
-ls opengfx*.zip || wget https://cdn.openttd.org/opengfx-releases/7.1/opengfx-7.1-all.zip
-unzip *.zip
