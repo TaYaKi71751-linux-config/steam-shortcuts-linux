@@ -77,6 +77,7 @@ sudo_executor pacman -Sy sdl2 --noconfirm
 sudo_executor pacman -Sy xz --noconfirm
 sudo_executor pacman -Sy go-yq --noconfirm
 sudo_executor pacman -Sy ninja --noconfirm
+sudo_executor pacman -Sy fluidsynth --noconfirm
 
 
 mkdir -p ${HOME}/.local
