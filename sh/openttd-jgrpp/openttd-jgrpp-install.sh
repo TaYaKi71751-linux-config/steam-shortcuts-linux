@@ -67,12 +67,17 @@ function sudo_executor(){
 	fi
 }
 
-sudo_executor pacman -Sy fluidsynth --noconfirm
+sudo_executor pacman -Sy desktop-file-utils --noconfirm
 sudo_executor pacman -Sy fontconfig --noconfirm
 sudo_executor pacman -Sy hicolor-icon-theme --noconfirm
+sudo_executor pacman -Sy icu --noconfirm
+sudo_executor pacman -Sy libpng --noconfirm
 sudo_executor pacman -Sy lzo --noconfirm
-sudo_executor pacman -Sy cmake --noconfirm
+sudo_executor pacman -Sy sdl --noconfirm
+sudo_executor pacman -Sy xz --noconfirm
+sudo_executor pacman -Sy go-yq --noconfirm
 sudo_executor pacman -Sy ninja --noconfirm
+
 
 mkdir -p ${HOME}/.local
 cd ${HOME}/.local
