@@ -8,6 +8,14 @@ ln -sf "$(dirname "$__GI_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
 __3DMIGOTO_PATH__="$(find $HOME/ -name '3DMigoto Loader.exe' | tail -n 1)"
 echo $__3DMIGOTO_PATH__
 ln -sf "$(dirname "$__3DMIGOTO_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
+
+# rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
+DELETE FROM games WHERE name = '${__GAME_NAME__}';
+.save $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp
+EOF
+mv $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+
 if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml );then
  rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml
 fi
