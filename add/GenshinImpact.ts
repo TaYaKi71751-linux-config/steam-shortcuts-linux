@@ -11,15 +11,27 @@ export async function __main__ () {
 	{
 		RemoveShortcutStartsWith({ AppName: '[Proton] Genshin Impact' });
 		let filenames = execSync('find / -name \'GenshinImpact.exe\' -type f || true').toString().split('\n');
+//		try {
+//		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'GenshinImpact.exe\' -type f || true`).toString().split('\n')];
+//		} catch(e){}
 		try {
-		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'GenshinImpact.exe\' -type f || true`).toString().split('\n')];
-		} catch(e){}
+		 const driveCPaths = execSync(`find ${process.env.HOME} -type d -name \'drive_c\' || true`).toString().split('\n');
+			driveCPaths
+			.forEach((drive_c) => {
+				try {
+				execSync(`find -L "${drive_c}" -type f -name \'GenshinImpact.exe\' || true`).toString().split('\n')
+					.forEach((GI) => {
+						filenames.push(GI);
+					});
+				} catch(e1){ console.error(e1); } 
+			});
+		} catch(e){ console.error(e); }
 		console.log(filenames);
 		const tags = ['Genshin Impact', 'Proton'];
 		filenames = filenames
 			.map((filename) => (filename.trim()))
 			.filter((filename) => (filename.length))
-			.filter((filename) => { try { if (existsSync(filename)) { return true; } } catch (e) { return false; } return false; });
+//			.filter((filename) => { try { if (existsSync(filename)) { return true; } } catch (e) { return false; } return false; });
 		for (const filename of filenames) {
 			const StartDir = dirname(filename);
 			const exe = JSON.stringify(filename);
