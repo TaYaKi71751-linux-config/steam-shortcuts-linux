@@ -111,6 +111,8 @@ make
 touch ~/.bashrc
 find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
 export PATH=${PATH}:$(pwd)
+sudo_executor cp obs-gamecapture /usr/bin/
+sudo_executor cp obs-vkcapture /usr/bin/
 
 which obs-gamecapture && exit 0
 
