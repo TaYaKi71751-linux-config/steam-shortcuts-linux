@@ -99,6 +99,7 @@ system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
 
+sudo_executor pacman -Sy obs-studio --noconfirm
 
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
@@ -112,7 +113,15 @@ find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${
 export PATH=${PATH}:$(pwd)
 
 which obs-gamecapture && exit 0
+
+if ( which yay );then
+	yay -S obs-vkcapture-git --noconfirm
+fi
+
+which obs-gamecapture && exit 0
+
 uname -a | grep x86_64 || exit
+
 
 sudo_executor pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite \\\'*\\\'
 cd ~/.local/
