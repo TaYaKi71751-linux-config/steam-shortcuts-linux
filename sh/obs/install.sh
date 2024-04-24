@@ -126,9 +126,4 @@ uname -a | grep x86_64 || exit
 
 
 sudo_executor pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite \\\'*\\\'
-cd ~/.local/
-rm glibc.tar.zst
-curl https://archlinux.org/packages/core/x86_64/glibc/download/ -LsSf -o glibc.tar.zst
-rm lib32-glibc.tar.zst
-curl https://archlinux.org/packages/core/x86_64/lib32-glibc/download/ -LsSf -o lib32-glibc.tar.zst
-sudo_executor pacman -U glibc.tar.zst lib32-glibc.tar.zst --noconfirm
+sudo_executor pacman -U 'https://archlinux.org/packages/core/x86_64/glibc/download/' 'https://archlinux.org/packages/core/x86_64/lib32-glibc/download/' --noconfirm --overwrite \\\'*\\\'
