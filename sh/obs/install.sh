@@ -126,4 +126,5 @@ uname -a | grep x86_64 || exit
 
 
 sudo_executor pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -U 'https://archlinux.org/packages/core/x86_64/glibc/download/' 'https://archlinux.org/packages/core/x86_64/lib32-glibc/download/' --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -U 'https://archlinux.org/packages/core/any/archlinux-keyring/download/' --noconfirm
+sudo_executor pacman -U 'https://archlinux.org/packages/core/x86_64/glibc/download/' 'https://archlinux.org/packages/core/x86_64/lib32-glibc/download/' --noconfirm
