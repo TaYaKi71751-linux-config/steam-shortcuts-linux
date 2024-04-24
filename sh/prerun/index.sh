@@ -40,6 +40,7 @@ function check_sudo() {
 	if ( `sudo -nv` );then
 		return "0"
 	fi
+
 	export SUDO_PASSWORD=$(get_password)
 	# https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/user_install_script.sh…
 	if ( echo ${SUDO_PASSWORD} | sudo -S echo A | grep A );then
@@ -185,17 +186,96 @@ do
 done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
 
 # Add chaotic-aur to pacman.conf
-# if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
-# 	echo Skipping to add chaotic-aur to /etc/pacman.conf
-# else
-# 	echo Adding chaotic-aur to /etc/pacman.conf
-# 	RESULT_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-# sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-# ${RESULT_PACMAN_CONF}
-# $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
-# EOF
-# fi
+if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
+	echo Skipping to add chaotic-aur to /etc/pacman.conf
+else
+	echo Adding chaotic-aur to /etc/pacman.conf
+	RESULT_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+${RESULT_PACMAN_CONF}
+$(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
+EOF
+fi
 
+
+# Add chaotic-mirrorlist
+sudo_executor tee /etc/pacman.d/chaotic-mirrorlist &> /dev/null <<EOF
+## special cdn mirror (delayed syncing, expect some (safe to ignore) amount of 404s)
+# globally
+# * by: garuda linux donators, hosted on cloudflare r2
+server = https://cdn-mirror.chaotic.cx/\$repo/\$arch
+
+# automatic per-country routing of the mirrors below.
+server = https://geo-mirror.chaotic.cx/\$repo/\$arch
+
+## regular syncthing mirrors (close to instant syncing)
+# brazil
+# * by: universidade federal de são carlos (são carlos)
+server = https://br-mirror.chaotic.cx/\$repo/\$arch
+
+# bulgaria
+# * by: sudo man <github.com/sakrayaami>
+server = https://bg-mirror.chaotic.cx/\$repo/\$arch
+
+# canada
+# * by freebird54 (toronto)
+server = https://ca-mirror.chaotic.cx/\$repo/\$arch
+
+# chile
+# * by makzk (santiago)
+server = https://cl-mirror.chaotic.cx/\$repo/\$arch
+
+# germany (de-1 ceased to exist)
+# * by: paranoidbangl
+server = https://de-2-mirror.chaotic.cx/\$repo/\$arch
+# * by: itstyrion
+server = https://de-3-mirror.chaotic.cx/\$repo/\$arch
+# * by: redgloboli
+server = https://de-4-mirror.chaotic.cx/\$repo/\$arch
+
+# france
+# * by yael (marseille)
+server = https://fr-mirror.chaotic.cx/\$repo/\$arch
+
+# greece
+# * by: vmmaniac <github.com/vmmaniac>
+server = https://gr-mirror.chaotic.cx/\$repo/\$arch
+
+# india
+# * by naman (kaithal)
+server = https://in-mirror.chaotic.cx/\$repo/\$arch
+# * by albony <https://albony.xyz/>
+server = https://in-2-mirror.chaotic.cx/\$repo/\$arch
+# * by: bravo68dev <https://www.itsmebravo.dev/>
+server = https://in-3-mirror.chaotic.cx/\$repo/\$arch
+# * by albony (chennai)
+server = https://in-4-mirror.chaotic.cx/\$repo/\$arch
+
+# korea
+# * by: <t.me/silent_heigou> (seoul)
+server = https://kr-mirror.chaotic.cx/\$repo/\$arch
+
+# spain
+# * by: jkanetwork
+server = https://es-mirror.chaotic.cx/\$repo/\$arch
+# * by: ícar <t.me/icarns>
+server = https://es-2-mirror.chaotic.cx/\$repo/\$arch
+
+# united states
+# * by: technetium1 <github.com/technetium1>
+server = https://us-mi-mirror.chaotic.cx/\$repo/\$arch
+# new york
+# * by: xstefen <t.me/xstefen>
+server = https://us-tx-mirror.chaotic.cx/\$repo/\$arch
+# utah
+# * by: ash <t.me/the_ashh>
+server = https://us-ut-mirror.chaotic.cx/\$repo/\$arch
+
+
+# ipfs mirror - for instructions on how to use it consult the projects repo (https://github.com/rubenkelevra/pacman.store)
+# * by: rubenkelevra / pacman.store
+# server = http://chaotic-aur.pkg.pacman.store.ipns.localhost:8080/\$arch
+EOF
 
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
