@@ -185,6 +185,7 @@ do
 	sudo_executor $line
 done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
 
+if ( uname -a | grep x86_64 );then
 # Add chaotic-aur to pacman.conf
 if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
 	echo Skipping to add chaotic-aur to /etc/pacman.conf
@@ -196,9 +197,11 @@ ${RESULT_PACMAN_CONF}
 $(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
 EOF
 fi
+fi
 
 
 # Add chaotic-mirrorlist
+if ( uname -a | grep x86_64 );then
 sudo_executor tee /etc/pacman.d/chaotic-mirrorlist &> /dev/null <<EOF
 ## special cdn mirror (delayed syncing, expect some (safe to ignore) amount of 404s)
 # globally
@@ -276,6 +279,7 @@ Server = https://us-ut-mirror.chaotic.cx/\$repo/\$arch
 # * by: rubenkelevra / pacman.store
 # server = http://chaotic-aur.pkg.pacman.store.ipns.localhost:8080/\$arch
 EOF
+fi
 
 sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
 
