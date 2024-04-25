@@ -119,6 +119,14 @@ which obs-gamecapture && exit 0
 if ( which yay );then
 	yay -S obs-vkcapture-git --noconfirm
 fi
+uname -a | grep x86_64 || exit
+sudo_executor pacman -U --noconfirm << EOF
+https://archlinux.org/packages/core/any/archlinux-keyring/download/
+EOF
+sudo_executor pacman -U --noconfirm << EOF
+https://archlinux.org/packages/core/x86_64/glibc/download/
+https://archlinux.org/packages/core/x86_64/lib32-glibc/download/
+EOF
 
 which obs-gamecapture && exit 0
 
