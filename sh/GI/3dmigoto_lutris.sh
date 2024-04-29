@@ -19,6 +19,9 @@ mv $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp $HOME/.var/app/net.lu
 if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml );then
  rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml
 fi
+
+if ( ls /usr/bin/obs-gamecapture );then
+cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/newgame.yml << EOF
 name: ${__GAME_NAME__}
 game_slug: ${__GAME_NAME__}
@@ -35,7 +38,30 @@ script:
     eac: false
     fsr: false
     vkd3d: false
+  system:
+    prefix_command: $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
+else
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/newgame.yml << EOF
+name: ${__GAME_NAME__}
+game_slug: ${__GAME_NAME__}
+version: Installer
+slug: ${__GAME_NAME__}
+runner: wine
+script:
+  game:
+    exe: $HOME/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: false
+    dxvk_nvapi: false
+    eac: false
+    fsr: false
+    vkd3d: false
+  system:
+    prefix_command: /home/deck/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+EOF
+fi
 export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat"
 
 echo "cd C:\\$(dirname "${__3DMIGOTO_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
