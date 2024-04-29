@@ -11,7 +11,7 @@ const outPath = path.join(
 	'lutris'
 );
 const DEEPLINK_URLS = [
-	{ name: 'MapleStory', url: 'lutris:steam', tags: ['MapleStory', 'Lutris'] },
+//	{ name: 'MapleStory', url: 'lutris:steam', tags: ['MapleStory', 'Lutris'] },
 	{ name: 'Mabinogi', url: 'lutris:steam', tags: ['Mabinogi', 'Lutris'] },
 //	{ name: '[Lutris] Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
 	{ name: '[Lutris] NexonPlug', url: 'lutris:nexonplug-standard-kr-region', tags: ['Nexon', 'Lutris'] },
