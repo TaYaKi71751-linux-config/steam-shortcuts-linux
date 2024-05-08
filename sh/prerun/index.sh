@@ -165,12 +165,23 @@ cd $HOME
 git clone https://github.com/Jguer/yay.git
 cd $HOME/yay
 git pull
-git checkout v11.0.0
-make
+git checkout next
+if ( make );then
+	echo yay built
+else
+	git checkout v11.0.0
+fi
+if ( make );then
+	echo yay built
+else
+	echo yay cannot built
+	exit -1
+fi
 SHELL_RUN_COMMANDS=`find	~ -maxdepth 1 -name '.*shrc'`
 touch ~/.bashrc
 find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${PATH}:$(pwd)$" {} || echo "export PATH=\${PATH}:$(pwd)" >> {}' \;
 export PATH=${PATH}:$(pwd)
+
 
 go get github.com/ericchiang/pup
 go install github.com/ericchiang/pup@latest
