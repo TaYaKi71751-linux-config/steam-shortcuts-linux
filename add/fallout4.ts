@@ -9,6 +9,7 @@ import path,{ dirname } from 'path';
 export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[Fallout4] ' });
 
+	// https://gall.dcinside.com/mgallery/board/view/?id=steamdeck&no=119114
 	// Proton redist
 	{
 		let filenames = execSync('find / -name \'VC_redist.x64.exe\' -type f || true').toString().split('\n');
