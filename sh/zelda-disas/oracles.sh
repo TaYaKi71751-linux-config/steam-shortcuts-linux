@@ -55,10 +55,19 @@ FIRST_PATH=`pwd`
 
 
 cd $HOME
-git clone https://aur.archlinux.org/wla_dx.git
-cd wla_dx
-makepkg -Sfi
-makepkg -i --noconfirm
+git clone https://github.com/vhelin/wla-dx
+cd wla-dx
+mkdir -p build
+cd build
+if ( ls build/binaries );then
+	echo Already built
+else
+	cmake ..
+	cmake --build . --config Release
+fi
+cd binaries
+
+export PATH=$PATH:$PWD
 
 cd $HOME
 git clone https://github.com/Stewmath/oracles-disasm.git
