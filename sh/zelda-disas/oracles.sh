@@ -72,8 +72,8 @@ export PATH=$PATH:$PWD
 cd $HOME
 git clone https://github.com/Stewmath/oracles-disasm.git
 cd oracles-disasm
-make ages
-make seasons
+make -j$(nproc) ages
+make -j$(nproc) seasons
 
 function auto_path() {
 	TARGET_PATHS="$(find / -name "$1" -type f)"

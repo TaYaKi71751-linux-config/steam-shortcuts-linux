@@ -55,7 +55,7 @@ FIRST_PATH=`pwd`
 cd $HOME
 git clone https://github.com/zladx/LADX-Disassembly.git
 cd LADX-Disassembly
-make all
+make -j$(nproc) all
 
 function auto_path() {
 	TARGET_PATHS="$(find / -name "$1" -type f)"
