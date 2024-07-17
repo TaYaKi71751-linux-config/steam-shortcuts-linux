@@ -116,6 +116,6 @@ EOF
 fi
 export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/launch.bat"
 
-echo "cd C:\\$(dirname "${__EXE_PATH__}" | rev | cut -d '/' -f1 | rev)" >> $BATCH_PATH
+echo "cd C:\\$(dirname "${__EXE_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
 echo "start \"\" ${__EXE_NAME__}" >> $BATCH_PATH
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
