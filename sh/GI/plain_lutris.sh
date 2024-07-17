@@ -26,6 +26,7 @@ INSERT INTO games (
 	installed_at,
 	has_custom_banner,
 	has_custom_icon,
+
 	has_custom_coverart_big,
 	playtime
 ) VALUES (
@@ -74,7 +75,7 @@ script:
     eac: false
     fsr: false
     vkd3d: false
-		system:
+  system:
     prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 slug: ${__GAME_NAME__}
 version: Installer

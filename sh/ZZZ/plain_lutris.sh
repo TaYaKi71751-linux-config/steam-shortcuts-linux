@@ -74,7 +74,7 @@ script:
     eac: false
     fsr: false
     vkd3d: false
-		system:
+  system:
     prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 slug: ${__GAME_NAME__}
 version: Installer
