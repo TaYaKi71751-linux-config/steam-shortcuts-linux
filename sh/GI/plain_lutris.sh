@@ -1,10 +1,10 @@
 #!/bin/bash
-
+__EXE_NAME__="GenshinImpact.exe"
 __GAME_NAME__="genshin-impact"
-__GI_PATH__="$(find / -name 'GenshinImpact.exe' -type f | tail -n 1)"
-echo $__GI_PATH__
+__EXE_PATH__="$(find / -name "${__EXE_NAME__}" -type f | tail -n 1)"
+echo $__EXE_PATH__
 mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
-ln -sf "$(dirname "$__GI_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
+ln -sf "$(dirname "$__EXE_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
 __3DMIGOTO_PATH__="$(find $HOME/ -name '3DMigoto Loader.exe' | tail -n 1)"
 echo $__3DMIGOTO_PATH__
 ln -sf "$(dirname "$__3DMIGOTO_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
@@ -30,7 +30,7 @@ slug: ${__GAME_NAME__}
 runner: wine
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat
+    exe: $HOME/Games/${__GAME_NAME__}/drive_c/launch.bat
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
@@ -50,7 +50,7 @@ slug: ${__GAME_NAME__}
 runner: wine
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat
+    exe: $HOME/Games/${__GAME_NAME__}/drive_c/launch.bat
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
@@ -62,9 +62,9 @@ script:
     prefix_command: /home/deck/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
 fi
-export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/GenshinImpact.bat"
+export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/launch.bat"
 
-echo "cd C:\\$(dirname "${__GI_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
-echo "start \"\" GenshinImpact.exe" >> $BATCH_PATH
+echo "cd C:\\$(dirname "${__EXE_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
+echo "start \"\" ${__EXE_NAME__}" >> $BATCH_PATH
 flatpak run net.lutris.Lutris -i $HOME/.var/app/net.lutris.Lutris/data/lutris/games/newgame.yml
 
