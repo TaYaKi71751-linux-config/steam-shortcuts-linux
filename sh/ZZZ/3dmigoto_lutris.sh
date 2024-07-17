@@ -83,8 +83,8 @@ script:
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
-    dxvk_nvapi: true
-    eac: true
+    dxvk_nvapi: false
+    eac: false
     fsr: false
     vkd3d: false
 		system:
@@ -93,8 +93,8 @@ slug: ${__GAME_NAME__}
 version: Installer
 wine:
   battleye: false
-  dxvk_nvapi: true
-  eac: true
+  dxvk_nvapi: false
+  eac: false
   fsr: false
   vkd3d: false
 system:
@@ -113,16 +113,16 @@ script:
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
-    dxvk_nvapi: true
-    eac: true
+    dxvk_nvapi: false
+    eac: false
     fsr: false
     vkd3d: false
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
   battleye: false
-  dxvk_nvapi: true
-  eac: true
+  dxvk_nvapi: false
+  eac: false
   fsr: false
   vkd3d: false
 EOF
