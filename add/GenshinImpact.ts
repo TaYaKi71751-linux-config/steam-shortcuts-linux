@@ -125,7 +125,7 @@ export async function __main__ () {
 
 	// Plain Launcher
 	{
-		let tags = [__GAME_NAME__, 'Plain'	];
+		let tags = [__GAME_NAME__	];
 
 		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
 			const outFiles = [`install_plain_launcher.out`,`launch_plain_launcher.out`];
@@ -133,12 +133,12 @@ export async function __main__ () {
 			const filename = outFiles[i];
 			const StartDir = outPath;
 			const exe = path.join(outPath, filename);
-			const AppName = `[Plain]` + (function () {
+			const AppName = `[GenshinImpactPlain]` + (function () {
 				switch (filename) {
-					case `install_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+					case `install_plain_launcher.out`:
 						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
 					return 'Install';
-					case `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+					case `launch_plain_launcher.out`:
 						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
 					return `${__GAME_NAME__} Launcher`;
 				}
