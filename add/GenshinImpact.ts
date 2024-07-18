@@ -123,6 +123,36 @@ export async function __main__ () {
 		}
 	}
 
+	// Plain Launcher
+	{
+		let tags = [__GAME_NAME__, 'Plain'	];
+
+		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
+			const outFiles = [`install_plain_launcher.out`,`launch_plain_launcher.out`];
+		for (let i = 0; i < outFiles?.length; i++) {
+			const filename = outFiles[i];
+			const StartDir = outPath;
+			const exe = path.join(outPath, filename);
+			const AppName = `[Plain]` + (function () {
+				switch (filename) {
+					case `install_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
+					return 'Install';
+					case `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
+					return `${__GAME_NAME__} Launcher`;
+				}
+			})();
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let j = 0; j < tags?.length; j++) {
+				const tag = tags[j];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		}
+	}
+
 	// Reload
 	{
 		let tags = [__GAME_NAME__];
