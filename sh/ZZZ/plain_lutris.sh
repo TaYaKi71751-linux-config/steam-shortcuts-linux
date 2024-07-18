@@ -5,6 +5,9 @@ __EXE_NAME__="ZenlessZoneZero.exe"
 __GAME_NAME__="zenless-zone-zero"
 __EXE_PATH__="$(find / -name "${__EXE_NAME__}" -type f | tail -n 1)"
 echo $__EXE_PATH__
+mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+ln -sf "$(dirname "$__EXE_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
+echo $__EXE_PATH__
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
