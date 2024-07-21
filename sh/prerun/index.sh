@@ -188,27 +188,35 @@ go install github.com/ericchiang/pup@latest
 
 
 # Add chaotic-aur
-CHAOTICAUR_INSTALL_COMMANDS="$(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) .command' | tr -d '\n'| $HOME/go/bin/pup '.command text{}' | sed "s/\&\#39\;//g" | sed "s/pacman\ \-/pacman\ \-\-noconfirm\ \-/g")"
+# CHAOTICAUR_INSTALL_COMMANDS="$(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) .command' | tr -d '\n'| $HOME/go/bin/pup '.command text{}' | sed "s/\&\#39\;//g" | sed "s/pacman\ \-/pacman\ \-\-noconfirm\ \-/g")"
 # https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
-while IFS= read -r line
-do
-	echo $line
-	sudo_executor $line
-done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
+#while IFS= read -r line
+#do
+#	echo $line
+#	sudo_executor $line
+#done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
 
 if ( uname -a | grep x86_64 );then
+sudo_executor pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+sudo_executor pacman-key --lsign-key 3056513887B78AEB
+sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+fi
+
+
+#if ( uname -a | grep x86_64 );then
 # Add chaotic-aur to pacman.conf
-if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
-	echo Skipping to add chaotic-aur to /etc/pacman.conf
-else
-	echo Adding chaotic-aur to /etc/pacman.conf
-	RESULT_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-$(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
-EOF
-fi
-fi
+#if ( sudo_executor cat /etc/pacman.conf | grep "chaotic-aur" );then
+#	echo Skipping to add chaotic-aur to /etc/pacman.conf
+#else
+#	echo Adding chaotic-aur to /etc/pacman.conf
+#	RESULT_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#$(curl -LsSf https://aur.chaotic.cx/ | $HOME/go/bin/pup ':parent-of(#howto) :contains("Include")' | tr -d '\n' | $HOME/go/bin/pup ':contains("Include") text{}')
+#EOF
+#fi
+#fi
 
 
 # Add chaotic-mirrorlist
