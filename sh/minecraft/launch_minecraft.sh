@@ -1,3 +1,3 @@
 #!/bin/bash
 
-minecraft-launcher
+flatpak run com.modrinth.ModrinthApp
