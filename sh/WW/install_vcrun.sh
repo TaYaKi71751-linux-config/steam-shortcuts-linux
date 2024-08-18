@@ -23,5 +23,5 @@ wget "https://download.microsoft.com/download/0/6/4/064F84EA-D1DB-4EAA-9A5C-CC2F
 wget "https://download.microsoft.com/download/0/6/4/064F84EA-D1DB-4EAA-9A5C-CC2F0FF6A638/vc_redist.x86.exe"
 
 
-WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vc_redist.x86.exe"
-WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vc_redist.x64.exe"
+WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vcrun/vc_redist.x86.exe"
+WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vcrun/vc_redist.x64.exe"
