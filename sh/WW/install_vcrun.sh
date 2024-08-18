@@ -13,15 +13,7 @@ function auto_path() {
 	done < <(printf '%s\n' "$TARGET_PATHS")
 }
 
+auto_path winetricks
 auto_path wine
 
-mkdir -p "${HOME}/${__GAME_NAME__}/vcrun"
-cd "${HOME}/${__GAME_NAME__}/vcrun"
-rm *.exe
-
-wget "https://aka.ms/vs/16/release/vc_redist.x86.exe"
-wget "https://aka.ms/vs/16/release/vc_redist.x64.exe"
-
-
-WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vcrun/VC_redist.x86.exe"
-WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" wine "${HOME}/${__GAME_NAME__}/vcrun/VC_redist.x64.exe"
+WINEPREFIX="${HOME}/${__GAME_NAME__}/prefix" winetricks -q vcrun2019
