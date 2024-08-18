@@ -8,7 +8,7 @@ import path,{ dirname } from 'path';
 
 export async function __main__ () {
 	const __GAME_NAME__ = 'Wuthering Waves';
-	const __LAUNCHER_NAME__ = 'AAGL';
+	const __LAUNCHER_NAME__ = 'Wavey';
 	const __EXE_NAME__ = 'WutheringWaves.exe';
 	const __OUT_NAME__ = 'WW';
 	// Proton
