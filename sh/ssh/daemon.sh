@@ -65,6 +65,8 @@ function sudo_executor(){
 	fi
 }
 
+ssh-keygen -A
+
 SSH_RETURN=`sudo_executor $(which sshd) -f ./conf/sshd_config_pubkey -D -e | tr -d '\n' | tr -d '\r' | tr -d '\t'`
 
 if [ -n "${KDIALOG_USABLE}" ];then
