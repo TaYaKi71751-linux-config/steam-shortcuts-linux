@@ -29,7 +29,7 @@ export async function __main__ () {
 					case 'launch_modrinth.out':
 						tags = ['Minecraft'];
 					return 'Modrinth Launcher';
-					case 'launch_prism':
+					case 'launch_prism.out':
 						tags = ['Minecraft'];
 					return 'Prism Launcher';
 				}
