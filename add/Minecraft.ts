@@ -12,19 +12,25 @@ export async function __main__ () {
 		let tags = ['Minecraft'];
 
 		const outPath = path.join(`${process.env.PWD}`,'out','minecraft');
-		const outFiles = ['install_minecraft.out','launch_minecraft.out'];
+		const outFiles = fs.readdirSync(outPath);
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
 			const exe = path.join(outPath, filename);
 			const AppName = '[Minecraft]' + (function () {
 				switch (filename) {
-					case 'install_minecraft.out':
+					case 'install_modrinth.out':
 						tags = ['Install', 'Minecraft'];
-					return 'Install';
-					case 'launch_minecraft.out':
+					return 'Install Modrinth';
+					case 'install_prism.out':
+						tags = ['Install', 'Minecraft'];
+					return 'Install Prism Launcher';
+					case 'launch_modrinth.out':
 						tags = ['Minecraft'];
-					return 'Minecraft Launcher';
+					return 'Modrinth Launcher';
+					case 'launch_prism':
+						tags = ['Minecraft'];
+					return 'Prism Launcher';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
