@@ -55,8 +55,8 @@ SELECT id FROM games WHERE slug = '${__GAME_NAME__}';
 EOF
 )"
 
-if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml );then
- rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml
+if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-*.yml );then
+ rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME}-*.yml
 fi
 
 if ( ls /usr/bin/obs-gamecapture );then
