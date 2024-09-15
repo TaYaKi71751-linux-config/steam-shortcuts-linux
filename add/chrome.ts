@@ -41,7 +41,9 @@ const PAGE_URLS = [
 	{ name: 'MahjongSoul[JP]', url: 'https://game.mahjongsoul.com/index.html', tags: ['MahjongSoul'], icon: `${process.env.PWD}/image/icon/mahjongsoul.png` },
 	{ name: 'Gmail', url: 'https://gmail.com', tags: ['Email'], icon: `${process.env.PWD}/image/icon/gmail.ico` },
 	{ name: '网易免费邮箱(Netease Free Email)', url: 'https://email.163.com', tags: ['Email'], icon: `${process.env.PWD}/image/icon/neteasemail.ico` },
-	{ name: 'Geolocation(Netflix)', url: 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location', tags: ['geolocation'], icon: `${process.env.PWD}/image/icon/netflix.ico` }
+	{ name: 'Geolocation(Netflix)', url: 'https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location', tags: ['geolocation', 'test'], icon: `${process.env.PWD}/image/icon/netflix.ico` },
+	{ name: 'IPv6 Test', url: 'https://test-ipv6.com', tags: ['test'] },
+	{ name: 'Speed Test(Netflix)', url: 'https://fast.com', tags: ['test'] },
 ];
 
 export async function __main__ () {
