@@ -109,6 +109,6 @@ function run_openvpn(){
 }
 echo $TARGET_CIPHER
 
-sudo_executor sysctl -w net.ipv6.conf.all.disable_ipv6=0
+sudo_executor sysctl -w net.ipv6.conf.all.disable_ipv6=1
 # https://www.reddit.com/r/PrivateInternetAccess/comments/j1iyl7/openvpn_client_no_longer_connects_cipher_not/?rdt=54856
 run_openvpn
