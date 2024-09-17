@@ -36,8 +36,8 @@ export async function __main__ () {
 			await AddToCats(appid, tag);
 		}
 	}
-	AddSteamGameShortcut({ appid: 1174180, LaunchOptions: `STEAM_COMPAT_DATA_PATH=${process.env.HOME}/.rockstar-compat obs-gamecapture %command%` });
-	AddSteamGameShortcut({ appid: 1404210, LaunchOptions: `STEAM_COMPAT_DATA_PATH=${process.env.HOME}/.rockstar-compat obs-gamecapture %command%` });
+	AddSteamGameShortcut({ appid: 1174180, LaunchOptions: `export STEAM_COMPAT_DATA_PATH="${process.env.HOME}/.rockstar-compat" && mkdir -p \${STEAM_COMPAT_DATA_PATH} && obs-gamecapture %command%` });
+	AddSteamGameShortcut({ appid: 1404210, LaunchOptions: `export STEAM_COMPAT_DATA_PATH="${process.env.HOME}/.rockstar-compat" && mkdir -p \${STEAM_COMPAT_DATA_PATH} && obs-gamecapture %command%` });
 }
 
 // https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
