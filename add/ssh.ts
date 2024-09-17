@@ -23,7 +23,7 @@ export async function __main__ () {
 			}
 		})();
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir });
+		AddShortcut({ appid, AppName, exe, StartDir: `${process.env.PWD}/sh/ssh` });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
