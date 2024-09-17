@@ -164,12 +164,13 @@ sudo_executor pacman -S gamescope --noconfirm --overwrite \\\'*\\\'
 cd $HOME
 git clone https://github.com/Jguer/yay.git
 cd $HOME/yay
-git pull
 git checkout next
+git pull
 if ( make );then
 	echo yay built
 else
 	git checkout v11.0.0
+	git pull
 fi
 if ( make );then
 	echo yay built
