@@ -1,6 +1,9 @@
 import { getShortcutUrl, readVdf, writeVdf } from 'steam-binary-vdf';
+import * as VDF from 'vdf-parser';
 import fs from 'fs';
 import path from 'path';
+import { exit } from 'process';
+
 
 const userdataPath = path.join(
 	`${process.env.HOME}`,
@@ -8,6 +11,36 @@ const userdataPath = path.join(
 	'steam',
 	'userdata'
 );
+
+export function AddSteamGameShortcut (_opts:{
+		appid: number,
+  LaunchOptions: string,
+}) {
+	const user_ids = fs.readdirSync(userdataPath);
+	user_ids
+		.forEach((user_id) => {
+			const config_vdf_path = path.join(
+				userdataPath,
+				user_id,
+				'config',
+				'localconfig.vdf'
+			);
+			if (!fs.existsSync(config_vdf_path)) { exit(); }
+			const config_vdf = fs.readFileSync(config_vdf_path);
+			if (!config_vdf.length) { exit(); }
+			console.log({config_vdf:`${config_vdf}`});
+			let config:any = VDF.parse(`${config_vdf}`, { types: false, arrayify: false });
+			config.UserLocalConfigStore = Object.assign({}, config.UserLocalConfigStore);
+			config.UserLocalConfigStore.Software = Object.assign({}, config.UserLocalConfigStore.Software);
+			config.UserLocalConfigStore.Software.Valve = Object.assign({}, config.UserLocalConfigStore.Software.Valve);
+			config.UserLocalConfigStore.Software.Valve.Steam = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam);
+			config.UserLocalConfigStore.Software.Valve.Steam.apps = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam.apps);
+			console.log(config.UserLocalConfigStore.Software.Valve.Steam.apps);
+			config.UserLocalConfigStore.Software.Valve.Steam.apps[`${_opts.appid}`] = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam.apps[`${_opts.appid}`], Object.fromEntries(Object.entries(_opts).filter(([k,v]) => (k != 'appid'))));
+			config = VDF.stringify(config, { pretty: true, indent: '\t' });
+			fs.writeFileSync(config_vdf_path, config);
+		});
+}
 
 export function AddShortcut (_opts:{
 		appid: number,
@@ -24,7 +57,35 @@ export function AddShortcut (_opts:{
   Devkit?: number,
   DevkitGameID?: string,
   LastPlayTime?: number,
-  tags?: string[]
+  tags?: string[],
+		steam?:boolean,
+}) {
+	if(typeof _opts.steam == 'undefined'){
+		AddNonSteamGameShortcut(_opts);
+	} else if (_opts.steam) {
+		AddSteamGameShortcut({appid:_opts.appid,LaunchOptions:_opts.LaunchOptions ?? '%command%'});
+	} else {
+		AddNonSteamGameShortcut(_opts);
+	}
+}
+
+export function AddNonSteamGameShortcut (_opts:{
+		appid: number,
+  AppName: string,
+  exe: string,
+  StartDir?: string,
+  icon?: string,
+  ShortcutPath?: string,
+  LaunchOptions?: string,
+  IsHidden?: number,
+  AllowDesktopConfig?: number,
+  AllowOverlay?: number,
+  openvr?: number,
+  Devkit?: number,
+  DevkitGameID?: string,
+  LastPlayTime?: number,
+  tags?: string[],
+		steam?:boolean,
 }) {
 	const user_ids = fs.readdirSync(userdataPath);
 	user_ids

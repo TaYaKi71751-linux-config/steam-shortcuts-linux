@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { AddShortcut } from '../util/Shortcut';
+import { AddSteamGameShortcut, AddShortcut } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 
@@ -36,6 +36,7 @@ export async function __main__ () {
 			await AddToCats(appid, tag);
 		}
 	}
+	AddSteamGameShortcut({ appid: 271590, LaunchOptions: "obs-gamecapture %command%" });
 }
 
 // https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
