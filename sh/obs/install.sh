@@ -102,6 +102,7 @@ system_install_flatpak_package com.obsproject.Studio
 sudo_executor pacman -Sy obs-studio --noconfirm
 sudo_executor pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite \\\'*\\\'
 sudo_executor pacman -Sy $(pacman -Qq | grep mesa) --noconfirm --overwrite \\\'*\\\'
+sudo_executor pacman -Sy $(pacman -Qq | grep gl) --noconfirm --overwrite \\\'*\\\'
 
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
