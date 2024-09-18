@@ -100,6 +100,7 @@ system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
 
 sudo_executor pacman -Sy obs-studio --noconfirm
+sudo_executor pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite \\\'*\\\'
 
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
