@@ -8,6 +8,7 @@ import path,{ dirname } from 'path';
 import fs from 'fs';
 
 export async function __main__ () {
+	const __GAME_NAME__ = 'Battle.net';
 	const __OUT_NAME__ = 'battlenet';
 
 	// Lutris
