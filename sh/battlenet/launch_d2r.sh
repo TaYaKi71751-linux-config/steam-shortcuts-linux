@@ -74,7 +74,7 @@ script:
     dxvk_nvapi: false
     eac: true
     fsr: false
-    vkd3d: true
+    vkd3d: false
   system:
     prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 slug: ${__GAME_NAME__}
@@ -82,9 +82,10 @@ version: Installer
 wine:
   battleye: true
   dxvk_nvapi: false
+  dxvk: false
   eac: true
   fsr: false
-  vkd3d: true
+  vkd3d: false
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
@@ -104,15 +105,16 @@ script:
     dxvk_nvapi: false
     eac: true
     fsr: false
-    vkd3d: true
+    vkd3d: false
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
   battleye: true
   dxvk_nvapi: false
+  dxvk: false
   eac: true
   fsr: false
-  vkd3d: true
+  vkd3d: false
 EOF
 fi
 
