@@ -13,7 +13,7 @@ ln -sf "${HOME}/AAGL/Genshin Impact game" "${HOME}/Games/${__GAME_NAME__}/drive_
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
-DELETE FROM games WHERE name = '${__GAME_NAME__}';
+DELETE FROM games WHERE slug = '${__GAME_NAME__}';
 .save $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp
 EOF
 mv $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
