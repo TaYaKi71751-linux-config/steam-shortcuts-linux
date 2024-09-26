@@ -61,13 +61,13 @@ if ( ls /usr/bin/obs-gamecapture );then
 cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/D2R.exe
+  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/Diablo II Resurrected Launcher.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/D2R.exe
+    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/Diablo II Resurrected Launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: true
@@ -92,13 +92,13 @@ EOF
 else
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/D2R.exe
+  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/Diablo II Resurrected Launcher.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/D2R.exe
+    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/Diablo II Resurrected/Diablo II Resurrected Launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: true
