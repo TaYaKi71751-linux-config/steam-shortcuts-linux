@@ -15,7 +15,6 @@ const DEEPLINK_URLS = [
 	{ name: 'Mabinogi', url: 'lutris:steam', tags: ['Mabinogi', 'Lutris'] },
 //	{ name: '[Lutris] Genshin Impact', url: 'lutris:genshin-impact-standard', tags: ['Genshin Impact', 'Lutris'] },
 	{ name: '[Lutris] NexonPlug', url: 'lutris:nexonplug-standard-kr-region', tags: ['Nexon', 'Lutris'] },
-	{ name: '[Lutris] Diablo II: Resurrected', url: 'lutris:diablo-2-ressurected', tags: ['Battle.net', 'Diablo', 'Lutris'] },
 	{ name: '[Lutris] Grand Theft Auto V (EGS)', url: 'lutris:grand-theft-auto-v-epic-games-launcher', tags: ['Grand Theft Auto V', 'Lutris'] },
 	{ name: '[Lutris] Grand Theft Auto V (Rockstar)', url: 'lutris:grand-theft-auto-v-rockstar-games-launc', tags: ['Grand Theft Auto V', 'Lutris'] },
 	{ name: '[Lutris] Grand Theft Auto V (PS3)', url: 'lutris:grand-theft-auto-v-ps3', tags: ['Grand Theft Auto V', 'Lutris'] },
