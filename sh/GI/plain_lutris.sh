@@ -3,7 +3,7 @@
 __EXE_NAME__="GenshinImpact.exe"
 
 __GAME_NAME__="genshin-impact"
-__EXE_PATH__="$(find / -name "${__EXE_NAME__}" -type f | tail -n 1)"
+__EXE_PATH__="$(find ${HOME} -name "${__EXE_NAME__}" -type f | tail -n 1)"
 echo $__EXE_PATH__
 mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
 ln -sf "$(dirname "$__EXE_PATH__")" "$HOME/Games/${__GAME_NAME__}/drive_c/"
