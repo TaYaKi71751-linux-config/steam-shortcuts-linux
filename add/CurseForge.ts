@@ -23,7 +23,6 @@ export async function __main__ () {
 			const AppName = `[CurseForge] ` + (() => {
 				switch(filename){
 					case 'install.out': return 'Install';
-					case 'launch.out': return 'Launch';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
