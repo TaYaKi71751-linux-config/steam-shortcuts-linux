@@ -25,6 +25,7 @@ export async function __main__ () {
 					case 'install_battlenet.out': return 'Install Battle.net';
 					case 'launch_battlenet.out': return 'Battle.net';
 					case 'launch_d2r.out': return 'Diablo II Resurrected';
+					case 'launch_wow.out': return 'World of Warcraft';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
