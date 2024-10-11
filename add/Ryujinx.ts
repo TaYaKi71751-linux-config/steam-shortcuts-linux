@@ -18,7 +18,7 @@ export async function __main__ () {
 	for (const outfile of outFiles) {
 		if (outfile.endsWith('run.out')) {
 			{
-				let filenames = execSync('find / -name \'*.nsp\' -type f || true').toString().split('\n');
+				let filenames = execSync(`find ${process.env.HOME} -name \'*.nsp\' -type f || true`).toString().split('\n');
 				const tags = ['Ryujinx', 'NSP'];
 				filenames = filenames
 					.map((filename) => (filename.trim()))
@@ -45,7 +45,7 @@ export async function __main__ () {
 				}
 			}
 			{
-				let filenames = execSync('find / -name \'*.xci\' -type f || true').toString().split('\n');
+				let filenames = execSync(`find ${process.env.HOME} -name \'*.xci\' -type f || true`).toString().split('\n');
 				const tags = ['Ryujinx', 'XCI'];
 				filenames = filenames
 					.map((filename) => (filename.trim()))
