@@ -94,7 +94,7 @@ export async function __main__ () {
 			return `${remote_country},${remote_isp},${remote_address}`;
 		})()})`;
 		const appid = getShortcutAppID({ AppName, exe });
-		if ( AppName.includes('.protonvpn.')){
+		if (OpenVPNConfigPath.includes('.protonvpn.')){
 		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `export OPENVPN_CONFIG_PATH='${OpenVPNConfigPath}' && %command%`, tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
