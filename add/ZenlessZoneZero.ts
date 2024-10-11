@@ -11,45 +11,6 @@ export async function __main__ () {
 	const __LAUNCHER_NAME__ = 'Sleepy';
 	const __EXE_NAME__ = 'ZenlessZoneZero.exe';
 	const __OUT_NAME__ = 'ZZZ';
-	// Proton
-	{
-		RemoveShortcutStartsWith({ AppName: `[Proton] ${__GAME_NAME__}` });
-		let filenames = execSync(`find ${process.env.HOME} -name \'${__EXE_NAME__}\' -type f || true`).toString().split('\n');
-//		try {
-//		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'GenshinImpact.exe\' -type f || true`).toString().split('\n')];
-//		} catch(e){}
-		try {
-		 const driveCPaths = execSync(`find ${process.env.HOME} -type d -name \'drive_c\' || true`).toString().split('\n');
-			driveCPaths
-			.forEach((drive_c) => {
-				try {
-				execSync(`find -L "${drive_c}" -type f -name \'${__EXE_NAME__}\' || true`).toString().split('\n')
-					.forEach((target) => {
-						filenames.push(target);
-					});
-				} catch(e1){ console.error(e1); } 
-			});
-		} catch(e){ console.error(e); }
-		console.log(filenames);
-		const tags = [__GAME_NAME__, 'Proton'];
-		filenames = filenames
-			.map((filename) => (filename.trim()))
-			.filter((filename) => (filename.length))
-//			.filter((filename) => { try { if (existsSync(filename)) { return true; } } catch (e) { return false; } return false; });
-		for (const filename of filenames) {
-			const StartDir = dirname(filename);
-			const exe = JSON.stringify(filename);
-			const AppName = `[Proton] ${__GAME_NAME__} (${filename})`;
-			const appid = getShortcutAppID({ AppName, exe });
-			AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'obs-gamecapture %command%' });
-			for (let j = 0; j < tags?.length; j++) {
-				const tag = tags[j];
-				if (!tag) continue;
-				await AddToCats(appid, tag);
-			}
-			AddCompat({ appid: `${appid}`, compat: 'proton_7' });
-		}
-	}
 
 	// 3DMigoto Lutris
 	{
