@@ -71,7 +71,7 @@ export async function __main__ () {
 			}
 		}
 
-		(() => {
+		await (async () => {
 		const exe = `${process.env.PWD}/out/openvpn/openvpn.out`;
 			const AppName = `[OpenVPN] (${(() => {
 			if (!remote_address) return basename(OpenVPNConfigPath);
@@ -86,7 +86,7 @@ export async function __main__ () {
 			await AddToCats(appid, tag);
 		}
 		})();
-		(() => {
+		await (async () => {
 		const exe = `${process.env.PWD}/out/openvpn/openvpn_proton.out`;
 			const AppName = `[OpenVPN][ProtonVPN] (${(() => {
 			if (!remote_address) return basename(OpenVPNConfigPath);
