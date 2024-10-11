@@ -7,31 +7,16 @@ for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	source ${shrc}
 done
 
-# https://github.com/ValveSoftware/SteamOS/issues/1039
-function check_kdialog(){
-	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
-	export KDIALOG_USABLE="$(echo $KDIALOG_USABLE | grep Usage)"
-}
-
-function check_zenity(){
-	export ZENITY_USABLE=`find / -name 'zenity' -type f -exec {} --help \;`
-	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep Usage)"
-	env | grep STEAM_DECK\= && unset $ZENITY_USABLE
-}
-
-check_kdialog
-check_zenity
-
 function get_password(){
-	if [ -n "${KDIALOG_USABLE}" ];then
-		find / -name 'kdialog' -type f -exec bash -c "{} --password 'Enter Password' && pkill find " \;
-	elif [ -n "${ZENITY_USABLE}" ];then
-		find / -name 'zenity' -type f -exec bash -c "{} --password && pkill find"
+	if ( which kdialog );then
+		kdialog --password 'Enter Password'
+	elif ( which zenity );then
+		zenity --password
 	fi
 }
 
 function auto_path() {
-	TARGET_PATHS="$(find / -name "$1" -type f)"
+	TARGET_PATHS="$(find $HOME -name "$1" -type f)"
 	echo $TARGET_PATHS
 	while IFS= read -r line
 	do

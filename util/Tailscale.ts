@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 export function getExitNodes () {
 	const up = execSync('bash sh/tailscale/up.sh').toString();
 	console.log(`${up}`);
-	const binPath = `${execSync('find / -type f -name \'tailscale\' 2> /dev/null || true')}`.split('\n')[0];
+	const binPath = `${execSync(`find ${process.env.HOME} -type f -name \'tailscale\' 2> /dev/null || true`)}`.split('\n')[0];
 	console.log(binPath);
 	if (!binPath) throw new Error('Cannot find tailscale');
 	const statusBuffer = execSync(`${binPath} status --json`);
