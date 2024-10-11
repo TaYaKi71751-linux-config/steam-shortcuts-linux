@@ -65,13 +65,13 @@ done
 		while IFS= read -r line
 		do
 			sudo_executor "$line" down
-		done <<< "$(find / -name 'tailscale' -type f)"
+		done <<< "$(find $HOME -name 'tailscale' -type f)"
 	else
 		echo "tailscaled not running, run tailscaled"
 		while IFS= read -r line
 		do
 			sudo_executor systemd-run "$line"
-		done <<< "$(find / -name 'tailscaled' -type f)"
+		done <<< "$(find $HOME -name 'tailscaled' -type f)"
 		down
 	fi
 }
