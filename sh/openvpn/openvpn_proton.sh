@@ -1,4 +1,6 @@
 #!/bin/bash
+# exec 2>&1
+# exec > >(tee file.log)
 
 __APP_VERSION__="web-account@5.0.153.3"
 __UID__=""
