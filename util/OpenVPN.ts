@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from 'fs';
 export function getOpenVPNConfigs () {
 	let r:string = '';
 	try {
-		r = execSync('find / -type f -name \'*.ovpn\' 2> /dev/null || true')?.toString();
+		r = execSync(`find ${process.env.HOME} -type f -name \'*.ovpn\' 2> /dev/null || true`)?.toString();
 	} catch (e:any) {
 		r = `${e?.stdout?.toString()}`;
 	}
