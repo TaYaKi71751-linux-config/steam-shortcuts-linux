@@ -53,6 +53,7 @@ __AUTH_INFO__="$(node << EOF
 EOF
 )"
 kdialog --msgbox "${__AUTH_INFO__}"
+kdialog --msgbox "${__COOKIE_STRING_RESULT__}"
 cp "${OPENVPN_CONFIG_PATH}" /tmp/tmp.ovpn
 echo "<auth-user-pass>" >> /tmp/tmp.ovpn
 while IFS= read -r __LINE__
