@@ -51,8 +51,6 @@ __RESET_RESPONSE__="$(curl -X PUT 'https://account.proton.me/api/vpn/settings/re
 kdialog --msgbox "${__RESET_RESPONSE__}"
 __USERNAME__="$(echo ${__RESET_RESPONSE__} | jq -r ".VPNSettings.Name")"
 __PASSWORD__="$(echo ${__RESET_RESPONSE__} | jq -r ".VPNSettings.Password")"
-kdialog --msgbox "${__USERNAME__}"
-kdialog --msgbox "${__PASSWORD__}"
 cp "${OPENVPN_CONFIG_PATH}" /tmp/tmp.ovpn
 echo "<auth-user-pass>" >> /tmp/tmp.ovpn
 echo "$__USERNAME__" >> /tmp/tmp.ovpn
