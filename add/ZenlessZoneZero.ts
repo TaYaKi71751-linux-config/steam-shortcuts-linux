@@ -14,7 +14,7 @@ export async function __main__ () {
 	// Proton
 	{
 		RemoveShortcutStartsWith({ AppName: `[Proton] ${__GAME_NAME__}` });
-		let filenames = execSync(`find / -name \'${__EXE_NAME__}\' -type f || true`).toString().split('\n');
+		let filenames = execSync(`find ${process.env.HOME} -name \'${__EXE_NAME__}\' -type f || true`).toString().split('\n');
 //		try {
 //		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'GenshinImpact.exe\' -type f || true`).toString().split('\n')];
 //		} catch(e){}
