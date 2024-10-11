@@ -52,7 +52,6 @@ export async function __main__ () {
 	for (let i = 0; i < outFiles?.length; i++) {
 		const OpenVPNConfigPath = outFiles[i];
 		// const StartDir = dirname(OpenVPNConfigPath);
-		const exe = `${process.env.PWD}/out/openvpn/openvpn.out`;
 		let remote_address = '';
 		let remote_isp = '';
 		let remote_country = '';
@@ -72,7 +71,9 @@ export async function __main__ () {
 			}
 		}
 
-		const AppName = `[OpenVPN] (${(() => {
+		(() => {
+		const exe = `${process.env.PWD}/out/openvpn/openvpn.out`;
+			const AppName = `[OpenVPN] (${(() => {
 			if (!remote_address) return basename(OpenVPNConfigPath);
 			if (!remote_isp || !remote_country) return remote_address;
 			return `${remote_country},${remote_isp},${remote_address}`;
@@ -84,6 +85,24 @@ export async function __main__ () {
 			if (!tag) continue;
 			await AddToCats(appid, tag);
 		}
+		})();
+		(() => {
+		const exe = `${process.env.PWD}/out/openvpn/openvpn_proton.out`;
+			const AppName = `[OpenVPN][ProtonVPN] (${(() => {
+			if (!remote_address) return basename(OpenVPNConfigPath);
+			if (!remote_isp || !remote_country) return remote_address;
+			return `${remote_country},${remote_isp},${remote_address}`;
+		})()})`;
+		const appid = getShortcutAppID({ AppName, exe });
+		if ( AppName.includes('.protonvpn.')){
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `export OPENVPN_CONFIG_PATH='${OpenVPNConfigPath}' && %command%`, tags });
+		for (let j = 0; j < tags?.length; j++) {
+			const tag = tags[j];
+			if (!tag) continue;
+			await AddToCats(appid, tag);
+		}
+		}
+		})();
 	}
 }
 
