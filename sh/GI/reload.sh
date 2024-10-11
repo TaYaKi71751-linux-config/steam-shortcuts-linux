@@ -6,7 +6,7 @@ for shrc in ${SHELL_RUN_COMMANDS[@]};do
 done
 
 function auto_path() {
-	TARGET_PATHS="$(find / -name "$1" -type f)"
+	TARGET_PATHS="$(find $HOME -name "$1" -type f)"
 	echo $TARGET_PATHS
 	while IFS= read -r line
 	do
