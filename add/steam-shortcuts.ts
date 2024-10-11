@@ -12,7 +12,7 @@ export async function __main__ () {
 	const envPath = `${execSync('which env').toString().split('\n')[0]}`;
 	const teePath = `${execSync('which tee').toString().split('\n')[0]}`;
 	const pnpmPath = (() => {
-		const arr = `${execSync('find / -type f -name \'pnpm\' 2> /dev/null || true')}`.split('\n');
+		const arr = `${execSync(`find ${process.env.HOME} -type f -name \'pnpm\' 2> /dev/null || true`)}`.split('\n');
 		const r = arr.filter((p) => (p)).filter((p) => {
 			const r = spawnSync(p, ['--help']);
 			if (r.stdout) return true;
@@ -27,7 +27,7 @@ export async function __main__ () {
 		AppName: '[steam-shortcuts][Git] Pull',
 		exe: `${bashPath}`,
 		StartDir,
-		LaunchOptions: `cd ${JSON.stringify(StartDir)} && find / -name 'git' -type f -exec {} pull \\;`
+		LaunchOptions: `cd ${JSON.stringify(StartDir)} && find ${process.env.HOME} -name 'git' -type f -exec {} pull \\;`
 	},
 	{
 		AppName: '[steam-shortcuts][Bash] build bins',
