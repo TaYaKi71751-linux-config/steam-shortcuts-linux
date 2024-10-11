@@ -24,7 +24,7 @@ export async function __main__ () {
 			for (let j = 0; j < PAGE_URLS?.length; j++) {
 				const { name, url, tags } = PAGE_URLS[j];
 				const appid = getShortcutAppID({ AppName: name, exe });
-				AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: `PAGE_URL="${url}" %command%`, tags, icon: icon ?? '' });
+				AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: `PAGE_URL="${url}" %command%`, tags, icon: '' });
 				for (let k = 0; k < tags?.length; k++) {
 					const tag = tags[k];
 					if (!tag) continue;
