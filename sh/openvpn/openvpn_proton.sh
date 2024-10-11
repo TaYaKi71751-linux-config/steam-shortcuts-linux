@@ -49,19 +49,14 @@ do
 done < <(printf '%s\n' "${__SET_COOKIES__}")
 __RESET_RESPONSE__="$(curl -X PUT 'https://account.proton.me/api/vpn/settings/reset' --compressed --user-agent "${__USER_AGENT__}" -H "x-pm-appversion: ${__APP_VERSION__}" -H "x-pm-locale: ${__LOCALE__}" -H "x-pm-uid: ${__UID__}" --cookie "${__COOKIE_STRING_RESULT__}")"
 kdialog --msgbox "${__RESET_RESPONSE__}"
-__AUTH_INFO__="$(node << EOF
- const result = JSON.parse(`${__RESET_RESPONSE__}`);
-	console.log(\`\${result.VPNSettings.Name}\\n\${result.VPNSettings.Password}\`)
-EOF
-)"
-kdialog --msgbox "${__AUTH_INFO__}"
-kdialog --msgbox "${__COOKIE_STRING_RESULT__}"
+__USERNAME__="$(echo ${__RESET_RESPONSE__} | jq -r ".VPNSettings.Name")"
+__PASSWORD__="$(echo ${__RESET_RESPONSE__} | jq -r ".VPNSettings.Password")"
+kdialog --msgbox "${__USERNAME__}"
+kdialog --msgbox "${__PASSWORD__}"
 cp "${OPENVPN_CONFIG_PATH}" /tmp/tmp.ovpn
 echo "<auth-user-pass>" >> /tmp/tmp.ovpn
-while IFS= read -r __LINE__
-do
-	echo "$__LINE__" >> /tmp/tmp.ovpn
-done < <(printf '%s\n' "${__AUTH_INFO__}")
+echo "$__USERNAME__" >> /tmp/tmp.ovpn
+echo "$__PASSWORD__" >> /tmp/tmp.ovpn
 echo "</auth-user-pass>" >> /tmp/tmp.ovpn
 
 TARGET_CIPHER="$(cat "${OPENVPN_CONFIG_PATH}" | grep "^cipher" | rev | cut -d ' ' -f1 | rev | tr -d ' ' | tr -d '\r' | tr -d '\n')"
