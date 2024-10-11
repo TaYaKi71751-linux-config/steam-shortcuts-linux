@@ -47,8 +47,10 @@ do
 		__COOKIE_STRING_RESULT__="${__COOKIE_STRING_RESULT__}$(echo $__SET_COOKIE__ | cut -f1 -d ';' | rev | cut -f1 -d ':' | tr -d ' ' | rev);"
 	fi
 done < <(printf '%s\n' "${__SET_COOKIES__}")
+__RESET_RESPONSE__="$(curl -X PUT 'https://account.proton.me/api/vpn/settings/reset' --compressed --user-agent "${__USER_AGENT__}" -H "x-pm-appversion: ${__APP_VERSION__}" -H "x-pm-locale: ${__LOCALE__}" -H "x-pm-uid: ${__UID__}" --cookie "${__COOKIE_STRING_RESULT__}")"
+kdialog --msgbox "${__RESET_RESPONSE__}"
 __AUTH_INFO__="$(node << EOF
- const result = JSON.parse(\`$(curl -X PUT 'https://account.proton.me/api/vpn/settings/reset' --compressed --user-agent "${__USER_AGENT__}" -H "x-pm-appversion: ${__APP_VERSION__}" -H "x-pm-locale: ${__LOCALE__}" -H "x-pm-uid: ${__UID__}" --cookie "${__COOKIE_STRING_RESULT__}")\`);
+ const result = JSON.parse(`${__RESET_RESPONSE__}`);
 	console.log(\`\${result.VPNSettings.Name}\\n\${result.VPNSettings.Password}\`)
 EOF
 )"
