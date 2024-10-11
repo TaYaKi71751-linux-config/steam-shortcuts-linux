@@ -7,33 +7,6 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 
 export async function __main__ () {
-	// Proton
-	{
-		RemoveShortcutStartsWith({ AppName: '[Proton] Genshin Impact' });
-		let filenames = execSync('find / -name \'StarRail.exe\' -type f || true').toString().split('\n');
-		try {
-		filenames = [...filenames, ...execSync(`find -L ${process.env.HOME}/Games/*/drive_c -name \'StarRail.exe\' -type f || true`).toString().split('\n')];
-		} catch(e){}
-		console.log(filenames);
-		const tags = ['Honkai StarRail', 'Proton'];
-		filenames = filenames
-			.map((filename) => (filename.trim()))
-			.filter((filename) => (filename.length))
-			.filter((filename) => { try { if (existsSync(filename)) { return true; } } catch (e) { return false; } return false; });
-		for (const filename of filenames) {
-			const StartDir = dirname(filename);
-			const exe = JSON.stringify(filename);
-			const AppName = `[Proton] Honkai StarRail (${filename})`;
-			const appid = getShortcutAppID({ AppName, exe });
-			AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'obs-gamecapture %command%' });
-			for (let j = 0; j < tags?.length; j++) {
-				const tag = tags[j];
-				if (!tag) continue;
-				await AddToCats(appid, tag);
-			}
-			AddCompat({ appid: `${appid}`, compat: 'proton_7' });
-		}
-	}
 
 	// AAGL
 	{
