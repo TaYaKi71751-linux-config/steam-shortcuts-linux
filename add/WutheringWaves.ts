@@ -67,33 +67,6 @@ export async function __main__ () {
 			}
 		}
 	}
-
-	// Reload
-	{
-		let tags = [__GAME_NAME__];
-
-		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
-		const outFiles = ['reload.out'];
-		for (let i = 0; i < outFiles?.length; i++) {
-			const filename = outFiles[i];
-			const StartDir = `${process.env.PWD}`;
-			const exe = path.join(outPath, filename);
-			const AppName = `[${__GAME_NAME__}]` + (function () {
-				switch (filename) {
-					case 'reload.out':
-						tags = ['Reload', __GAME_NAME__];
-					return 'Reload';
-				}
-			})();
-			const appid = getShortcutAppID({ AppName, exe });
-			AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
-			for (let j = 0; j < tags?.length; j++) {
-				const tag = tags[j];
-				if (!tag) continue;
-				await AddToCats(appid, tag);
-			}
-		}
-	}
 }
 
 // https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main

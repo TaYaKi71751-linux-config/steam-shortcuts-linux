@@ -19,7 +19,7 @@ export async function __main__ () {
 	for (const outfile of outFiles) {
 		if (outfile.endsWith('run.out')) {
 			{
-				let filenames = execSync('find / -name \'*.gb\' -type f || true').toString().split('\n');
+				let filenames = execSync(`find ${process.env.HOME} -name \'*.gb\' -type f || true`).toString().split('\n');
 				const tags = ['SameBoy'];
 				filenames = filenames
 					.map((filename) => (filename.trim()))
@@ -46,7 +46,7 @@ export async function __main__ () {
 				}
 			}
 			{
-				let filenames = execSync('find / -name \'*.gbc\' -type f || true').toString().split('\n');
+				let filenames = execSync(`find ${process.env.HOME} -name \'*.gbc\' -type f || true`).toString().split('\n');
 				const tags = ['SameBoyColor'];
 				filenames = filenames
 					.map((filename) => (filename.trim()))
