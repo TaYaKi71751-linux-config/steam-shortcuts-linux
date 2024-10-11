@@ -28,14 +28,12 @@ export function AddSteamGameShortcut (_opts:{
 			if (!fs.existsSync(config_vdf_path)) { exit(); }
 			const config_vdf = fs.readFileSync(config_vdf_path);
 			if (!config_vdf.length) { exit(); }
-			console.log({config_vdf:`${config_vdf}`});
 			let config:any = VDF.parse(`${config_vdf}`, { types: false, arrayify: false });
 			config.UserLocalConfigStore = Object.assign({}, config.UserLocalConfigStore);
 			config.UserLocalConfigStore.Software = Object.assign({}, config.UserLocalConfigStore.Software);
 			config.UserLocalConfigStore.Software.Valve = Object.assign({}, config.UserLocalConfigStore.Software.Valve);
 			config.UserLocalConfigStore.Software.Valve.Steam = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam);
 			config.UserLocalConfigStore.Software.Valve.Steam.apps = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam.apps);
-			console.log(config.UserLocalConfigStore.Software.Valve.Steam.apps);
 			config.UserLocalConfigStore.Software.Valve.Steam.apps[`${_opts.appid}`] = Object.assign({}, config.UserLocalConfigStore.Software.Valve.Steam.apps[`${_opts.appid}`], Object.fromEntries(Object.entries(_opts).filter(([k,v]) => (k != 'appid'))));
 			config = VDF.stringify(config, { pretty: true, indent: '\t' });
 			fs.writeFileSync(config_vdf_path, config);
