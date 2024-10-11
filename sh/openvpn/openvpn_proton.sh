@@ -52,6 +52,7 @@ __AUTH_INFO__="$(node << EOF
 	console.log(\`\${result.VPNSettings.Name}\\n\${result.VPNSettings.Password}\`)
 EOF
 )"
+kdialog --msgbox "${__AUTH_INFO__}"
 cp "${OPENVPN_CONFIG_PATH}" /tmp/tmp.ovpn
 echo "<auth-user-pass>" >> /tmp/tmp.ovpn
 while IFS= read -r __LINE__
