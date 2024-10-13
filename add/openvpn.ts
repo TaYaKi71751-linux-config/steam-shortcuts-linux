@@ -80,11 +80,13 @@ export async function __main__ () {
 		})()})`;
 		const appid = getShortcutAppID({ AppName, exe });
 		tags = ['OpenVPN'];
+		if(!OpenVPNConfigPath.includes('.protonvpn.')){
 		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: `export OPENVPN_CONFIG_PATH='${OpenVPNConfigPath}' && %command%`, tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
 			await AddToCats(appid, tag);
+		}
 		}
 		})();
 		await (async () => {
