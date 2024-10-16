@@ -41,7 +41,7 @@ export async function __main__ () {
 		const exe = `${execSync('which rm')?.toString().split('\n')[0]}`;
 		const AppName = '[OpenVPN] Remove All .ovpn';
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'find / -type f -name \'*.ovpn\' -exec %command% \'{}\' \\;', tags });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: 'find ${HOME} -type f -name \'*.ovpn\' -exec %command% \'{}\' \\;', tags });
 		for (let i = 0; i < tags?.length; i++) {
 			const tag = tags[i];
 			if (!tag) continue;
