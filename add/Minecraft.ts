@@ -32,6 +32,12 @@ export async function __main__ () {
 					case 'launch_prism.out':
 						tags = ['Minecraft'];
 					return 'Prism Launcher';
+					case 'install_bedrock':
+						tags = ['Minecraft'];
+					return 'Install Bedrock Launcher';
+					case 'launch_bedrock':
+						tags = ['Minecraft'];
+					return 'Bedrock Launcher';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
