@@ -32,10 +32,10 @@ export async function __main__ () {
 					case 'launch_prism.out':
 						tags = ['Minecraft'];
 					return 'Prism Launcher';
-					case 'install_bedrock':
+					case 'install_bedrock.out':
 						tags = ['Minecraft'];
 					return 'Install Bedrock Launcher';
-					case 'launch_bedrock':
+					case 'launch_bedrock.out':
 						tags = ['Minecraft'];
 					return 'Bedrock Launcher';
 				}
