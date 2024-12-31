@@ -87,7 +87,7 @@ sudo_executor frzr-unlock
 
 sudo_executor steamos-readonly disable
 
-sudo_executor pacman -R holo-glibc-locales
+#sudo_executor pacman -R holo-glibc-locales
 
 ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
 if ( sudo_executor cat /etc/pacman.conf | grep "chaotic\-aur" );then
@@ -134,85 +134,85 @@ ${RESULT_PACMAN_CONF}
 EOF
 fi
 
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-if ( sudo_executor cat /etc/pacman.conf | grep "core" );then
-	echo Removing core from /etc/pacman.conf
-	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
-	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[core\]//g')"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
-	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-fi
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#if ( sudo_executor cat /etc/pacman.conf | grep "core" );then
+#	echo Removing core from /etc/pacman.conf
+#	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+#	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[core\]//g')"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+#	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
+# sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+# fi
 
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-if ( sudo_executor cat /etc/pacman.conf | grep "extra" );then
-	echo Removing extra from /etc/pacman.conf
-	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
-	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[extra\]//g')"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
-	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-fi
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#if ( sudo_executor cat /etc/pacman.conf | grep "extra" );then
+#	echo Removing extra from /etc/pacman.conf
+#	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+#	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[extra\]//g')"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+#	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#fi
 
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-if ( sudo_executor cat /etc/pacman.conf | grep "community" );then
-	echo Removing community from /etc/pacman.conf
-	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
-	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[community\]//g')"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
-	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-fi
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#if ( sudo_executor cat /etc/pacman.conf | grep "community" );then
+#	echo Removing community from /etc/pacman.conf
+#	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+#	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[community\]//g')"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+#	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#fi
 
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-if ( sudo_executor cat /etc/pacman.conf | grep "multilib" );then
-	echo Removing multilib from /etc/pacman.conf
-	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
-	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[multilib\]//g')"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
-	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-${RESULT_PACMAN_CONF}
-EOF
-fi
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#if ( sudo_executor cat /etc/pacman.conf | grep "multilib" );then
+#	echo Removing multilib from /etc/pacman.conf
+#	# https://stackoverflow.com/questions/25224994/how-to-bash-cat-or-tee-into-a-file-with-sudo-with-eof-and-with-silent-output
+#	RESULT_PACMAN_CONF="$(echo "${ORIG_PACMAN_CONF}" | sed 's/\[multilib\]//g')"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"	
+#	RESULT_PACMAN_CONF="$(echo "${RESULT_PACMAN_CONF}" | sed "s/Include = \/etc\/pacman\.d\/mirrorlist\.arch//g")"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#${RESULT_PACMAN_CONF}
+#EOF
+#fi
 
-ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
-sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
-[core]
-Include = /etc/pacman.d/mirrorlist.arch
-
-[community]
-Include = /etc/pacman.d/mirrorlist.arch
-
-[extra]
-Include = /etc/pacman.d/mirrorlist.arch
-
-[multilib]
-Include = /etc/pacman.d/mirrorlist.arch
-
-${ORIG_PACMAN_CONF}
-EOF
-sudo_executor tee /etc/pacman.d/mirrorlist.arch &> /dev/null <<EOF
-Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch
-EOF
+#ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
+#sudo_executor tee /etc/pacman.conf &> /dev/null <<EOF
+#[core]
+#Include = /etc/pacman.d/mirrorlist.arch
+#
+#[community]
+#Include = /etc/pacman.d/mirrorlist.arch
+#
+#[extra]
+#Include = /etc/pacman.d/mirrorlist.arch
+#
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist.arch
+#
+#${ORIG_PACMAN_CONF}
+#EOF
+#sudo_executor tee /etc/pacman.d/mirrorlist.arch &> /dev/null <<EOF
+#Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch
+#EOF
 
 
 sudo_executor pacman-key --init
