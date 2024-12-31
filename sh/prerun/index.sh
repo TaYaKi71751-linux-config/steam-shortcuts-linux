@@ -281,12 +281,12 @@ go install github.com/ericchiang/pup@latest
 #	sudo_executor $line
 #done < <(printf '%s\n' "$CHAOTICAUR_INSTALL_COMMANDS")
 
-if ( uname -a | grep x86_64 );then
-sudo_executor pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-sudo_executor pacman-key --lsign-key 3056513887B78AEB
-sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
-sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
-fi
+#if ( uname -a | grep x86_64 );then
+#sudo_executor pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+#sudo_executor pacman-key --lsign-key 3056513887B78AEB
+#sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
+#sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+#fi
 
 
 #if ( uname -a | grep x86_64 );then
