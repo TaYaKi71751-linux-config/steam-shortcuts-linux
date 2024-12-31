@@ -21,8 +21,8 @@ const compatdataPath:string = path.join(
 
 function __check_file__ ():any {
 	execSync(`mkdir -p ${yoitv_path}`);
-	const zip = execSync(`find / -name 'yoitv.zip' -type f || true`).toString();
-	console.log(zip.replaceAll('\n',''));
+	const zip = execSync(`find / -name 'yoitv.zip' -type f || true`).toString().replaceAll('\n','');
+	console.log(zip);
 	const extract = `cp '${zip}' ${JSON.stringify(yoitv_path)} && cd ${JSON.stringify(yoitv_path)} && unzip yoitv`;
 	const findexe = `cd ${JSON.stringify(yoitv_path)} && find . -name '*.exe' -type f | head -n 1`;
 		if (zip != '') {
