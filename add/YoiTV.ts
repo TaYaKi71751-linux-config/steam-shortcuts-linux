@@ -21,30 +21,19 @@ const compatdataPath:string = path.join(
 
 function __check_file__ ():any {
 	execSync(`mkdir -p ${yoitv_path}`);
-	const zip = path.join(yoitv_path, 'yoitv.zip');
-	const extract = `cd ${JSON.stringify(yoitv_path)} && unzip yoitv`;
+	const zip = execSync(`find / -name 'yoitv.zip' -type f || true`).toString();
+	console.log(zip.replaceAll('\n',''));
+	const extract = `cp '${zip}' ${JSON.stringify(yoitv_path)} && cd ${JSON.stringify(yoitv_path)} && unzip yoitv`;
 	const findexe = `cd ${JSON.stringify(yoitv_path)} && find . -name '*.exe' -type f | head -n 1`;
-	try {
-		if (existsSync(zip)) {
-			if (!execSync(findexe).toString().replaceAll('\n', '')) {
+		if (zip != '') {
+			if (execSync(findexe).toString().replaceAll('\n', '') == '') {
 				execSync(extract).toString();
 			}
 			const exe = `${path.join(yoitv_path, execSync(findexe).toString().replaceAll('\n', ''))}`;
 			return `${exe}`;
 		}
-		__download__();
-	} catch (e) {
-		execSync(`rm -rf ${yoitv_path} && mkdir -p ${yoitv_path}`);
-		__download__();
-	}
-	return `${__check_file__()}`;
-}
-
-function __download__ () {
-	const mfp = execSync('curl -LsSf https://livejapanesetv.wordpress.com/yoitv-free-key-codes/ | $HOME/go/bin/pup \'a[href^="https://www.mediafire"] attr{href}\' | head -n 1').toString();
-	const mfdp = execSync(`curl -LsSf ${(mfp + '').replaceAll('\n', '')} | $HOME/go/bin/pup '#downloadButton attr{href}'`).toString();
-	const dl = execSync(`cd ${yoitv_path} && wget ${(mfdp + '').replaceAll('\n', '')}`).toString();
-	console.log(dl);
+	console.warn('[Warn] Could not found yoitv.zip');
+	return '';
 }
 
 export async function __main__ () {
@@ -52,6 +41,9 @@ export async function __main__ () {
 	await (async function () {
 		const AppName: string = 'YoiTV';
 		const exe: string = `${__check_file__()}`;
+		if(exe == ''){
+			return '';
+		}
 		const StartDir: string = `${exe}`;
 		const tags = ['YoiTV', 'TV'];
 		const opts = { AppName, exe, StartDir, LaunchOptions: '%command%' };
