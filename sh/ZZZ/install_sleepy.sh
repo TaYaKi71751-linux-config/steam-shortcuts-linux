@@ -47,5 +47,5 @@ fi
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists --user launcher.moe https://gol.launcher.moe/gol.launcher.moe.flatpakrepo
 
-system_install_flatpak_package org.gnome.Platform//45
+system_install_flatpak_package org.gnome.Platform//47
 user_install_flatpak_package moe.launcher.sleepy-launcher
