@@ -86,6 +86,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
+  version: system
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
@@ -115,6 +116,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
+  version: system
 EOF
 fi
 
