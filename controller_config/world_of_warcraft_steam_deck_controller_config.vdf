@@ -1,7 +1,7 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"17"
+	"revision"		"19"
 	"title"		"TaYaKi71751's World of Warcraft"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
@@ -742,7 +742,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"key_press N, , "
+							"binding"		"key_press B, , "
 						}
 					}
 				}
