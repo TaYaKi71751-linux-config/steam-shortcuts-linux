@@ -1,7 +1,7 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"19"
+	"revision"		"23"
 	"title"		"TaYaKi71751's World of Warcraft"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
@@ -12,7 +12,7 @@
 	"controller_caps"		"23117823"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"0"
+	"Timestamp"		"1538854288"
 	"localization"
 	{
 		"english"
@@ -725,8 +725,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"key_press LEFT_SHIFT, , "
-							"binding"		"key_press P, , "
+							"binding"		"key_press I, , "
 						}
 					}
 				}
