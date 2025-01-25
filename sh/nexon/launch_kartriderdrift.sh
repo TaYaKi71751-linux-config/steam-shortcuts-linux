@@ -1,10 +1,8 @@
 #!/bin/bash
-mkdir -p "${HOME}/KartRiderDrift"
+__EXE_NAME__="KartDrift.exe"
 
-__EXE_NAME__="NexonPlug.exe"
-
-__GAME_NAME__="nexonplug"
-__EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/drive_c/Nexon/NexonPlug/NexonPlug.exe"
+__GAME_NAME__="kartriderdrift"
+__EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/drive_c/Nexon/KartDrift/KartDrift.exe"
 
 echo $__EXE_PATH__
 
