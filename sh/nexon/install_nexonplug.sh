@@ -92,8 +92,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: Proton 7.0
-system:
+  system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
 else
@@ -122,8 +121,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: Proton 7.0
-EOF
+  EOF
 fi
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
