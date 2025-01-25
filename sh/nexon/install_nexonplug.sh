@@ -6,7 +6,7 @@ curl -LsSf http://platform.nexon.com/NexonPlug/Install/LocalInstaller/NexonPlug.
 
 __EXE_NAME__="NexonPlug.exe"
 
-__GAME_NAME__="kartriderdrift"
+__GAME_NAME__="nexonplug"
 __EXE_PATH__="${PWD}/${__EXE_NAME__}"
 
 echo $__EXE_PATH__
