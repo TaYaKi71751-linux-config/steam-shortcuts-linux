@@ -9,7 +9,7 @@ import fs from 'fs';
 
 export async function __main__ () {
 	const __GAME_NAME__ = 'Nexon';
-	const __OUT_NAME__ = 'battlenet';
+	const __OUT_NAME__ = 'nexon';
 
 	// Lutris
 	{
