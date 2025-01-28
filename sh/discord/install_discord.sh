@@ -93,7 +93,7 @@ if ( uname -a | grep x86_64 );then
 	mkdir -p "${HOME}/Discord"
 	rm "${HOME}/Discord/discord.pkg.tar.zst"
 	curl -LsSf https://archlinux.org/packages/extra/x86_64/discord/download/ -o "${HOME}/Discord/discord.pkg.tar.zst"
-	sudo_executor pacman -U "${HOME}/Discord/discord.pkg.tar.zst"
+	sudo_executor pacman -U "${HOME}/Discord/discord.pkg.tar.zst" --noconfirm
 else
 	system_install_flatpak_package com.discordapp.Discord
 	user_install_flatpak_package com.discordapp.Discord
