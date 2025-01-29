@@ -2,6 +2,7 @@
 
 mkdir -p "${HOME}/STOVE"
 cd "${HOME}/STOVE"
+rm STOVESetup.exe
 curl -LsSf https://sgs-live-dl.game.playstove.com/game/lcs/STOVESetup.exe?launcherfilename=STOVESetup.exe -o "${HOME}/STOVE/STOVESetup.exe"
 
 
