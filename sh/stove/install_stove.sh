@@ -211,7 +211,7 @@ EOF
 fi
 
 rm "${HOME}/STOVE/VC_redist.x64.exe"
-curl -LsSf https://aka.ms/vs/17/release/vc_redist.x86.exe -o "${HOME}/STOVE/VC_redist.x64.exe"
+curl -LsSf https://aka.ms/vs/17/release/vc_redist.x64.exe -o "${HOME}/STOVE/VC_redist.x64.exe"
 __EXE_PATH__="${HOME}/STOVE/VC_redist.x64.exe"
 if ( ls /usr/bin/obs-gamecapture );then
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
