@@ -337,7 +337,8 @@ fi
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 
-curl -LsSf https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/3f167fcb-7f23-419d-951b-ce9ae3dcaa2d/MicrosoftEdgeWebView2RuntimeInstallerX86.exe -o "${HOME}/STOVE/WebView2.exe"
+rm "${HOME}/STOVE/WebView2.exe"
+curl -LsSf https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/db0f10d9-a730-4884-a505-2cadd7fa5f74/MicrosoftEdgeWebView2RuntimeInstallerX64.exe -o "${HOME}/STOVE/WebView2.exe"
 
 __EXE_PATH__="${HOME}/STOVE/WebView2.exe"
 
