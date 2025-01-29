@@ -23,6 +23,7 @@ export async function __main__ () {
 			const AppName = `[Lutris] ` + (() => {
 				switch(filename){
 					case 'install_stove.out': return 'Install STOVE Launcher';
+					case 'launch_stove.out': return 'STOVE Launcher';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });

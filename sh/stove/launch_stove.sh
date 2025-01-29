@@ -1,15 +1,8 @@
 #!/bin/bash
 
-mkdir -p "${HOME}/STOVE"
-cd "${HOME}/STOVE"
-rm STOVESetup.exe
-curl -LsSf https://sgs-live-dl.game.playstove.com/game/lcs/STOVESetup.exe?launcherfilename=STOVESetup.exe -o "${HOME}/STOVE/STOVESetup.exe"
-
-
-__EXE_NAME__="STOVESetup.exe"
 
 __GAME_NAME__="stove"
-__EXE_PATH__="${PWD}/${__EXE_NAME__}"
+__EXE_PATH__="${HOME}/Games/stove/drive_c/ProgramData/Smilegate/STOVE/STOVE.exe"
 
 echo $__EXE_PATH__
 
