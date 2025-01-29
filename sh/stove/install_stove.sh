@@ -145,9 +145,74 @@ fi
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 
 winecfg -v win11
-rm "${HOME}/STOVE/VC_redist.exe"
-curl -LsSf https://aka.ms/vs/17/release/vc_redist.x86.exe -o "${HOME}/STOVE/VC_redist.exe"
-__EXE_PATH__="${HOME}/STOVE/VC_redist.exe"
+rm "${HOME}/STOVE/VC_redist.x86.exe"
+curl -LsSf https://aka.ms/vs/17/release/vc_redist.x86.exe -o "${HOME}/STOVE/VC_redist.x86.exe"
+__EXE_PATH__="${HOME}/STOVE/VC_redist.x86.exe"
+if ( ls /usr/bin/obs-gamecapture );then
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${__EXE_PATH__}
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${__EXE_PATH__}
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+  system:
+    prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+  version: wine-ge-8-26-x86_64
+system:
+  prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+EOF
+else
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${__EXE_PATH__}
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${__EXE_PATH__}
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+  version: wine-ge-8-26-x86_64
+EOF
+fi
+
+rm "${HOME}/STOVE/VC_redist.x64.exe"
+curl -LsSf https://aka.ms/vs/17/release/vc_redist.x86.exe -o "${HOME}/STOVE/VC_redist.x64.exe"
+__EXE_PATH__="${HOME}/STOVE/VC_redist.x64.exe"
 if ( ls /usr/bin/obs-gamecapture );then
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
