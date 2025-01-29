@@ -145,6 +145,9 @@ flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 
 find $HOME -name 'wineserver' -type f -exec export PATH=${PATH}:{} \;
 find $HOME -name 'winetricks' -type f -exec {} win11 \;
+find $HOME -name 'winetricks' -type f -exec {} vcrun2017 corefonts \;
+find $HOME -name 'winetricks' -type f -exec {} --force vcrun2015 \;
+
 
 curl -LsSf https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/3f167fcb-7f23-419d-951b-ce9ae3dcaa2d/MicrosoftEdgeWebView2RuntimeInstallerX86.exe -o "${HOME}/STOVE/WebView2.exe"
 
