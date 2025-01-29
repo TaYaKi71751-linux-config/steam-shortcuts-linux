@@ -129,3 +129,65 @@ fi
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${HOME}/Games/stove/drive_c/users/${USER}/AppData/Local/STOVE/Uninstall/LauncherSetup.exe
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${HOME}/Games/stove/drive_c/users/${USER}/AppData/Local/STOVE/Uninstall/LauncherSetup.exe
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+  system:
+    prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+  version: wine-ge-8-26-x86_64
+system:
+  prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+EOF
+else
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${HOME}/Games/stove/drive_c/users/${USER}/AppData/Local/STOVE/Uninstall/LauncherSetup.exe
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${HOME}/Games/stove/drive_c/users/${USER}/AppData/Local/STOVE/Uninstall/LauncherSetup.exe
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+  version: wine-ge-8-26-x86_64
+EOF
+fi
+
+flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
