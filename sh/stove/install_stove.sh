@@ -147,8 +147,7 @@ flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 winecfg -v win11 << EOF
 Y
 EOF
-winetricks --force vcrun2017 corefonts
-winetricks --force vcrun2015
+winetricks --force vcrun2019
 
 
 curl -LsSf https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/3f167fcb-7f23-419d-951b-ce9ae3dcaa2d/MicrosoftEdgeWebView2RuntimeInstallerX86.exe -o "${HOME}/STOVE/WebView2.exe"
