@@ -147,7 +147,7 @@ flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 winecfg -v win11 << EOF
 Y
 EOF
-winetricks vcrun2017 corefonts
+winetricks --force vcrun2017 corefonts
 winetricks --force vcrun2015
 
 
