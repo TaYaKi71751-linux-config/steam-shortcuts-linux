@@ -1,5 +1,16 @@
 #!/bin/bash
 
+function auto_path() {
+	TARGET_PATHS="$(find / -name "$1" -type f)"
+	echo $TARGET_PATHS
+	while IFS= read -r line
+	do
+		export PATH=${PATH}:$(dirname ${line})
+	done < <(printf '%s\n' "$TARGET_PATHS")
+}
+auto_path wineserver
+auto_path winetricks
+
 mkdir -p "${HOME}/STOVE"
 cd "${HOME}/STOVE"
 rm STOVESetup.exe
