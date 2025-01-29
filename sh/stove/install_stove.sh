@@ -143,6 +143,72 @@ fi
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 
 winecfg -v win11
+
+rm "${HOME}/STOVE/Edge.exe"
+curl -LsSf "https://c2rsetup.officeapps.live.com/c2r/downloadEdge.aspx?platform=Default&source=EdgeStablePage&Channel=Stable&language=en&brand=M100" -H 'User-Agent: Firefox' -o "${HOME}/STOVE/Edge.exe"
+__EXE_PATH__="${HOME}/STOVE/Edge.exe"
+if ( ls /usr/bin/obs-gamecapture );then
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${__EXE_PATH__}
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${__EXE_PATH__}
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+  system:
+    prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+system:
+  prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
+EOF
+else
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${__EXE_PATH__}
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${__EXE_PATH__}
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: false
+    vkd3d: false
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: false
+  eac: true
+  fsr: false
+  vkd3d: false
+EOF
+fi
+
+
+
 rm "${HOME}/STOVE/VC_redist.x86.exe"
 curl -LsSf https://aka.ms/vs/17/release/vc_redist.x86.exe -o "${HOME}/STOVE/VC_redist.x86.exe"
 __EXE_PATH__="${HOME}/STOVE/VC_redist.x86.exe"
