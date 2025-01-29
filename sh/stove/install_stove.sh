@@ -11,7 +11,7 @@ function auto_path() {
 auto_path wineserver
 auto_path winetricks
 
-WINEPREFIX="${HOME}/Games/stove"
+export WINEPREFIX="${HOME}/Games/stove"
 
 mkdir -p "${HOME}/STOVE"
 cd "${HOME}/STOVE"
