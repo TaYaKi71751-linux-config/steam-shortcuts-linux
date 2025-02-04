@@ -65,19 +65,19 @@ function run_openvpn(){
 			--config "/tmp/tmp.ovpn"
 }
 sudo mkdir -p /etc/openvpn
-sudo cat << EOF > /etc/openvpn/update-resolv-conf
-#!/bin/bash
+sudo bash << EOF
+echo '#!/bin/bash' > /etc/openvpn/update-resolv-conf
 
-case "$script_type" in
-  --up)
+echo 'case "\$script_type" in' >> /etc/openvpn/update-resolv-conf
+echo '  --up)' >> /etc/openvpn/update-resolv-conf
     # Set DNS servers
-    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
-    ;;
-  --down)
+echo '    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4' >> /etc/openvpn/update-resolv-conf
+echo '    ;;' >> /etc/openvpn/update-resolv-conf
+echo '  --down)' >> /etc/openvpn/update-resolv-conf
     # Clear DNS servers
-    sudo networksetup -setdnsservers Wi-Fi "Empty"
-    ;;
-esac
+echo '    sudo networksetup -setdnsservers Wi-Fi "Empty"' >> /etc/openvpn/update-resolv-conf
+echo '    ;;' >> /etc/openvpn/update-resolv-conf
+echo 'esac' >> /etc/openvpn/update-resolv-conf
 EOF
 echo $TARGET_CIPHER
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
