@@ -111,8 +111,6 @@ echo '    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4' >> /etc/openvp
 echo '    ;;' >> /etc/openvpn/update-resolv-conf
 echo '  --down)' >> /etc/openvpn/update-resolv-conf
     # Clear DNS servers
-echo '    sudo networksetup -setdnsservers Wi-Fi "Empty"' >> /etc/openvpn/update-resolv-conf
-echo '    ;;' >> /etc/openvpn/update-resolv-conf
 echo 'esac' >> /etc/openvpn/update-resolv-conf
 EOF
 TARGET_CIPHER="$(cat "${OPENVPN_CONFIG_PATH}" | grep "^cipher" | rev | cut -d ' ' -f1 | rev | tr -d ' ' | tr -d '\r' | tr -d '\n')"
