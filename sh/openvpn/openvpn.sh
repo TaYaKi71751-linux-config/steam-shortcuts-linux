@@ -100,6 +100,21 @@ function sudo_executor(){
 		echo ${SUDO_PASSWORD} | sudo -S $@
 	fi
 }
+sudo_executor mkdir -p /etc/openvpn
+sudo_executor cat << EOF > /etc/openvpn/update-resolv-conf
+#!/bin/bash
+
+case "$script_type" in
+  --up)
+    # Set DNS servers
+    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+    ;;
+  --down)
+    # Clear DNS servers
+    sudo networksetup -setdnsservers Wi-Fi "Empty"
+    ;;
+esac
+EOF
 TARGET_CIPHER="$(cat "${OPENVPN_CONFIG_PATH}" | grep "^cipher" | rev | cut -d ' ' -f1 | rev | tr -d ' ' | tr -d '\r' | tr -d '\n')"
 function run_openvpn(){
 		sudo_executor openvpn \

@@ -64,6 +64,21 @@ function run_openvpn(){
 			--data-ciphers-fallback ${TARGET_CIPHER} \
 			--config "/tmp/tmp.ovpn"
 }
+sudo mkdir -p /etc/openvpn
+sudo cat << EOF > /etc/openvpn/update-resolv-conf
+#!/bin/bash
+
+case "$script_type" in
+  --up)
+    # Set DNS servers
+    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+    ;;
+  --down)
+    # Clear DNS servers
+    sudo networksetup -setdnsservers Wi-Fi "Empty"
+    ;;
+esac
+EOF
 echo $TARGET_CIPHER
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
