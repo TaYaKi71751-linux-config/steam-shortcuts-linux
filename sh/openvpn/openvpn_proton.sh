@@ -76,6 +76,7 @@ echo '    ;;' >> /etc/openvpn/update-resolv-conf
 echo '  --down)' >> /etc/openvpn/update-resolv-conf
     # Clear DNS servers
 echo 'esac' >> /etc/openvpn/update-resolv-conf
+chmod +x /etc/openvpn/update-resolv-conf
 EOF
 echo $TARGET_CIPHER
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1

@@ -112,6 +112,7 @@ echo '    ;;' >> /etc/openvpn/update-resolv-conf
 echo '  --down)' >> /etc/openvpn/update-resolv-conf
     # Clear DNS servers
 echo 'esac' >> /etc/openvpn/update-resolv-conf
+chmod +x /etc/openvpn/update-resolv-conf
 EOF
 TARGET_CIPHER="$(cat "${OPENVPN_CONFIG_PATH}" | grep "^cipher" | rev | cut -d ' ' -f1 | rev | tr -d ' ' | tr -d '\r' | tr -d '\n')"
 function run_openvpn(){
