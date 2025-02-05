@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yay -S curseforge --noconfirm
+yay -Sy curseforge --noconfirm
