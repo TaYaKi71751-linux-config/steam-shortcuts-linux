@@ -266,7 +266,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button dpad_right, , "
+							"binding"		"key_press I, , "
 						}
 						"settings"
 						{
@@ -781,9 +781,6 @@
 						}
 						"settings"
 						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"toggle"		"1"
 							"interruptable"		"0"
 						}
 					}
