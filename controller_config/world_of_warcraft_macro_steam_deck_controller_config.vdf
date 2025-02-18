@@ -1,18 +1,18 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"43"
+	"revision"		"47"
 	"title"		"TaYaKi71751's World of Warcraft Macro"
-	"description"		"Your modified layout for this game."
+	"description"		"您已为此游戏修改的布局。"
 	"creator"		"76561198151328861"
 	"progenitor"		""
-	"url"		"usercloud://[lutris] world of warcraft/controller_neptune"
+	"url"		"autosave:///home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/191063133/config/[lutris] world of warcraft/controller_neptune.vdf"
 	"export_type"		"community"
 	"controller_type"		"controller_neptune"
 	"controller_caps"		"23117823"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"-5320"
+	"Timestamp"		"1470321440"
 	"localization"
 	{
 		"english"
@@ -777,11 +777,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button dpad_right, , "
-						}
-						"settings"
-						{
-							"interruptable"		"0"
+							"binding"		"key_press I, , "
 						}
 					}
 				}
@@ -812,6 +808,11 @@
 				{
 				}
 			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"haptic_intensity_override"		"0"
 		}
 	}
 	"group"
@@ -846,7 +847,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"controller_action SCREENSHOT, , "
+							"binding"		"key_press M, , "
 						}
 					}
 				}
