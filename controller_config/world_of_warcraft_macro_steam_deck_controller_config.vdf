@@ -551,7 +551,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button START, , "
+							"binding"		"key_press M, , "
 						}
 					}
 				}
@@ -833,7 +833,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button START, , "
+							"binding"		"key_press M, , "
 						}
 					}
 				}
