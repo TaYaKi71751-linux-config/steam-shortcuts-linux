@@ -40,7 +40,7 @@ export async function __main__ () {
 
 	// WoW Locale
 	{
-		const tags [__GAME_NAME__];
+		const tags = [__GAME_NAME__];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 		const locales = ['koKR','zhCN'];
 		for(let locale of locales){
