@@ -38,6 +38,24 @@ export async function __main__ () {
 		}
 	}
 
+	// WoW Locale
+	{
+		const tags [__GAME_NAME__];
+		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
+		const locales = ['koKR','zhCN'];
+		for(let locale of locales){
+			const exe = path.join(outPath,'locale_wow.out');
+			const AppName = `[World of Warcraft] Set locale to ${locale}`;
+			const LaunchOptions = `export LOCALE="${locale}" && %command%`;
+			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir: outPath, LaunchOptions });
+			for(let tag of tags){
+				if(!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		}
+	}
+
 }
 
 // https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
