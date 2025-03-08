@@ -5,7 +5,7 @@ __EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikki
 mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
 mkdir -p "${HOME}/InfinityNikkiGlobal"
 
-rm -rf "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/InfinityNikkiGlobal/InfinityNikki.exe"
+rm -rf "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/InfinityNikkiGlobal"
 ln -sf "${HOME}/InfinityNikkiGlobal" "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
