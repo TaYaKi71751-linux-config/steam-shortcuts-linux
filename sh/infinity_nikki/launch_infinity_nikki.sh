@@ -1,6 +1,6 @@
 #!/bin/bash
 __GAME_NAME__="infinity-nikki"
-__EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/Program Files/InfinityNikkiGlobal Launcher/InfinityNikkiGlobal/InfinityNikki.exe"
+__EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/InfinityNikkiGlobal/InfinityNikki.exe"
 
 mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
 mkdir -p "${HOME}/InfinityNikkiGlobal"
