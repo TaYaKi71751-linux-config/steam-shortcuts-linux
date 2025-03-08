@@ -3,9 +3,9 @@
 mkdir -p ${HOME}/InfinityNikkiGlobal
 cd ${HOME}/InfinityNikkiGlobal
 
-rm setup.exe
+rm setup.e
 
-curl -o "InfinityNikkiGlobal_Launcher_1.0.9.exe" "https://x6oversea-game-package.infoldgames.com/PC/InfinityNikkiGlobal%20Launcher_1.0.9.exe?cid=e302b6e9fd234497b52c072a41dcbb3"
+curl -o "setup.exe" "https://x6oversea-game-package.infoldgames.com/PC/InfinityNikkiGlobal%20Launcher_1.0.9.exe?cid=e302b6e9fd234497b52c072a41dcbb3"
 
 __EXE_NAME__="setup.exe"
 
