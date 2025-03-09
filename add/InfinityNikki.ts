@@ -8,7 +8,6 @@ import path,{ dirname } from 'path';
 
 export async function __main__ () {
 	const __GAME_NAME__ = 'Infinity Nikki';
-	const __EXE_NAME__ = 'InfinityNikki.exe';
 	const __OUT_NAME__ = 'infinity_nikki';
 
 	// Plain Lutris
@@ -16,7 +15,7 @@ export async function __main__ () {
 		RemoveShortcutStartsWith({ AppName: `[Lutris] ${__GAME_NAME__}` });
 		const tags = [__GAME_NAME__,'Lutris'];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		const outFiles = ['launch_infinity_nikki.out'];
+		const outFiles = ['launch_infinity_nikki_launcher.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
@@ -37,7 +36,7 @@ export async function __main__ () {
 		let tags = [__GAME_NAME__];
 
 		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
-			const outFiles = [`install_infinity_nikki_launcher.out`,`launch_infinity_nikki_launcher.out`];
+			const outFiles = [`install_infinity_nikki_launcher.out`];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
@@ -47,9 +46,6 @@ export async function __main__ () {
 					case `install_infinity_nikki_launcher.out`:
 						tags = ['Install', __GAME_NAME__];
 					return 'Install';
-					case `launch_infinity_nikki_launcher.out`:
-						tags = [__GAME_NAME__];
-					return `${__GAME_NAME__} Launcher`;
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
