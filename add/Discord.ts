@@ -25,8 +25,26 @@ export async function __main__ () {
 				if (!tag) continue;
 				await AddToCats(appid, tag);
 			}
+		} else if (filename == 'launch_discord_flatpak.out') {
+			const { name, tags } = { name: '[Flatpak] Discord', tags: ['Discord', 'Flatpak'] };
+			const appid = getShortcutAppID({ AppName: name, exe });
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
 		} else if (filename == 'install_discord.out') {
 			const { name, tags } = { name: '[Discord] Install', tags: ['Discord', 'Install'] };
+			const appid = getShortcutAppID({ AppName: name, exe });
+			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
+			for (let k = 0; k < tags?.length; k++) {
+				const tag = tags[k];
+				if (!tag) continue;
+				await AddToCats(appid, tag);
+			}
+		} else if (filename == 'install_discord_flatpak.out') {
+			const { name, tags } = { name: '[Discord] Install Flatpak', tags: ['Discord', 'Install', 'Flatpak'] };
 			const appid = getShortcutAppID({ AppName: name, exe });
 			AddShortcut({ appid, AppName: name, exe, StartDir, LaunchOptions: '%command%', tags });
 			for (let k = 0; k < tags?.length; k++) {
