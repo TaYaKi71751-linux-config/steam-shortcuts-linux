@@ -42,7 +42,7 @@ export async function __main__ () {
 	{
 		const tags = [__GAME_NAME__];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		const locales = ['koKR','zhCN'];
+		const locales = ['koKR','zhCN','enUS'];
 		for(let locale of locales){
 			const exe = path.join(outPath,'locale_wow.out');
 			const AppName = `[World of Warcraft] Set locale to ${locale}`;
