@@ -46,3 +46,4 @@ fi
 #Discord
 system_install_flatpak_package com.discordapp.Discord
 user_install_flatpak_package com.discordapp.Discord
+flatpak update com.discordapp.Discord -y
