@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yay -Sy curseforge --noconfirm
+yay -Sy curseforge --noconfirm --overwrite '*'
