@@ -1,7 +1,7 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"59"
+	"revision"		"63"
 	"title"		"TaYaKi71751's World of Warcraft Macro"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
@@ -12,7 +12,7 @@
 	"controller_caps"		"23117823"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"-1047004672"
+	"Timestamp"		"-6344"
 	"localization"
 	{
 		"english"
@@ -924,6 +924,12 @@
 						"bindings"
 						{
 							"binding"		"xinput_button SHOULDER_RIGHT, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
 						}
 					}
 				}
