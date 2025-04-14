@@ -15,7 +15,8 @@ export async function __main__ () {
 	{
 		const tags = [__GAME_NAME__,'Lutris'];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		const outFiles = fs.readdirSync(outPath);
+		let outFiles = fs.readdirSync(outPath);
+		outFiles = outFiles.filter(file => !file.startsWith('locale_wow'));
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
