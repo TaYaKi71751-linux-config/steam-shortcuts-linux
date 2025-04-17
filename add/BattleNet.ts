@@ -7,6 +7,8 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
+const __GAME_NAME__ = 'Battle.net';
+const __OUT_NAME__ = 'battlenet';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 let apps = [
 	{AppName: '[Lutris] Install Battle.net', exe: path.join(outPath, 'install_battlenet.out'), StartDir: outPath,},
@@ -16,8 +18,6 @@ let apps = [
 ];
 
 export async function __main__ () {
-	const __GAME_NAME__ = 'Battle.net';
-	const __OUT_NAME__ = 'battlenet';
 
 	// Lutris
 	{
