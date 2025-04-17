@@ -30,6 +30,24 @@ export async function __main__ () {
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
+			if (AppName.endsWith('World of Warcraft')){
+					setBackground({
+						appid,
+						path: `${process.env.PWD}/image/background/wow.png`,
+					});
+					setWideCapsule({
+						appid,
+						path: `${process.env.PWD}/image/widecapsule/wow.png`,
+					});
+					setCapsule({
+						appid,
+						path: `${process.env.PWD}/image/capsule/wow.png`,
+					});
+					setLogo({
+						appid,
+						path: `${process.env.PWD}/image/logo/wow.png`,
+					});
+			}
 			AddShortcut({ appid, AppName, exe, StartDir });
 			for (let j = 0; j < tags?.length; j++) {
 				const tag = tags[j];
