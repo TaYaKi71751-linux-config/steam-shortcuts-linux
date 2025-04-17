@@ -7,6 +7,7 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
+const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 let apps = [
 	{AppName: '[Lutris] Install Battle.net', exe: path.join(outPath, 'install_battlenet.out'), StartDir: outPath,},
 	{AppName: '[Lutris] Battle.net', exe: path.join(outPath, 'launch_battlenet.out'), StartDir: outPath,},
@@ -21,13 +22,6 @@ export async function __main__ () {
 	// Lutris
 	{
 		const tags = [__GAME_NAME__,'Lutris'];
-		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		let outFiles = fs.readdirSync(outPath);
-		outFiles = outFiles.filter(file => !file.startsWith('locale_wow'));
-		outFiles.map((f) => ({
-
-			exe: path.join(outPath, filename)
-		}))
 		for (let i = 0; i < apps?.length; i++) {
 			const { AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo } = apps[i];
 			const appid = getShortcutAppID({ AppName, exe });
