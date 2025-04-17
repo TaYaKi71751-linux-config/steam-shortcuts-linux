@@ -7,6 +7,12 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
+let apps = [
+	{AppName: '[Lutris] Install Battle.net', exe: path.join(outPath, 'install_battlenet.out'), StartDir: outPath,},
+	{AppName: '[Lutris] Battle.net', exe: path.join(outPath, 'launch_battlenet.out'), StartDir: outPath,},
+	{AppName: '[Lutris] Launch Diablo II Resurrected', exe: path.join(outPath, 'launch_d2r.out'), StartDir: outPath,},
+	{AppName: '[Lutris] World of Warcraft', exe: path.join(outPath, 'launch_wow.out'), StartDir: outPath, background: `${process.env.PWD}/image/background/wow.png`, wideCapsule: `${process.env.PWD}/image/widecapsule/wow.png`, capsule: `${process.env.PWD}/image/capsule/wow.png`, logo: `${process.env.PWD}/image/logo/wow.png`, icon: `${process.env.PWD}/image/icon/wow.png` },
+];
 
 export async function __main__ () {
 	const __GAME_NAME__ = 'Battle.net';
@@ -18,38 +24,40 @@ export async function __main__ () {
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 		let outFiles = fs.readdirSync(outPath);
 		outFiles = outFiles.filter(file => !file.startsWith('locale_wow'));
-		for (let i = 0; i < outFiles?.length; i++) {
-			const filename = outFiles[i];
-			const StartDir = outPath;
-			const exe = path.join(outPath, filename);
-			const AppName = `[Lutris] ` + (() => {
-				switch(filename){
-					case 'install_battlenet.out': return 'Install Battle.net';
-					case 'launch_battlenet.out': return 'Battle.net';
-					case 'launch_d2r.out': return 'Diablo II Resurrected';
-					case 'launch_wow.out': return 'World of Warcraft';
-				}
-			})();
+		outFiles.map((f) => ({
+
+			exe: path.join(outPath, filename)
+		}))
+		for (let i = 0; i < apps?.length; i++) {
+			const { AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo } = apps[i];
 			const appid = getShortcutAppID({ AppName, exe });
-			if (AppName.endsWith('World of Warcraft')){
-					setBackground({
-						appid,
-						path: `${process.env.PWD}/image/background/wow.png`,
-					});
-					setWideCapsule({
-						appid,
-						path: `${process.env.PWD}/image/widecapsule/wow.png`,
-					});
-					setCapsule({
-						appid,
-						path: `${process.env.PWD}/image/capsule/wow.png`,
-					});
-					setLogo({
-						appid,
-						path: `${process.env.PWD}/image/logo/wow.png`,
-					});
+			if (background){
+				setBackground({
+					appid,
+					path: background,
+				});
 			}
-			AddShortcut({ appid, AppName, exe, StartDir });
+			if (wideCapsule){
+				setWideCapsule({
+					appid,
+					path: wideCapsule,
+				});
+			}
+			if(capsule){
+				setCapsule({
+					appid,
+					path: capsule,
+				});
+			}
+			if(logo){
+				setLogo({
+					appid,
+					path: logo,
+				});
+			}
+
+			}
+			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '' });
 			for (let j = 0; j < tags?.length; j++) {
 				const tag = tags[j];
 				if (!tag) continue;
