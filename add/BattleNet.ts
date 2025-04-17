@@ -25,6 +25,7 @@ export async function __main__ () {
 		for (let i = 0; i < apps?.length; i++) {
 			const { AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo } = apps[i];
 			const appid = getShortcutAppID({ AppName, exe });
+			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '' });
 			if (background){
 				setBackground({
 					appid,
@@ -49,9 +50,6 @@ export async function __main__ () {
 					path: logo,
 				});
 			}
-
-			}
-			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '' });
 			for (let j = 0; j < tags?.length; j++) {
 				const tag = tags[j];
 				if (!tag) continue;
