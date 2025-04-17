@@ -5,6 +5,7 @@ import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
+import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
 
 export async function __main__ () {
