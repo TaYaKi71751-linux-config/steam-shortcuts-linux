@@ -5,7 +5,7 @@ __LAUNCHER_PACKAGE__="moe.launcher.an-anime-game-launcher"
 __LAUNCHER_NAME__="anime-game-launcher"
 
 function auto_path() {
-	TARGET_PATHS="$(find / -name "$1" -type f)"
+	TARGET_PATHS="$(find $HOME -name "$1" -type f)"
 	echo $TARGET_PATHS
 	while IFS= read -r line
 	do
