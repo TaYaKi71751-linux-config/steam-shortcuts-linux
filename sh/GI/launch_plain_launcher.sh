@@ -74,20 +74,28 @@ script:
     exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
+    d3d_extras: false
+    dxvk: false
     battleye: false
     dxvk_nvapi: false
+    esync: false
     eac: false
     fsr: false
+    fsync: false
     vkd3d: false
   system:
     prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
+  d3d_extras: false
+  dxvk: false
   battleye: false
   dxvk_nvapi: false
+  esync: false
   eac: false
   fsr: false
+  fsync: false
   vkd3d: false
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
@@ -104,18 +112,26 @@ script:
     exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
+    d3d_extras: false
+    dxvk: false
     battleye: false
     dxvk_nvapi: false
+    esync: false
     eac: false
     fsr: false
+    fsync: false
     vkd3d: false
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
+  d3d_extras: false
+  dxvk: false
   battleye: false
   dxvk_nvapi: false
+  esync: false
   eac: false
   fsr: false
+  fsync: false
   vkd3d: false
 EOF
 fi
