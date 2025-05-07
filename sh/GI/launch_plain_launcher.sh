@@ -97,6 +97,8 @@ wine:
   fsr: false
   fsync: false
   vkd3d: false
+  Desktop: true
+  version: system
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
@@ -133,6 +135,8 @@ wine:
   fsr: false
   fsync: false
   vkd3d: false
+  Desktop: true
+  version: system
 EOF
 fi
 
