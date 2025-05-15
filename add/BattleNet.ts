@@ -10,7 +10,7 @@ import fs from 'fs';
 const __GAME_NAME__ = 'Battle.net';
 const __OUT_NAME__ = 'battlenet';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-let apps:any = [
+let apps = [
 	{AppName: '[Lutris] Install Battle.net', exe: path.join(outPath, 'install_battlenet.out'), StartDir: outPath, LaunchOptions: '%command%'},
 	{AppName: '[Lutris] Battle.net', exe: path.join(outPath, 'launch_battlenet.out'), StartDir: outPath,LaunchOptions:'%command%'},
 	{AppName: '[Proton] Battle.net', exe: path.join(`${process.env.HOME}`,'Games','battlenet','drive_c','Program Files (x86)','Battle.net','Battle.net.exe'), StartDir: path.join(`${process.env.HOME}`,'Games','battlenet','drive_c','Program Files (x86)','Battle.net'), compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/battlenet" %command%` },
@@ -24,7 +24,7 @@ export async function __main__ () {
 	{
 		const tags = [__GAME_NAME__,'Lutris'];
 		for (let i = 0; i < apps?.length; i++) {
-			const { compat, AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo, LaunchOptions }:any = apps[i];
+			const { compat, AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo, LaunchOptions } = apps[i];
 			const appid = getShortcutAppID({ AppName, exe });
 			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '', LaunchOptions });
 			if(compat){
