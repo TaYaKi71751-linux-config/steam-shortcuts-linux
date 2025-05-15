@@ -29,7 +29,7 @@ export async function __main__ () {
 			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '', LaunchOptions });
 			if(compat){
 				AddCompat({
-					`${appid}`,
+					appid: `${appid}`,
 					compat: compat,
 				});
 			}
