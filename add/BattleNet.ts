@@ -13,7 +13,7 @@ const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 let apps = [
 	{AppName: '[Lutris] Install Battle.net', exe: path.join(outPath, 'install_battlenet.out'), StartDir: outPath, LaunchOptions: '%command%'},
 	{AppName: '[Lutris] Battle.net', exe: path.join(outPath, 'launch_battlenet.out'), StartDir: outPath,LaunchOptions:'%command%'},
-	{AppName: '[Proton] Battle.net', exe: `${process.env.HOME}/Games/battlenet/drive_c/Program Files (x86)/Battle.net/Battle.net.exe`, StartDir: `${process.env.HOME}/Games/battlenet/drive_c/Program Files (x86)/Battle.net/`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/battlenet" %command%` },
+	{AppName: '[Proton] Battle.net', exe: `"${process.env.HOME}/Games/battlenet/drive_c/Program Files (x86)/Battle.net/Battle.net.exe"`, StartDir: `"${process.env.HOME}/Games/battlenet/drive_c/Program Files (x86)/Battle.net/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/battlenet" %command%` },
 	{AppName: '[Lutris] Launch Diablo II Resurrected', exe: path.join(outPath, 'launch_d2r.out'), StartDir: outPath,LaunchOptions:'%command%'},
 	{AppName: '[Lutris] World of Warcraft', exe: path.join(outPath, 'launch_wow.out'), StartDir: outPath, background: `${process.env.PWD}/image/background/wow.png`, wideCapsule: `${process.env.PWD}/image/widecapsule/wow.png`, capsule: `${process.env.PWD}/image/capsule/wow.png`, logo: `${process.env.PWD}/image/logo/wow.png`, icon: `${process.env.PWD}/image/icon/wow.png`,LaunchOptions: '%command%' },
 ];
