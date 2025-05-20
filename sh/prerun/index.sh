@@ -411,7 +411,7 @@ nvm install --lts
 nvm use --lts
 
 #pnpm
-sudo_executor npm i -g pnpm
+sudo_executor bash -c "source $NVM_DIR/nvm.sh && nvm install --lts && nvm use --lts && npm i -g pnpm"
 
 
 #Build
