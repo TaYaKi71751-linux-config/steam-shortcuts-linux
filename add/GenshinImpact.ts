@@ -4,9 +4,9 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
-import path,{ dirname } from 'path';
+import path, { dirname } from 'path';
 
-export async function __main__ () {
+export async function __main__() {
 	const __GAME_NAME__ = 'Genshin Impact';
 	const __LAUNCHER_NAME__ = 'AAGL';
 	const __EXE_NAME__ = 'GenshinImpact.exe';
@@ -14,7 +14,7 @@ export async function __main__ () {
 	// 3DMigoto Lutris
 	{
 		RemoveShortcutStartsWith({ AppName: `[3dmigoto] ${__GAME_NAME__}` });
-		const tags = ['3dmigoto',__GAME_NAME__,'Lutris'];
+		const tags = ['3dmigoto', __GAME_NAME__, 'Lutris'];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 		const outFiles = ['3dmigoto_lutris.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
@@ -35,7 +35,7 @@ export async function __main__ () {
 	// Plain Lutris
 	{
 		RemoveShortcutStartsWith({ AppName: `[Lutris] ${__GAME_NAME__}` });
-		const tags = [__GAME_NAME__,'Lutris'];
+		const tags = [__GAME_NAME__, 'Lutris'];
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 		const outFiles = ['plain_lutris.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
@@ -55,10 +55,10 @@ export async function __main__ () {
 
 	// AAGL
 	{
-		let tags = [__GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()	];
+		let tags = [__GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
 
-		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
-			const outFiles = [`install_${__LAUNCHER_NAME__.toLowerCase()}.out`,`launch_${__LAUNCHER_NAME__.toLowerCase()}.out`];
+		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
+		const outFiles = [`install_${__LAUNCHER_NAME__.toLowerCase()}.out`, `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
@@ -67,10 +67,10 @@ export async function __main__ () {
 				switch (filename) {
 					case `install_${__LAUNCHER_NAME__.toLowerCase()}.out`:
 						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
-					return 'Install';
+						return 'Install';
 					case `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`:
 						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
-					return `${__GAME_NAME__} Launcher`;
+						return `${__GAME_NAME__} Launcher`;
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
@@ -85,10 +85,10 @@ export async function __main__ () {
 
 	// Plain Launcher
 	{
-		let tags = [__GAME_NAME__	];
+		let tags = [__GAME_NAME__];
 
-		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
-			const outFiles = [`install_plain_launcher.out`,`launch_plain_launcher.out`];
+		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
+		const outFiles = [`install_plain_launcher.out`, `launch_plain_launcher.out`];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
@@ -97,10 +97,10 @@ export async function __main__ () {
 				switch (filename) {
 					case `install_plain_launcher.out`:
 						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
-					return 'Install';
+						return 'Install';
 					case `launch_plain_launcher.out`:
 						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
-					return `${__GAME_NAME__} Launcher`;
+						return `${__GAME_NAME__} Launcher`;
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
@@ -113,11 +113,34 @@ export async function __main__ () {
 		}
 	}
 
+	// Proton Experimental
+	{
+		const tags = [__GAME_NAME__, 'Proton'];
+		const compat = 'proton_experimental';
+		const AppName = '[Proton] Genshin Impact';
+		const exe = `${process.env.HOME}/AAGL/Genshin Impact game/GenshinImpact.exe`;
+		const StartDir = `${process.env.HOME}/Games/genshin-impact`;
+		const LaunchOptions = `STEAM_COMPAT_DATA_PATH="${StartDir}" %command%`
+		const appid = getShortcutAppID({ AppName, exe });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions });
+		if (compat) {
+			AddCompat({
+				appid: `${appid}`,
+				compat: compat,
+			});
+		}
+		for (let j = 0; j < tags?.length; j++) {
+			const tag = tags[j];
+			if (!tag) continue;
+			await AddToCats(appid, tag);
+		}
+	}
+
 	// Reload
 	{
 		let tags = [__GAME_NAME__];
 
-		const outPath = path.join(`${process.env.PWD}`,'out',__OUT_NAME__);
+		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 		const outFiles = ['reload.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
@@ -127,7 +150,7 @@ export async function __main__ () {
 				switch (filename) {
 					case 'reload.out':
 						tags = ['Reload', __GAME_NAME__];
-					return 'Reload';
+						return 'Reload';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
