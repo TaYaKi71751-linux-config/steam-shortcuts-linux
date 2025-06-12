@@ -118,9 +118,9 @@ export async function __main__() {
 		const tags = [__GAME_NAME__, 'Proton'];
 		const compat = 'proton_experimental';
 		const AppName = '[Proton] Genshin Impact';
-		const exe = `${process.env.HOME}/AAGL/Genshin Impact game/GenshinImpact.exe`;
-		const StartDir = `${process.env.HOME}/Games/genshin-impact`;
-		const LaunchOptions = `STEAM_COMPAT_DATA_PATH="${StartDir}" %command%`
+		const StartDir = `"${process.env.HOME}/AAGL/Genshin Impact game"`;
+		const exe = `"${process.env.HOME}/AAGL/Genshin Impact game/GenshinImpact.exe"`;
+		const LaunchOptions = `STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/genshin-impact" %command%`
 		const appid = getShortcutAppID({ AppName, exe });
 		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions });
 		if (compat) {
