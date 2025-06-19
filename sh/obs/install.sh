@@ -99,10 +99,12 @@ system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
 system_install_flatpak_package com.obsproject.Studio
 
-sudo_executor pacman -Sy obs-studio --noconfirm
-sudo_executor pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -Sy $(pacman -Qq | grep mesa) --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -Sy $(pacman -Qq | grep gl) --noconfirm --overwrite \\\'*\\\'
+sudo_executor bash <<'EOF'
+pacman -Sy obs-studio --noconfirm --overwrite '*'
+pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite '*'
+pacman -Sy $(pacman -Qq | grep mesa) --noconfirm --overwrite '*'
+pacman -Sy $(pacman -Qq | grep gl) --noconfirm --overwrite '*'
+EOF
 
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
@@ -123,10 +125,10 @@ if ( which yay );then
 	yay -S obs-vkcapture-git --noconfirm
 fi
 uname -a | grep x86_64 || exit
-sudo_executor pacman -U --noconfirm - << EOF
+pacman -U --noconfirm - << EOF
 https://archlinux.org/packages/core/any/archlinux-keyring/download/
 EOF
-sudo_executor pacman -U --noconfirm - << EOF
+pacman -U --noconfirm - << EOF
 https://archlinux.org/packages/core/x86_64/glibc/download/
 https://archlinux.org/packages/core/x86_64/lib32-glibc/download/
 EOF
@@ -135,12 +137,22 @@ which obs-gamecapture && exit 0
 
 uname -a | grep x86_64 || exit
 
+sudo_executor bash <<'EOF'
+pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite '*'
+EOF
+rm /tmp/archlinux-keyring.tar.zst
+rm /tmp/glibc.tar.zst
+rm /tmp/lib32-glibc.tar.zst
+curl -LsSf https://archlinux.org/packages/core/any/archlinux-keyring/download/ -o /tmp/archlinux-keyring.tar.zst
+curl -LsSf https://archlinux.org/packages/core/x86_64/glibc/download/ -o /tmp/glibc.tar.zst
+curl -LsSf https://archlinux.org/packages/core/x86_64/lib32-glibc/download/ -o /tmp/lib32-glibc.tar.zst
+sudo_executor bash <<'EOF'
+pacman -U --noconfirm /tmp/archlinux-keyring.tar.zst
+pacman -U --noconfirm /tmp/glibc.tar.zst
+pacman -U --noconfirm /tmp/lib32-glibc.tar.zst
+EOF
+rm /tmp/archlinux-keyring.tar.zst
+rm /tmp/glibc.tar.zst
+rm /tmp/lib32-glibc.tar.zst
 
-sudo_executor pacman -S chaotic-aur/obs-vkcapture-git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -U --noconfirm - << EOF
-https://archlinux.org/packages/core/any/archlinux-keyring/download/
-EOF
-sudo_executor pacman -U --noconfirm - << EOF
-https://archlinux.org/packages/core/x86_64/glibc/download/
-https://archlinux.org/packages/core/x86_64/lib32-glibc/download/
-EOF
+which obs-gamecapture && exit 0
