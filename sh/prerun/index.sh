@@ -13,6 +13,15 @@ done
 
 ORIG_HOME=${HOME}
 
+function auto_path() {
+	TARGET_PATHS="$(find / -name "$1" -type f)"
+	echo $TARGET_PATHS
+	while IFS= read -r line
+	do
+		export PATH=${PATH}:$(dirname ${line})
+	done < <(printf '%s\n' "$TARGET_PATHS")
+}
+
 # https://github.com/ValveSoftware/SteamOS/issues/1039
 function check_kdialog(){
 	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
@@ -407,11 +416,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #npm
+source $NVM_DIR/nvm.sh
 nvm install --lts
 nvm use --lts
 
 #pnpm
 sudo_executor bash -c "source $NVM_DIR/nvm.sh && nvm install --lts && nvm use --lts && npm i -g pnpm"
+auto_path pnpm
+
 
 
 #Build
