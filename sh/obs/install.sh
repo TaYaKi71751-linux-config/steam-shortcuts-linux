@@ -110,7 +110,9 @@ cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
 cd obs-vkcapture
 git pull
-mkdir build && cd build
+rm -rf build
+mkdir -p build
+cd build
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 make 
 touch ~/.bashrc
