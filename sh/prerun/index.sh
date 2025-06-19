@@ -96,7 +96,7 @@ sudo_executor frzr-unlock
 
 sudo_executor steamos-readonly disable
 
-#sudo_executor pacman -R holo-glibc-locales
+#pacman -R holo-glibc-locales
 
 ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
 if ( sudo_executor cat /etc/pacman.conf | grep "chaotic\-aur" );then
@@ -223,34 +223,38 @@ fi
 #Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch
 #EOF
 
-
-sudo_executor pacman-key --init
-sudo_executor pacman-key --populate
-sudo_executor pacman -Syyu --noconfirm --overwrite \\\'*\\\'
+sudo_executor bash <<'EOF'
+pacman-key --init
+pacman-key --populate
+pacman -Syyu --noconfirm --overwrite '*'
+EOF
 HOLO_REL="$(sudo_executor cat /etc/pacman.conf | grep "^\[holo" | sed 's/\[//g' | sed 's/\]//g')"
 if [ -n "${HOLO_REL}" ];then
-sudo_executor pacman -S base-devel --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S ${HOLO_REL}/linux-headers --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S linux-neptune-headers --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S ${HOLO_REL}/linux-lts-headers --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S lib32-glibc glibc --noconfirm
-sudo_executor pacman -S gcc --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S gcc-libs --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S fakeroot --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S linux-api-headers --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S libarchive --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S go --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
+sudo_executor bash <<'EOF'
+pacman -S base-devel --noconfirm --overwrite '*'
+pacman -S ${HOLO_REL}/linux-headers --noconfirm --overwrite '*'
+pacman -S linux-neptune-headers --noconfirm --overwrite '*'
+pacman -S ${HOLO_REL}/linux-lts-headers --noconfirm --overwrite '*'
+pacman -S git --noconfirm --overwrite '*'
+pacman -S lib32-glibc glibc --noconfirm
+pacman -S gcc --noconfirm --overwrite '*'
+pacman -S gcc-libs --noconfirm --overwrite '*'
+pacman -S fakeroot --noconfirm --overwrite '*'
+pacman -S linux-api-headers --noconfirm --overwrite '*'
+pacman -S libarchive --noconfirm --overwrite '*'
+pacman -S go --noconfirm --overwrite '*'
+pacman -S git --noconfirm --overwrite '*'
+pacman -S wget --noconfirm --overwrite '*'
+EOF
 fi
-
-sudo_executor pacman -S base-devel --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S go --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S git --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S wget --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S gamescope --noconfirm --overwrite \\\'*\\\'
-sudo_executor pacman -S pacman --noconfirm --overwrite \\\'*\\\'
+sudo_executor bash <<'EOF'
+pacman -S base-devel --noconfirm --overwrite '*'
+pacman -S go --noconfirm --overwrite '*'
+pacman -S git --noconfirm --overwrite '*'
+pacman -S wget --noconfirm --overwrite '*'
+pacman -S gamescope --noconfirm --overwrite '*'
+pacman -S pacman --noconfirm --overwrite '*'
+EOF
 
 # Install yay
 cd $HOME
@@ -293,8 +297,8 @@ go install github.com/ericchiang/pup@latest
 #if ( uname -a | grep x86_64 );then
 #sudo_executor pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 #sudo_executor pacman-key --lsign-key 3056513887B78AEB
-#sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
-#sudo_executor pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
+#pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
+#pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
 #fi
 
 
@@ -394,10 +398,14 @@ Server = https://us-ut-mirror.chaotic.cx/\$repo/\$arch
 EOF
 fi
 
-sudo_executor pacman -Sy --noconfirm --overwrite \\\'*\\\'
+sudo_executor bash <<'EOF'
+pacman -Sy --noconfirm --overwrite '*'
+EOF
 
 if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PATH
-	sudo_executor pacman -S yay --noconfirm --overwrite \\\'*\\\'
+	sudo_executor bash <<'EOF'
+	pacman -S yay --noconfirm --overwrite '*'
+EOF
 fi
 
 #shc
