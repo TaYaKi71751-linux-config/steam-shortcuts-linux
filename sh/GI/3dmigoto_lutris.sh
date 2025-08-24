@@ -97,7 +97,6 @@ wine:
   eac: false
   fsr: false
   vkd3d: false
-  version: Proton - Experimental
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
@@ -126,7 +125,6 @@ wine:
   eac: false
   fsr: false
   vkd3d: false
-  version: Proton - Experimental
 EOF
 fi
 export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/launch.bat"
