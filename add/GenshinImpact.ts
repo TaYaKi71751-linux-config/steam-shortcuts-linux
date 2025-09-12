@@ -1,4 +1,4 @@
-import { execSync } from 'child_process'
+import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import { getShortcutAppID } from '../util/AppID';
 import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
@@ -6,7 +6,7 @@ import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
 import path, { dirname } from 'path';
 
-export async function __main__() {
+export async function __main__ () {
 	const __GAME_NAME__ = 'Genshin Impact';
 	const __LAUNCHER_NAME__ = 'AAGL';
 	const __EXE_NAME__ = 'GenshinImpact.exe';
@@ -65,12 +65,12 @@ export async function __main__() {
 			const exe = path.join(outPath, filename);
 			const AppName = `[${__LAUNCHER_NAME__.toUpperCase()}]` + (function () {
 				switch (filename) {
-					case `install_${__LAUNCHER_NAME__.toLowerCase()}.out`:
-						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
-						return 'Install';
-					case `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`:
-						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
-						return `${__GAME_NAME__} Launcher`;
+				case `install_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+					tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
+					return 'Install';
+				case `launch_${__LAUNCHER_NAME__.toLowerCase()}.out`:
+					tags = [__GAME_NAME__, __LAUNCHER_NAME__];
+					return `${__GAME_NAME__} Launcher`;
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
@@ -88,19 +88,19 @@ export async function __main__() {
 		let tags = [__GAME_NAME__];
 
 		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		const outFiles = [`install_plain_launcher.out`, `launch_plain_launcher.out`];
+		const outFiles = ['install_plain_launcher.out', 'launch_plain_launcher.out'];
 		for (let i = 0; i < outFiles?.length; i++) {
 			const filename = outFiles[i];
 			const StartDir = outPath;
 			const exe = path.join(outPath, filename);
-			const AppName = `[GenshinImpactPlain]` + (function () {
+			const AppName = '[GenshinImpactPlain]' + (function () {
 				switch (filename) {
-					case `install_plain_launcher.out`:
-						tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
-						return 'Install';
-					case `launch_plain_launcher.out`:
-						tags = [__GAME_NAME__, __LAUNCHER_NAME__];
-						return `${__GAME_NAME__} Launcher`;
+				case 'install_plain_launcher.out':
+					tags = ['Install', __GAME_NAME__, __LAUNCHER_NAME__.toUpperCase()];
+					return 'Install';
+				case 'launch_plain_launcher.out':
+					tags = [__GAME_NAME__, __LAUNCHER_NAME__];
+					return `${__GAME_NAME__} Launcher`;
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
@@ -120,13 +120,13 @@ export async function __main__() {
 		const AppName = '[Proton] Genshin Impact';
 		const StartDir = `"${process.env.HOME}/AAGL/Genshin Impact game"`;
 		const exe = `"${process.env.HOME}/AAGL/Genshin Impact game/GenshinImpact.exe"`;
-		const LaunchOptions = `STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/genshin-impact" %command%`
+		const LaunchOptions = `STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/genshin-impact" %command%`;
 		const appid = getShortcutAppID({ AppName, exe });
 		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions });
 		if (compat) {
 			AddCompat({
 				appid: `${appid}`,
-				compat: compat,
+				compat
 			});
 		}
 		for (let j = 0; j < tags?.length; j++) {
@@ -148,9 +148,9 @@ export async function __main__() {
 			const exe = path.join(outPath, filename);
 			const AppName = `[${__GAME_NAME__}]` + (function () {
 				switch (filename) {
-					case 'reload.out':
-						tags = ['Reload', __GAME_NAME__];
-						return 'Reload';
+				case 'reload.out':
+					tags = ['Reload', __GAME_NAME__];
+					return 'Reload';
 				}
 			})();
 			const appid = getShortcutAppID({ AppName, exe });
