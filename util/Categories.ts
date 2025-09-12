@@ -17,11 +17,16 @@ export async function AddToCats(appid: number, cat: string) {
 	console.log(is_steam_running);
 	const user_ids = readdirSync(userdataPath);
 	for (let i = 0; i < user_ids?.length; i++) {
+		const user_id = user_ids[i];
+		if (user_id === '0') continue;
+		const cats = new SteamCat(levelDBPath, user_id);
 		try {
-			const user_id = user_ids[i];
-			if (user_id === '0') continue;
-			const cats = new SteamCat(levelDBPath, user_id);
-			await cats.read();
+			try {
+				await cats.read();
+			} catch (e) {
+				await cats.save();
+				await cats.read();
+            }
 			let col: any = cats.get(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'));
 			if (col) {
 				if (col.is_deleted) {
@@ -33,15 +38,23 @@ export async function AddToCats(appid: number, cat: string) {
 				}
 			}
 			if (!col) {
-				col = cats.add(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'), {
-					name: cat,
-					added: [appid]
-				});
+				try {
+					col = cats.add(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'), {
+						name: cat,
+						added: [appid]
+					});
+				} catch (e) {
+					col = cats.get(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'));
+					if (col && !(col?.value?.added?.filter((_appid: any) => (Number(`${_appid}`) === Number(`${appid}`)))?.length)) {
+						col.value.added.push(appid);
+						cats.collections.set(col.key, col);
+					}
+				}
 			}
-			await cats.save();
-			await cats.close();
 			console.info('Database closed, safe to open Steam again.');
 		} catch (e) {
+			await cats.save();
+			await cats.close();
 			console.error(`Error adding ${appid} to ${cat}:`, e);
 		}
 	}
