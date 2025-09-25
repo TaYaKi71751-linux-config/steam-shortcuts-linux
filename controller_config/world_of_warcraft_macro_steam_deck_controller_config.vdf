@@ -738,7 +738,7 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"0"
+							"interruptable"		"1"
 						}
 					}
 				}
@@ -761,7 +761,7 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"0"
+							"interruptable"		"1"
 						}
 					}
 				}
@@ -784,6 +784,7 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
+							"interruptable"		"1"
 						}
 					}
 				}
@@ -806,7 +807,7 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"0"
+							"interruptable"		"1"
 						}
 					}
 				}
