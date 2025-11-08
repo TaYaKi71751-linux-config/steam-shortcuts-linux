@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
-import { existsSync, readdirSync } from 'fs';
+import fs from 'fs';
+import * as VDF from 'vdf-parser';
 
 const SteamCat = require('steam-categories');
 const path = require('path');
@@ -11,51 +12,38 @@ const userdataPath = path.join(process.env.HOME, '.steam', 'steam', 'userdata');
 // Supply leveldb path and Steam3 ID of user whose collections to edit
 
 export async function AddToCats(appid: number, cat: string) {
-	console.log(appid, cat);
-	const is_steam_running = execSync('ps -A | grep steam || true').toString().split('\n').filter((t: any) => (t))?.length;
-	if (existsSync(path.join(levelDBPath, 'LOCK'))) execSync(`rm ${JSON.stringify(path.join(levelDBPath, 'LOCK'))}`).toString();
-	console.log(is_steam_running);
-	const user_ids = readdirSync(userdataPath);
-	for (let i = 0; i < user_ids?.length; i++) {
-		const user_id = user_ids[i];
-		if (user_id === '0') continue;
-		const cats = new SteamCat(levelDBPath, user_id);
-		try {
-			try {
-				await cats.read();
-			} catch (e) {
-				await cats.save();
-				await cats.read();
-            }
-			let col: any = cats.get(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'));
-			if (col) {
-				if (col.is_deleted) {
-					cats.remove(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '-'));
-					col = undefined;
+	const user_ids = fs.readdirSync(userdataPath);
+	user_ids
+		.forEach((user_id) => {
+			const localconfig_vdf_path = path.join(
+				userdataPath,
+				user_id,
+				'config',
+				'localconfig.vdf'
+			);
+			if (!fs.existsSync(localconfig_vdf_path)) { return; }
+			let localconfig_vdf = fs.readFileSync(localconfig_vdf_path).toString();
+			if (!localconfig_vdf.length) { return; }
+			let localconfig: any = VDF.parse(`${localconfig_vdf}`, { types: false, arrayify: false });
+			localconfig.UserLocalConfigStore = Object.assign({}, localconfig.UserLocalConfigStore);
+			localconfig.UserLocalConfigStore.WebStorage = Object.assign({}, localconfig.UserLocalConfigStore.WebStorage);
+			let user_collections = JSON.parse(localconfig.UserLocalConfigStore.WebStorage['user-collections']);
+			if (user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`]) {
+				if (!user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.includes(appid)) {
+					return;
+				} else {
+					user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.push(appid);
 				}
-				if (col && !(col?.value?.added?.filter((_appid: any) => (Number(`${_appid}`) === Number(`${appid}`)))?.length)) {
-					col.value.added.push(appid);
-				}
+			} else {
+				user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`] = {
+					name: cat,
+					id: `${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`,
+					added: [appid],
+					removed: []
+				};
 			}
-			if (!col) {
-				try {
-					col = cats.add(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'), {
-						name: cat,
-						added: [appid]
-					});
-				} catch (e) {
-					col = cats.get(cat.toLowerCase().replaceAll(/[^a-zA-Z0-9]/g, '_'));
-					if (col && !(col?.value?.added?.filter((_appid: any) => (Number(`${_appid}`) === Number(`${appid}`)))?.length)) {
-						col.value.added.push(appid);
-						cats.collections.set(col.key, col);
-					}
-				}
-			}
-			console.info('Database closed, safe to open Steam again.');
-		} catch (e) {
-			await cats.save();
-			await cats.close();
-			console.error(`Error adding ${appid} to ${cat}:`, e);
-		}
-	}
+			localconfig_vdf = VDF.stringify(localconfig, { pretty: true, indent: '\t' });
+			fs.writeFileSync(localconfig_vdf_path, localconfig_vdf);
+		});
+	
 }
