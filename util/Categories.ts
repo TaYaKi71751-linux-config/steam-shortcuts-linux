@@ -27,7 +27,7 @@ export async function AddToCats(appid: number, cat: string) {
 			let localconfig: any = VDF.parse(`${localconfig_vdf}`, { types: false, arrayify: false });
 			localconfig.UserLocalConfigStore = Object.assign({}, localconfig.UserLocalConfigStore);
 			localconfig.UserLocalConfigStore.WebStorage = Object.assign({}, localconfig.UserLocalConfigStore.WebStorage);
-			console.log(localconfig.UserLocalConfigStore.WebStorage['user-collections']);
+			console.log(`${localconfig.UserLocalConfigStore.WebStorage['user-collections']}`);
 			let user_collections = JSON.parse(`${localconfig.UserLocalConfigStore.WebStorage['user-collections']}`);
 			if (user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`]) {
 				if (!user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.includes(appid)) {
