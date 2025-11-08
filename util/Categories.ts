@@ -28,16 +28,16 @@ export async function AddToCats(appid: number, cat: string) {
 			localconfig.UserLocalConfigStore = Object.assign({}, localconfig.UserLocalConfigStore);
 			localconfig.UserLocalConfigStore.WebStorage = Object.assign({}, localconfig.UserLocalConfigStore.WebStorage);
 			let user_collections = JSON.parse(`${localconfig.UserLocalConfigStore.WebStorage['user-collections'].replaceAll(/\\/g, '')}`);
-			if (user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`]) {
-				if (!user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.includes(appid)) {
+			if (user_collections[`${cat.toLowerCase()}`]) {
+				if (!user_collections[`${cat.toLowerCase()}`].added.includes(appid)) {
 					return;
 				} else {
-					user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.push(appid);
+					user_collections[`${cat.toLowerCase()}`].added.push(appid);
 				}
 			} else {
-				user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`] = {
+				user_collections[`${cat.toLowerCase()}`] = {
 					name: cat,
-					id: `${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`,
+					id: `${cat.toLowerCase()}`,
 					added: [appid],
 					removed: []
 				};
