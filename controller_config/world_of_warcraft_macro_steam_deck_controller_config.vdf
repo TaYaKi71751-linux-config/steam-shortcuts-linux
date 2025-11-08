@@ -1,18 +1,18 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"63"
+	"revision"		"66"
 	"title"		"TaYaKi71751's World of Warcraft Macro"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
 	"progenitor"		""
-	"url"		"autosave:///home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/191063133/config/[lutris] world of warcraft/controller_neptune.vdf"
+	"url"		"autosave:///home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/191063133/config/[proton] world of warcraft/controller_neptune.vdf"
 	"export_type"		"community"
 	"controller_type"		"controller_neptune"
 	"controller_caps"		"23117823"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"-6344"
+	"Timestamp"		"1762611527"
 	"localization"
 	{
 		"english"
@@ -738,7 +738,6 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"1"
 						}
 					}
 				}
@@ -761,7 +760,6 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"1"
 						}
 					}
 				}
@@ -784,7 +782,6 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"1"
 						}
 					}
 				}
@@ -807,7 +804,6 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"toggle"		"1"
-							"interruptable"		"1"
 						}
 					}
 				}
@@ -980,22 +976,6 @@
 				{
 				}
 			}
-			"button_capture"
-			{
-				"activators"
-				{
-					"release"
-					{
-						"bindings"
-						{
-							"binding"		"controller_action system_key_1, , "
-						}
-					}
-				}
-				"disabled_activators"
-				{
-				}
-			}
 		}
 	}
 	"preset"
@@ -1009,12 +989,12 @@
 			"14"		"button_diamond active modeshift"
 			"9"		"dpad active"
 			"16"		"dpad active modeshift"
-			"1"		"left_trackpad active"
+			"1"		"left_trackpad inactive"
 			"11"		"left_trackpad inactive"
 			"2"		"right_trackpad inactive"
 			"6"		"right_trackpad inactive"
 			"10"		"right_trackpad inactive"
-			"12"		"right_trackpad active"
+			"12"		"right_trackpad inactive"
 			"3"		"joystick active"
 			"4"		"left_trigger active"
 			"5"		"right_trigger active"
