@@ -104,6 +104,7 @@ pacman -Sy obs-studio --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep mesa) --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep gl) --noconfirm --overwrite '*'
+pacman -Sy cmake --noconfirm --overwrite '*'
 EOF
 
 cd ~/
