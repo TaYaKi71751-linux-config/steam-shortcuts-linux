@@ -28,7 +28,7 @@ export async function AddToCats(appid: number, cat: string) {
 			localconfig.UserLocalConfigStore = Object.assign({}, localconfig.UserLocalConfigStore);
 			localconfig.UserLocalConfigStore.WebStorage = Object.assign({}, localconfig.UserLocalConfigStore.WebStorage);
 			console.log(`${localconfig.UserLocalConfigStore.WebStorage['user-collections']}`);
-			let user_collections = JSON.parse(`${localconfig.UserLocalConfigStore.WebStorage['user-collections']}`);
+			let user_collections = JSON.parse(`${localconfig.UserLocalConfigStore.WebStorage['user-collections'].replaceAll(/\\/g, '')}`);
 			if (user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`]) {
 				if (!user_collections[`${cat.toLowerCase().replaceAll(/^[a-zA-Z0-9]/g, '-')}`].added.includes(appid)) {
 					return;
@@ -43,6 +43,7 @@ export async function AddToCats(appid: number, cat: string) {
 					removed: []
 				};
 			}
+			localconfig.UserLocalConfigStore.WebStorage['user-collections'] = JSON.stringify(user_collections).replaceAll(/"/g, '\\"');
 			localconfig_vdf = VDF.stringify(localconfig, { pretty: true, indent: '\t' });
 			fs.writeFileSync(localconfig_vdf_path, localconfig_vdf);
 		});
