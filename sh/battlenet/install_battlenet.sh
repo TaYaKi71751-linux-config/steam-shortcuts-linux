@@ -65,8 +65,6 @@ if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-*.ym
  rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-*.yml
 fi
 
-if ( ls /usr/bin/obs-gamecapture );then
-cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
   exe: ${__EXE_PATH__}
@@ -94,35 +92,6 @@ wine:
   vkd3d: false
   version: wine-ge-8-26-x86_64
 EOF
-else
-cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
-game:
-  exe: ${__EXE_PATH__}
-  prefix: $HOME/Games/${__GAME_NAME__}/
-game_slug: ${__GAME_NAME__}
-name: ${__GAME_NAME__}
-script:
-  game:
-    exe: ${__EXE_PATH__}
-    prefix: $HOME/Games/${__GAME_NAME__}/
-  wine:
-    battleye: true
-    dxvk_nvapi: false
-    eac: true
-    fsr: false
-    vkd3d: false
-slug: ${__GAME_NAME__}
-version: Installer
-wine:
-  battleye: true
-  dxvk_nvapi: false
-  dxvk: false
-  eac: true
-  fsr: false
-  vkd3d: false
-  version: wine-ge-8-26-x86_64
-EOF
-fi
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
 

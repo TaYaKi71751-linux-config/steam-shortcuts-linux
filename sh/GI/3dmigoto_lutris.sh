@@ -70,6 +70,7 @@ if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml 
 fi
 
 if ( ls /usr/bin/obs-gamecapture );then
+mkdir -p $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
