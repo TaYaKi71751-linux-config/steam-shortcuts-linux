@@ -2,7 +2,7 @@
 __GAME_NAME__="infinity-nikki"
 __EXE_PATH__="${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/launcher.exe"
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 mkdir -p "${HOME}/InfinityNikkiGlobal"
 
 rm -rf "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/InfinityNikkiGlobal Launcher/InfinityNikkiGlobal"

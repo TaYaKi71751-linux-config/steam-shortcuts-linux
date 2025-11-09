@@ -5,7 +5,7 @@ cd ${HOME}/AAGL
 
 __GAME_NAME__="genshin-impact"
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 mkdir -p "${HOME}/AAGL/Genshin Impact game"
 
 rm -rf "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/games/Genshin Impact game"
@@ -62,16 +62,17 @@ if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/genshin-impact-*.yml 
 fi
 
 if ( ls /usr/bin/obs-gamecapture );then
+mkdir -p $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
+  exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/HoYoPlay/launcher.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/HoYoPlay/launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     d3d_extras: false
@@ -105,13 +106,13 @@ EOF
 else
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
+  exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/HoYoPlay/launcher.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/launcher.exe
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/HoYoPlay/launcher.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     d3d_extras: false

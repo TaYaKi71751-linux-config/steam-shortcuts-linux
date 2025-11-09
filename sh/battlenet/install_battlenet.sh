@@ -13,7 +13,7 @@ __EXE_PATH__="${PWD}/${__EXE_NAME__}"
 
 echo $__EXE_PATH__
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF

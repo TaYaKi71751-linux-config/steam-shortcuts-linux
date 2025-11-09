@@ -5,7 +5,7 @@ cd ${HOME}/BattleNet
 
 __GAME_NAME__="battlenet"
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
@@ -62,13 +62,13 @@ mkdir -p $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cp /usr/bin/obs-gamecapture $HOME/.var/app/net.lutris.Lutris/data/lutris/runners/wine/
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
+  exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: true
@@ -94,13 +94,13 @@ EOF
 else
 cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
 game:
-  exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
+  exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
   prefix: $HOME/Games/${__GAME_NAME__}/
 game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/Wow.exe
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: true

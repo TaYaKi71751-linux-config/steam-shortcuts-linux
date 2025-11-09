@@ -5,7 +5,7 @@ cd ${HOME}/BattleNet
 
 __GAME_NAME__="battlenet"
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF

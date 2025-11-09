@@ -3,7 +3,7 @@
 __GAME_NAME__="infinity-nikki"
 __EXE_PATH__="${HOME}/InfinityNikkiGlobal/vc_redist.x64.exe"
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 mkdir -p "${HOME}/InfinityNikkiGlobal"
 
 rm "${__EXE_PATH__}"

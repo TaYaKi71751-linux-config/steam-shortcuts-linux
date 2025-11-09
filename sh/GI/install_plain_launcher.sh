@@ -13,7 +13,7 @@ __EXE_PATH__="${PWD}/${__EXE_NAME__}"
 
 echo $__EXE_PATH__
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 mkdir -p "${HOME}/AAGL/Genshin Impact game"
 
 rm -rf "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files/HoYoPlay/games/Genshin Impact game"
@@ -80,7 +80,7 @@ game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/launch.bat
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/launch.bat
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
@@ -110,7 +110,7 @@ game_slug: ${__GAME_NAME__}
 name: ${__GAME_NAME__}
 script:
   game:
-    exe: $HOME/Games/${__GAME_NAME__}/drive_c/launch.bat
+    exe: $HOME/Games/${__GAME_NAME__}/pfx/drive_c/launch.bat
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
     battleye: false
