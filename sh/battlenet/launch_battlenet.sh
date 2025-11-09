@@ -87,7 +87,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: wine-ge-8-26-x86_64
+  version: Proton - Experimental
 system:
   prefix_command: ${HOME}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/obs-gamecapture
 EOF
@@ -117,7 +117,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: wine-ge-8-26-x86_64
+  version: Proton - Experimental
 EOF
 fi
 
