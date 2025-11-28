@@ -128,7 +128,7 @@ wine:
   vkd3d: false
 EOF
 fi
-export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/drive_c/launch.bat"
+export BATCH_PATH="${HOME}/Games/${__GAME_NAME__}/pfx/drive_c/launch.bat"
 
 echo "cd C:\\$(dirname "${__3DMIGOTO_PATH__}" | rev | cut -d '/' -f1 | rev)" > $BATCH_PATH
 echo "start \"\" \"3DMigoto Loader.exe\"" >> $BATCH_PATH
