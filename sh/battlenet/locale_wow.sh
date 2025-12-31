@@ -7,10 +7,10 @@ echo "" | tee "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/Worl
 while IFS= read -r LINE
 do
 	if ( echo "$LINE" | grep textLocale );then
-		echo "SET textLocale \"${LOCALE}\"" >> "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
+		echo "SET textLocale \"${LOCALE}\"" >> "${HOME}/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
 	elif ( echo "$LINE" | grep audioLocale );then
-		echo "SET audioLocale \"${LOCALE}\"" >> "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
+		echo "SET audioLocale \"${LOCALE}\"" >> "${HOME}/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
 	else
-		echo "${LINE}" >> "${HOME}/Games/${__GAME_NAME__}/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
+		echo "${LINE}" >> "${HOME}/Games/${__GAME_NAME__}/pfx/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF/Config.wtf"
 	fi
 done < <(printf '%s\n' "${CONFIG_WTF}")
