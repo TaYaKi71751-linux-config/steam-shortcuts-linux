@@ -104,6 +104,8 @@ pacman -Sy obs-studio --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep vulkan) --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep mesa) --noconfirm --overwrite '*'
 pacman -Sy $(pacman -Qq | grep gl) --noconfirm --overwrite '*'
+pacman -Sy ninja --noconfirm --overwrite '*'
+pacman -Sy rnnoise --noconfirm --overwrite '*'
 pacman -Sy cmake --noconfirm --overwrite '*'
 EOF
 
@@ -121,6 +123,14 @@ find ~/ -type f -name '.*shrc' -maxdepth 1 -exec sh -c 'grep -w "export PATH=\${
 export PATH=${PATH}:$(pwd)
 sudo_executor cp obs-gamecapture /usr/bin/
 sudo_executor cp obs-vkcapture /usr/bin/
+
+mkdir -p $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
+cd $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
+wget https://github.com/formicasoftware/obs-multi-rtmp-flatpak/archive/refs/heads/main.zip
+unzip main.zip
+rm main.zip
+mkdir -p plugins/obs-multi-rtmp
+mv obs-multi-rtmp-flatpak-main/plugins/obs-multi-rtmp/* plugins/obs-multi-rtmp/
 
 which obs-gamecapture && exit 0
 
