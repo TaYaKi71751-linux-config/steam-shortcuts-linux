@@ -3,8 +3,8 @@ import { AddShortcut } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
 import path from 'path';
-const __GAME_NAME__ = 'Battle.net';
-const __OUT_NAME__ = 'battlenet';
+const __GAME_NAME__ = 'Netmarble';
+const __OUT_NAME__ = 'netmarble';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 let apps = [
 	{AppName: '[Lutris] Install Mongil: Star Dive', exe: path.join(outPath, 'install_mongil.out'), StartDir: outPath, LaunchOptions: '%command%'},
