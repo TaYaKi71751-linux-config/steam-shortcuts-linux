@@ -93,7 +93,7 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: proton-experimental
+  version: Proton - Experimental
 EOF
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
