@@ -12,7 +12,7 @@ let apps = [
 	{AppName: '[Lutris] Install Netmarble Launcher', exe: path.join(outPath, 'install_netmarble_launcher.out'), StartDir: outPath, LaunchOptions: '%command%'},
 	{AppName: '[Lutris] Netmarble Launcher', exe: path.join(outPath, 'launch_netmarble_launcher.out'), StartDir: outPath,LaunchOptions:'%command%'},
 	{AppName: '[Proton] Netmarble Launcher', exe: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"`, StartDir: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/netmarble" %command%` },
-	{AppName: '[Proton] Netmarble Game', exe: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/"`, StartDir: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/netmarble" %command%` },
+	{AppName: '[Proton] Mongil: Star Dive', exe: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/STARDIVE.exe"`, StartDir: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/netmarble" %command%` },
 ];
 
 export async function __main__ () {
