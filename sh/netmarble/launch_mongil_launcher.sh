@@ -67,17 +67,17 @@ script:
     battleye: true
     dxvk_nvapi: false
     eac: true
-    fsr: false
-    vkd3d: false
+    fsr: true
+    vkd3d: true
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
   battleye: true
   dxvk_nvapi: false
-  dxvk: false
+  dxvk: true
   eac: true
-  fsr: false
-  vkd3d: false
+  fsr: true
+  vkd3d: true
   version: Proton - Experimental
 EOF
 
