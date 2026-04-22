@@ -8,9 +8,11 @@ __EXE_NAME__="setup.exe"
 __GAME_NAME__="mongil"
 __EXE_PATH__="${PWD}/${__EXE_NAME__}"
 
+rm download
 rm $__EXE_NAME__
 
-wget https://apis.netmarble.com/cpplauncher/view/launcher/download -o $__EXE_NAME__
+wget https://apis.netmarble.com/cpplauncher/view/launcher/download
+mv download $__EXE_NAME__
 
 echo $__EXE_PATH__
 
