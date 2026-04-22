@@ -19,6 +19,7 @@ echo $__EXE_PATH__
 mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+mkdir -p $HOME/.var/app/net.lutris.Lutris/data/lutris/games/
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
 DELETE FROM games WHERE slug = '${__GAME_NAME__}';
 .save $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp
