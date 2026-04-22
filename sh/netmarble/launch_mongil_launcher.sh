@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __GAME_NAME__="mongil"
-__EXE_PATH__="$HOME/Games/${__GAME_NAME__}/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"
+__EXE_PATH__="$HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
