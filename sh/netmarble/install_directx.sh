@@ -2,19 +2,11 @@
 
 mkdir -p ${HOME}/Netmarble
 cd ${HOME}/Netmarble
-
-__EXE_NAME__="setup.exe"
-
-__GAME_NAME__="mongil"
+__EXE_NAME__="dxwebsetup.exe"
+__GAME_NAME__="netmarble"
 __EXE_PATH__="${PWD}/${__EXE_NAME__}"
-
-rm download
 rm $__EXE_NAME__
-
-wget https://apis.netmarble.com/cpplauncher/view/launcher/download
-mv download $__EXE_NAME__
-
-echo $__EXE_PATH__
+wget https://download.microsoft.com/download/1/7/1/1718ccc4-6315-4d8e-9543-8e28a4e18c4c/dxwebsetup.exe
 
 mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
 

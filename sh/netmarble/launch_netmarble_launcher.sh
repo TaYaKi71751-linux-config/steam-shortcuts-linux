@@ -1,6 +1,6 @@
 #!/bin/bash
 
-__GAME_NAME__="mongil"
+__GAME_NAME__="netmarble"
 __EXE_PATH__="$HOME/Games/${__GAME_NAME__}/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db

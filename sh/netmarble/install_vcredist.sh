@@ -1,0 +1,93 @@
+#!/bin/bash
+
+mkdir -p ${HOME}/Netmarble
+cd ${HOME}/Netmarble
+__EXE_NAME__="vc_redist.x64.exe"
+__GAME_NAME__="netmarble"
+__EXE_PATH__="${PWD}/${__EXE_NAME__}"
+rm $__EXE_NAME__
+wget https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
+
+# rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+mkdir -p $HOME/.var/app/net.lutris.Lutris/data/lutris/games/
+sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
+DELETE FROM games WHERE slug = '${__GAME_NAME__}';
+.save $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp
+EOF
+mv $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+
+sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
+INSERT INTO games (
+ name,
+	slug,
+	installer_slug,
+	platform,
+	runner,
+	configpath,
+	installed,
+	lastplayed,
+	installed_at,
+	has_custom_banner,
+	has_custom_icon,
+	has_custom_coverart_big,
+	playtime
+) VALUES (
+ '${__GAME_NAME__}',
+ '${__GAME_NAME__}',
+ '${__GAME_NAME__}',
+	'Windows',
+	'wine',
+	'${__GAME_NAME__}-0',
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0.0
+);
+.save $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp
+EOF
+mv $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db.tmp $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
+
+__GAME_ID__="$(sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
+SELECT id FROM games WHERE slug = '${__GAME_NAME__}';
+EOF
+)"
+
+if ( ls $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-*.yml );then
+ rm $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-*.yml
+fi
+
+cat > $HOME/.var/app/net.lutris.Lutris/data/lutris/games/${__GAME_NAME__}-0.yml << EOF
+game:
+  exe: ${__EXE_PATH__}
+  prefix: $HOME/Games/${__GAME_NAME__}/
+game_slug: ${__GAME_NAME__}
+name: ${__GAME_NAME__}
+script:
+  game:
+    exe: ${__EXE_PATH__}
+    prefix: $HOME/Games/${__GAME_NAME__}/
+  wine:
+    battleye: true
+    dxvk_nvapi: false
+    eac: true
+    fsr: true
+    vkd3d: true
+slug: ${__GAME_NAME__}
+version: Installer
+wine:
+  battleye: true
+  dxvk_nvapi: false
+  dxvk: true
+  eac: true
+  fsr: true
+  vkd3d: true
+  version: Proton - Experimental
+EOF
+
+flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
+
