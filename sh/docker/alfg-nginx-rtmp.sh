@@ -1,5 +1,6 @@
 #!/bin/bash
 
+podman system migrate
 podman ps -aq --filter ancestor=docker.io/alfg/nginx-rtmp
 containers=`podman ps -aq --filter ancestor=docker.io/alfg/nginx-rtmp`
 for container in ${containers[@]};do
