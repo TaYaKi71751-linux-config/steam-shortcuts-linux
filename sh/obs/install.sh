@@ -141,11 +141,13 @@ sudo_executor cp obs-vkcapture /usr/bin/
 mkdir -p $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
 cd $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
 rm -rf plugins/obs-multi-rtmp
+rm -rf obs-multi-rtmp-flatpak-main
 wget https://github.com/formicasoftware/obs-multi-rtmp-flatpak/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
 mkdir -p plugins/obs-multi-rtmp
 mv obs-multi-rtmp-flatpak-main/plugins/obs-multi-rtmp/* plugins/obs-multi-rtmp/
+rm -rf obs-multi-rtmp-flatpak-main
 
 which obs-gamecapture && exit 0
 
