@@ -408,6 +408,12 @@ if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PAT
 EOF
 fi
 
+if ( pacman -Ss linux neptune headers );then
+	sudo_executor bash << EOF
+pacman -S $(pacman -Ssq linux netptune headers)
+EOF
+fi
+
 #shc
 cd $HOME
 git clone https://aur.archlinux.org/shc.git
