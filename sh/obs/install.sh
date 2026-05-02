@@ -109,6 +109,10 @@ pacman -Sy rnnoise --noconfirm --overwrite '*'
 pacman -Sy cmake --noconfirm --overwrite '*'
 EOF
 
+sudo_executor bash << EOF
+pacman -Sy v4l2loopback-dkms --noconfirm --overwrite '*'
+EOF
+
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
 cd obs-vkcapture
@@ -126,6 +130,7 @@ sudo_executor cp obs-vkcapture /usr/bin/
 
 mkdir -p $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
 cd $HOME/.var/app/com.obsproject.Studio/config/obs-studio/
+rm -rf plugins/obs-multi-rtmp
 wget https://github.com/formicasoftware/obs-multi-rtmp-flatpak/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
