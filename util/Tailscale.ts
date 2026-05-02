@@ -12,7 +12,7 @@ export function getExitNodes () {
 	const statusObject:any = JSON.parse(statusString);
 	const exitNodes = Object.entries(statusObject.Peer).filter(([nodekey, props]:any) => (
 		props.ExitNodeOption
-	)).map(([nodekey, props]:any) => ([props.DNSName, props.TailscaleIPs]));
+	)).map(([nodekey, props]:any) => ([props.DNSName, [props.DNSName.split(/\.tail[a-z0-9]+\.ts\.net/g)[0]]]));
 	console.log(exitNodes);
 	return exitNodes;
 }
