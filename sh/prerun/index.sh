@@ -408,9 +408,28 @@ if [ -z "$(which yay || echo A | grep A)" ];then # When yay was not found in PAT
 EOF
 fi
 
-if ( pacman -Ss linux neptune headers );then
+NEPTUNE_LATEST_HEADER_PACKAGE=""
+if NEPTUNE_HEADERS_LIST="$(pacman -Ss linux neptune headers)";then
+	NEPTUNE_LATEST_HEADER_PACKAGE="$(
+		printf '%s\n' "${NEPTUNE_HEADERS_LIST}" \
+			| awk '/^[^[:space:]]+\/linux-neptune.*headers/ { split($1, pkg, "/"); print pkg[2] }' \
+			| grep -E '^linux-neptune-[0-9].*-headers$' \
+			| sort -V \
+			| tail -n 1
+	)"
+	if [ -z "${NEPTUNE_LATEST_HEADER_PACKAGE}" ];then
+		NEPTUNE_LATEST_HEADER_PACKAGE="$(
+			printf '%s\n' "${NEPTUNE_HEADERS_LIST}" \
+				| awk '/^[^[:space:]]+\/linux-neptune.*headers/ { split($1, pkg, "/"); print pkg[2] }' \
+				| sort -V \
+				| tail -n 1
+		)"
+	fi
+fi
+
+if [ -n "${NEPTUNE_LATEST_HEADER_PACKAGE}" ];then
 	sudo_executor bash << EOF
-pacman -S $(pacman -Ssq linux netptune headers)
+pacman -S ${NEPTUNE_LATEST_HEADER_PACKAGE} --noconfirm --overwrite '*'
 EOF
 fi
 
@@ -450,4 +469,3 @@ bash ./build.sh
 #Add to Steam
 pnpm i
 pnpm add:steam
-
