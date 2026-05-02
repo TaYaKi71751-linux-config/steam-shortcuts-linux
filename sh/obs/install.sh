@@ -112,6 +112,16 @@ EOF
 sudo_executor bash << EOF
 pacman -Sy v4l2loopback-dkms --noconfirm --overwrite '*'
 EOF
+sudo_executor bash << EOF
+echo 'polkit.addRule(function(action, subject) {' > /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '    if (action.id == "org.freedesktop.policykit.exec") {' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '        if (subject.local && subject.active && subject.isInGroup("video")) {' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '            return polkit.Result.YES;' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '        }' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '    }' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+echo '});' >> /etc/polkit-1/rules.d/49-obs-vcam.rules
+usermod -aG video $USER
+EOF
 
 cd ~/
 git clone https://github.com/nowrep/obs-vkcapture
