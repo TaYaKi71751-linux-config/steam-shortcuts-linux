@@ -96,6 +96,10 @@ sudo_executor frzr-unlock
 
 sudo_executor steamos-readonly disable
 
+sudo_executor bash << EOF
+echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
+EOF
+
 #pacman -R holo-glibc-locales
 
 ORIG_PACMAN_CONF="$(sudo_executor cat /etc/pacman.conf)"
