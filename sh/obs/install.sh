@@ -109,6 +109,15 @@ pacman -Sy rnnoise --noconfirm --overwrite '*'
 pacman -Sy cmake --noconfirm --overwrite '*'
 EOF
 
+cd $HOME
+git clone https://github.com/v4l2loopback/v4l2loopback.git
+cd v4l2loopback
+git pull
+make
+sudo_executor bash << EOF
+make install
+depmod -a
+EOF
 sudo_executor bash << EOF
 pacman -Sy v4l2loopback-dkms --noconfirm --overwrite '*'
 EOF
