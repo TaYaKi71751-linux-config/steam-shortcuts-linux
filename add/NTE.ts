@@ -12,7 +12,7 @@ const __OUT_NAME__ = 'nte';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
 let apps = [
 	{AppName: '[Lutris] Install NTE Launcher', exe: path.join(outPath, 'install_launcher.out'), StartDir: outPath, LaunchOptions: '%command%'},
-	{AppName: '[Proton] Neverness to Everness', exe: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/NTEGlobalLauncher.exe"`, StartDir: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files (x86)/Battle.net/"`, compat:'dwproton', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/nte" %command%` },
+	{AppName: '[Proton] Neverness to Everness', exe: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/NTEGlobalLauncher.exe"`, StartDir: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/"`, compat:'dwproton', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/nte" %command%` },
 ];
 
 export async function __main__ () {
