@@ -1,18 +1,18 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"40"
+	"revision"		"68"
 	"title"		"WoW Macro Xbox 4th gen"
 	"description"		"이 게임을 위해 수정된 레이아웃입니다."
 	"creator"		"76561198151328861"
 	"progenitor"		""
-	"url"		"autosave:///home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/191063133/config/[proton] world of warcraft/controller_xboxone.vdf"
+	"url"		"usercloud://[proton] world of warcraft/wow macro xbox 4th gen_2"
 	"export_type"		"template"
 	"controller_type"		"controller_xboxone"
 	"controller_caps"		"9978879"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"-596641809"
+	"Timestamp"		"0"
 	"localization"
 	{
 		"english"
@@ -531,7 +531,11 @@
 						}
 						"settings"
 						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
+							"cycle"		"1"
+							"toggle"		"1"
 						}
 					}
 				}
@@ -551,7 +555,11 @@
 						}
 						"settings"
 						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
+							"cycle"		"1"
+							"toggle"		"1"
 						}
 					}
 				}
@@ -571,7 +579,11 @@
 						}
 						"settings"
 						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
+							"cycle"		"1"
+							"toggle"		"1"
 						}
 					}
 				}
@@ -591,7 +603,11 @@
 						}
 						"settings"
 						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
+							"cycle"		"1"
+							"toggle"		"1"
 						}
 					}
 				}
