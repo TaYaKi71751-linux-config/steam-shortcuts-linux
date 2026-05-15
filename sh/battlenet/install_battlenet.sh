@@ -90,7 +90,6 @@ wine:
   eac: true
   fsr: false
   vkd3d: false
-  version: wine-ge-8-26-x86_64
 EOF
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
