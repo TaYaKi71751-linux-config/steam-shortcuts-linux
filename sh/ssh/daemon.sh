@@ -22,12 +22,12 @@ auto_path ssh
 # https://github.com/ValveSoftware/SteamOS/issues/1039
 function check_kdialog(){
 	export KDIALOG_USABLE=$(find / -name 'kdialog' -type f -exec {} --help \;)
-	export KDIALOG_USABLE="$(echo $KDIALOG_USABLE | grep Usage)"
+	export KDIALOG_USABLE="$(echo $KDIALOG_USABLE | grep '\-\-help')"
 }
 
 function check_zenity(){
 	export ZENITY_USABLE=`find / -name 'zenity' -type f -exec {} --help \;`
-	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep Usage)"
+	export ZENITY_USABLE="$(echo $ZENITY_USABLE | grep '\-\-help')"
 	env | grep STEAM_DECK\= && unset $ZENITY_USABLE
 }
 check_kdialog
