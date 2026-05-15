@@ -19,4 +19,7 @@ tsFiles = tsFiles
 		await __main__();
 	}
 	TrimShortcuts();
-})();
+})().catch((error) => {
+	console.error(error);
+	process.exit(1);
+});
