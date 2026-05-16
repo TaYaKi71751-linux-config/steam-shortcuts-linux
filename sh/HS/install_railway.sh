@@ -44,8 +44,4 @@ fi
 # Install instructions by
 # https://github.com/an-anime-team/an-anime-game-launcher/wiki/Installation#-any-distribution-flatpak
 
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak remote-add --if-not-exists --user launcher.moe https://gol.launcher.moe/gol.launcher.moe.flatpakrepo
-
-system_install_flatpak_package org.gnome.Platform//47
-user_install_flatpak_package moe.launcher.the-honkers-railway-launcher
+system_install_flatpak_package moe.launcher.the-honkers-railway-launcher
