@@ -13,7 +13,7 @@ __EXE_PATH__="${PWD}/${__EXE_NAME__}"
 
 echo $__EXE_PATH__
 
-mkdir -p "$HOME/Games/${__GAME_NAME__}/pfx/drive_c/"
+mkdir -p "$HOME/Games/${__GAME_NAME__}/"
 
 # rm $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db
 sqlite3 $HOME/.var/app/net.lutris.Lutris/data/lutris/pga.db << EOF
@@ -76,6 +76,7 @@ script:
     exe: ${__EXE_PATH__}
     prefix: $HOME/Games/${__GAME_NAME__}/
   wine:
+    arch: win64
     battleye: true
     dxvk_nvapi: false
     eac: true
@@ -84,6 +85,7 @@ script:
 slug: ${__GAME_NAME__}
 version: Installer
 wine:
+  arch: win64
   battleye: true
   dxvk_nvapi: false
   dxvk: false
@@ -93,4 +95,3 @@ wine:
 EOF
 
 flatpak run net.lutris.Lutris "lutris:rungameid/${__GAME_ID__}"
-
