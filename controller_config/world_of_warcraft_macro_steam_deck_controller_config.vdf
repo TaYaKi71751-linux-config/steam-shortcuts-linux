@@ -868,6 +868,12 @@
 						{
 							"binding"		"xinput_button shoulder_left, , "
 						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+						}
 					}
 				}
 				"disabled_activators"
@@ -883,6 +889,12 @@
 						"bindings"
 						{
 							"binding"		"xinput_button shoulder_right, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
 						}
 					}
 				}
