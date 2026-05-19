@@ -919,11 +919,13 @@
 		{
 			"7"		"switch active"
 			"0"		"button_diamond active"
+			"10"		"button_diamond active modeshift"
 			"3"		"joystick active"
 			"4"		"left_trigger active"
 			"5"		"right_trigger active"
 			"8"		"right_joystick active"
 			"9"		"dpad active"
+			"11"		"dpad active modeshift"
 		}
 	}
 	"settings"
