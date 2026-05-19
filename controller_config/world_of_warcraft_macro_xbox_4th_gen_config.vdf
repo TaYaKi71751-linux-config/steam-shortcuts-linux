@@ -1,18 +1,18 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"68"
+	"revision"		"75"
 	"title"		"WoW Macro Xbox 4th gen"
-	"description"		"이 게임을 위해 수정된 레이아웃입니다."
+	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
 	"progenitor"		""
-	"url"		"usercloud://[proton] world of warcraft/wow macro xbox 4th gen_2"
+	"url"		"autosave:///home/deck/.local/share/Steam/steamapps/common/Steam Controller Configs/191063133/config/[proton] world of warcraft/controller_xboxone.vdf"
 	"export_type"		"template"
 	"controller_type"		"controller_xboxone"
 	"controller_caps"		"9978879"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"0"
+	"Timestamp"		"-564156433"
 	"localization"
 	{
 		"english"
@@ -845,12 +845,12 @@
 						{
 							"binding"		"mode_shift dpad 11"
 						}
-							"settings"
-							{
-								"toggle"		"1"
-								"interruptable"		"0"
-							}
+						"settings"
+						{
+							"toggle"		"1"
+							"interruptable"		"0"
 						}
+					}
 				}
 				"disabled_activators"
 				{
@@ -865,6 +865,12 @@
 						"bindings"
 						{
 							"binding"		"xinput_button SHOULDER_LEFT, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
 						}
 					}
 				}
@@ -882,6 +888,12 @@
 						{
 							"binding"		"xinput_button SHOULDER_RIGHT, , "
 						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+						}
 					}
 				}
 				"disabled_activators"
@@ -898,12 +910,12 @@
 						{
 							"binding"		"mode_shift button_diamond 10"
 						}
-							"settings"
-							{
-								"toggle"		"1"
-								"interruptable"		"0"
-							}
+						"settings"
+						{
+							"toggle"		"1"
+							"interruptable"		"0"
 						}
+					}
 				}
 				"disabled_activators"
 				{
@@ -918,14 +930,14 @@
 		"group_source_bindings"
 		{
 			"7"		"switch active"
+			"9"		"dpad active"
+			"11"		"dpad active modeshift"
 			"0"		"button_diamond active"
 			"10"		"button_diamond active modeshift"
 			"3"		"joystick active"
 			"4"		"left_trigger active"
 			"5"		"right_trigger active"
 			"8"		"right_joystick active"
-			"9"		"dpad active"
-			"11"		"dpad active modeshift"
 		}
 	}
 	"settings"
