@@ -97,6 +97,7 @@ fi
 
 system_install_flatpak_package com.obsproject.Studio.Plugin.OBSVkCapture
 system_install_flatpak_package org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+system_install_flatpak_package org.freedesktop.Platform.GStreamer.gstreamer-vaapi
 system_install_flatpak_package com.obsproject.Studio
 
 sudo_executor bash <<'EOF'
