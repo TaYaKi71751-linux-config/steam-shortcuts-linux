@@ -1,7 +1,7 @@
 "controller_mappings"
 {
 	"version"		"3"
-	"revision"		"75"
+	"revision"		"85"
 	"title"		"WoW Macro Xbox 4th gen"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
@@ -12,7 +12,7 @@
 	"controller_caps"		"9978879"
 	"major_revision"		"0"
 	"minor_revision"		"0"
-	"Timestamp"		"-564156433"
+	"Timestamp"		"-540014609"
 	"localization"
 	{
 		"english"
@@ -153,10 +153,6 @@
 						{
 							"binding"		"xinput_button A, , "
 						}
-						"settings"
-						{
-							"toggle"		"1"
-						}
 					}
 				}
 				"disabled_activators"
@@ -172,10 +168,6 @@
 						"bindings"
 						{
 							"binding"		"xinput_button B, , "
-						}
-						"settings"
-						{
-							"toggle"		"1"
 						}
 					}
 				}
@@ -193,10 +185,6 @@
 						{
 							"binding"		"xinput_button X, , "
 						}
-						"settings"
-						{
-							"toggle"		"1"
-						}
 					}
 				}
 				"disabled_activators"
@@ -212,10 +200,6 @@
 						"bindings"
 						{
 							"binding"		"xinput_button Y, , "
-						}
-						"settings"
-						{
-							"toggle"		"1"
 						}
 					}
 				}
@@ -520,7 +504,6 @@
 						"settings"
 						{
 							"haptic_intensity"		"1"
-							"toggle"		"1"
 						}
 					}
 				}
@@ -541,7 +524,6 @@
 						"settings"
 						{
 							"haptic_intensity"		"1"
-							"toggle"		"1"
 						}
 					}
 				}
@@ -562,7 +544,6 @@
 						"settings"
 						{
 							"haptic_intensity"		"1"
-							"toggle"		"1"
 						}
 					}
 				}
@@ -583,7 +564,6 @@
 						"settings"
 						{
 							"haptic_intensity"		"1"
-							"toggle"		"1"
 						}
 					}
 				}
