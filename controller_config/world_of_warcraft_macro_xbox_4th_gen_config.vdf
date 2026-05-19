@@ -155,9 +155,6 @@
 						}
 						"settings"
 						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
 							"toggle"		"1"
 						}
 					}
@@ -178,9 +175,6 @@
 						}
 						"settings"
 						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
 							"toggle"		"1"
 						}
 					}
@@ -201,9 +195,6 @@
 						}
 						"settings"
 						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
 							"toggle"		"1"
 						}
 					}
@@ -224,9 +215,6 @@
 						}
 						"settings"
 						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
 							"toggle"		"1"
 						}
 					}
@@ -531,11 +519,212 @@
 						}
 						"settings"
 						{
+							"haptic_intensity"		"1"
+							"toggle"		"1"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button DPAD_DOWN, , "
+						}
+						"settings"
+						{
+							"haptic_intensity"		"1"
+							"toggle"		"1"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button DPAD_RIGHT, , "
+						}
+						"settings"
+						{
+							"haptic_intensity"		"1"
+							"toggle"		"1"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button DPAD_LEFT, , "
+						}
+						"settings"
+						{
+							"haptic_intensity"		"1"
+							"toggle"		"1"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"haptic_intensity_override"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"10"
+		"mode"		"four_buttons"
+		"name"		""
+		"description"		""
+		"inputs"
+		{
+			"button_a"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button A, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+							"interruptable"		"0"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"button_b"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button B, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+							"interruptable"		"0"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"button_x"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button X, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+							"interruptable"		"0"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+			"button_y"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button Y, , "
+						}
+						"settings"
+						{
+							"hold_repeats"		"1"
+							"repeat_rate"		"10"
+							"toggle"		"1"
+							"interruptable"		"0"
+						}
+					}
+				}
+				"disabled_activators"
+				{
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"11"
+		"mode"		"dpad"
+		"name"		""
+		"description"		""
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"xinput_button DPAD_UP, , "
+						}
+						"settings"
+						{
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
-							"cycle"		"1"
 							"toggle"		"1"
+							"interruptable"		"0"
 						}
 					}
 				}
@@ -558,8 +747,8 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
-							"cycle"		"1"
 							"toggle"		"1"
+							"interruptable"		"0"
 						}
 					}
 				}
@@ -582,8 +771,8 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
-							"cycle"		"1"
 							"toggle"		"1"
+							"interruptable"		"0"
 						}
 					}
 				}
@@ -606,8 +795,8 @@
 							"hold_repeats"		"1"
 							"repeat_rate"		"10"
 							"haptic_intensity"		"1"
-							"cycle"		"1"
 							"toggle"		"1"
+							"interruptable"		"0"
 						}
 					}
 				}
@@ -654,9 +843,14 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button select, , "
+							"binding"		"mode_shift dpad 11"
 						}
-					}
+							"settings"
+							{
+								"toggle"		"1"
+								"interruptable"		"0"
+							}
+						}
 				}
 				"disabled_activators"
 				{
@@ -671,13 +865,6 @@
 						"bindings"
 						{
 							"binding"		"xinput_button SHOULDER_LEFT, , "
-						}
-						"settings"
-						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
-							"toggle"		"1"
 						}
 					}
 				}
@@ -695,13 +882,6 @@
 						{
 							"binding"		"xinput_button SHOULDER_RIGHT, , "
 						}
-						"settings"
-						{
-							"hold_repeats"		"1"
-							"repeat_rate"		"10"
-							"cycle"		"1"
-							"toggle"		"1"
-						}
 					}
 				}
 				"disabled_activators"
@@ -716,9 +896,14 @@
 					{
 						"bindings"
 						{
-							"binding"		"controller_action SCREENSHOT, , "
+							"binding"		"mode_shift button_diamond 10"
 						}
-					}
+							"settings"
+							{
+								"toggle"		"1"
+								"interruptable"		"0"
+							}
+						}
 				}
 				"disabled_activators"
 				{
