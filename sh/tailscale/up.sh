@@ -1,12 +1,11 @@
 #!/bin/bash
 
+ORIG_HOME=${HOME}
 SHELL_RUN_COMMANDS=`find ${ORIG_HOME} -maxdepth 1 -name '.*shrc'`
 for shrc in ${SHELL_RUN_COMMANDS[@]};do
 	echo "source ${shrc}"
 	source ${shrc}
 done
-
-ORIG_HOME=${HOME}
 
 function get_password(){
 	if ( which kdialog );then
@@ -33,7 +32,7 @@ check_sudo
 
 
 function auto_path() {
-	TARGET_PATHS="$(find $HOME -name "$1" -type f)"
+	TARGET_PATHS="$(find $HOME -name "$1" -type f 2>/dev/null)"
 	echo $TARGET_PATHS
 	while IFS= read -r line
 	do
@@ -55,6 +54,23 @@ function sudo_executor(){
 	fi
 }
 
+function open_login_url(){
+	TAILSCALE_LOGIN_URL="$1"
+	if [ -n "${TAILSCALE_LOGIN_URL}" ];then
+		# if ( command -v steam >/dev/null 2>&1 );then
+		# 	steam "steam://openurl/${TAILSCALE_LOGIN_URL}" || true
+		# elif ( command -v flatpak >/dev/null 2>&1 );then
+		# 	flatpak run org.mozilla.firefox "${TAILSCALE_LOGIN_URL}" || xdg-open "${TAILSCALE_LOGIN_URL}" || true
+		# else
+			xdg-open "${TAILSCALE_LOGIN_URL}" || true
+		# fi
+	fi
+}
+
+function extract_login_url(){
+	grep -Eom1 'https?://[^[:space:]]+' "$1" || true
+}
+
 TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --reset "
 TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --exit-node=${TAILSCALE_EXIT_NODE} "
 TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS} --ssh "
@@ -70,30 +86,37 @@ function up(){
 		echo ${TAILSCALE_OPTIONS}
 		while IFS= read -r line
 		do
-			while IFS= read -r node_bin
-			do
-			sudo_executor "${node_bin}" << EOF
-	const { execSync, spawn } = require('child_process');
-	const check = spawn('${line}', ['up', '--reset', '--ssh']);
-	let stdout = '';
-	check.stderr.on('data', (data) => {
-		stdout += data;
-		if (stdout.includes('\\n\\n')) {
-			console.log(stdout);
-			try{execSync(\`zenity --info --text='\${stdout}'\`).toString();}catch(e){console.error(e);}
-			try{execSync(\`kdialog --msgbox '\${stdout}'\`).toString();}catch(e){console.error(e);}
-		}
-	});
-EOF
-			done <<< "$(find $HOME -name 'node' -type f)"
-			sudo_executor "$line" up ${TAILSCALE_OPTIONS}
-		done <<< "$(find $HOME -name 'tailscale' -type f)"
+			TAILSCALE_OUTPUT_FILE="$(mktemp)"
+			sudo_executor "$line" up ${TAILSCALE_OPTIONS} > "${TAILSCALE_OUTPUT_FILE}" 2>&1 &
+			TAILSCALE_UP_PID=$!
+			TAILSCALE_LOGIN_URL=""
+			TAILSCALE_LOGIN_URL_OPENED=""
+			while kill -0 "${TAILSCALE_UP_PID}" >/dev/null 2>&1;do
+				TAILSCALE_LOGIN_URL="$(extract_login_url "${TAILSCALE_OUTPUT_FILE}")"
+				if [ -n "${TAILSCALE_LOGIN_URL}" ] && [ -z "${TAILSCALE_LOGIN_URL_OPENED}" ];then
+					cat "${TAILSCALE_OUTPUT_FILE}"
+					open_login_url "${TAILSCALE_LOGIN_URL}"
+					TAILSCALE_LOGIN_URL_OPENED="1"
+				fi
+				sleep 1
+			done
+			wait "${TAILSCALE_UP_PID}"
+			TAILSCALE_UP_STATUS=$?
+			TAILSCALE_OUTPUT="$(cat "${TAILSCALE_OUTPUT_FILE}")"
+			echo "${TAILSCALE_OUTPUT}"
+			TAILSCALE_LOGIN_URL="$(extract_login_url "${TAILSCALE_OUTPUT_FILE}")"
+			rm -f "${TAILSCALE_OUTPUT_FILE}"
+			if [ -n "${TAILSCALE_LOGIN_URL}" ];then
+				open_login_url "${TAILSCALE_LOGIN_URL}"
+			fi
+			return "${TAILSCALE_UP_STATUS}"
+		done <<< "$(find $HOME -name 'tailscale' -type f 2>/dev/null)"
 	else
 		echo "tailscaled not running, run tailscaled"
 		while IFS= read -r line
 		do
 			sudo_executor systemd-run "$line"
-		done <<< "$(find $HOME -name 'tailscaled' -type f)"
+		done <<< "$(find $HOME -name 'tailscaled' -type f 2>/dev/null)"
 		up
 	fi
 }
