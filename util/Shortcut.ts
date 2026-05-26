@@ -12,6 +12,12 @@ const userdataPath = path.join(
 	'userdata'
 );
 
+function compactShortcuts(shortcuts: any): any {
+	return Object.fromEntries(Object.values(shortcuts)
+		.filter((shortcut: any) => shortcut?.AppName)
+		.map((shortcut: any, index) => [`${index}`, shortcut]));
+}
+
 export function AddSteamGameShortcut (_opts:{
 		appid: number,
   LaunchOptions: string,
@@ -107,6 +113,7 @@ export function AddNonSteamGameShortcut (_opts:{
 				if (inBuffer.length) shortcuts = readVdf(inBuffer)?.shortcuts;
 			}
 
+			shortcuts = compactShortcuts(shortcuts);
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
 				shortcut.AppName === _opts?.AppName ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'))[0];
@@ -120,7 +127,7 @@ export function AddNonSteamGameShortcut (_opts:{
 
 			//			console.log(shortcuts);
 
-			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(shortcuts), Buffer.from([0x08, 0x08])]);
+			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(compactShortcuts(shortcuts)), Buffer.from([0x08, 0x08])]);
 
 			fs.writeFileSync(shortcutsPath, outBuffer);
 		});
@@ -151,20 +158,19 @@ export function RemoveShortcutStartsWith (_opts:{
 				if (inBuffer.length) shortcuts = readVdf(inBuffer)?.shortcuts;
 			}
 
+			shortcuts = compactShortcuts(shortcuts);
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
-				shortcut.AppName.startsWith(_opts?.AppName) ? index : undefined
+				shortcut.AppName?.startsWith(_opts?.AppName) ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'));
 			_i.forEach((index) => {
-				Object.entries(shortcuts[`${index}`]).forEach(([key, value]) => {
-					shortcuts[`${index}`][key] = '';
-				});
+				delete shortcuts[`${index}`];
 			});
 
 			console.log(`Remove startsWith('${_opts?.AppName}') shortcuts to ${shortcutsPath}`);
 
 			//			console.log(shortcuts);
 
-			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(shortcuts), Buffer.from([0x08, 0x08])]);
+			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(compactShortcuts(shortcuts)), Buffer.from([0x08, 0x08])]);
 
 			fs.writeFileSync(shortcutsPath, outBuffer);
 		});
@@ -193,6 +199,7 @@ export function TrimShortcuts () {
 				if (inBuffer.length) shortcuts = readVdf(inBuffer)?.shortcuts;
 			}
 
+			shortcuts = compactShortcuts(shortcuts);
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
 				shortcut.AppName === '' ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'));
@@ -206,7 +213,7 @@ export function TrimShortcuts () {
 
 			console.log(shortcuts);
 
-			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(shortcuts), Buffer.from([0x08, 0x08])]);
+			const outBuffer = Buffer.concat([Buffer.from([0]), Buffer.from('shortcuts'), Buffer.from([0]), writeVdf(compactShortcuts(shortcuts)), Buffer.from([0x08, 0x08])]);
 
 			fs.writeFileSync(shortcutsPath, outBuffer);
 		});

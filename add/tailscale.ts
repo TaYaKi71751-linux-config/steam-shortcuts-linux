@@ -16,20 +16,21 @@ const outPath = path.join(
 	RemoveShortcutStartsWith({ AppName: '[Tailscale]' });
 
 	const tags = ['Tailscale'];
-	const outFiles = fs.readdirSync(outPath);
+	const outFiles = fs.readdirSync(outPath)
+		.filter((filename) => ['up.out', 'down.out', 'install.out'].includes(filename))
+		.sort();
+	const names: Record<string, string> = {
+		'up.out': 'Up',
+		'down.out': 'Down',
+		'install.out': 'Install'
+	};
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];
 		const StartDir = outPath;
 		const exe = path.join(outPath, filename);
-		const AppName = '[Tailscale] ' + (function () {
-			switch (filename) {
-			case 'up.out': return 'Up';
-			case 'down.out': return 'Down';
-			case 'install.out': return 'Install';
-			}
-		})();
+		const AppName = '[Tailscale] ' + names[filename];
 		const appid = getShortcutAppID({ AppName, exe });
-		AddShortcut({ appid, AppName, exe, StartDir });
+		AddShortcut({ appid, AppName, exe, StartDir, LaunchOptions: '%command%', tags });
 		for (let j = 0; j < tags?.length; j++) {
 			const tag = tags[j];
 			if (!tag) continue;
