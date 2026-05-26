@@ -45,6 +45,12 @@ function cloudStorageCollectionEntry(id: string, name: string, appid: number, ve
 	};
 }
 
+function cloudStorageCollectionValue(entry: any, id: string, name: string): any {
+	if (!entry?.value) return { id, name, added: [], removed: [] };
+	const value = typeof entry.value === 'string' ? JSON.parse(entry.value) : entry.value;
+	return value ?? { id, name, added: [], removed: [] };
+}
+
 function writeCloudStorageEntries(filePath: string, entries: [string, any][]): void {
 	fs.writeFileSync(filePath, JSON.stringify(entries));
 }
@@ -93,12 +99,12 @@ function addToCloudStorage(user_id: string, appid: number, cat: string): void {
 	if (entryIndex < 0) {
 		entries.push([key, cloudStorageCollectionEntry(id, cat, appid, version)]);
 	} else {
-		const entry = entries[entryIndex][1];
-		const value = entry.value && typeof entry.value === 'string' ? JSON.parse(entry.value) : entry.value;
+		const entry = entries[entryIndex][1] ?? {};
+		const value = cloudStorageCollectionValue(entry, id, cat);
 		value.id = value.id ?? id;
 		value.name = value.name ?? cat;
-		value.added = value.added ?? [];
-		value.removed = value.removed ?? [];
+		value.added = Array.isArray(value.added) ? value.added : [];
+		value.removed = Array.isArray(value.removed) ? value.removed : [];
 		if (!value.added.includes(appid)) {
 			value.added.push(appid);
 		}
@@ -111,6 +117,7 @@ function addToCloudStorage(user_id: string, appid: number, cat: string): void {
 		entry.conflictResolutionMethod = entry.conflictResolutionMethod ?? 'custom';
 		entry.strMethodId = entry.strMethodId ?? 'union-collections';
 		delete entry.is_deleted;
+		entries[entryIndex][1] = entry;
 	}
 
 	writeCloudStorageEntries(filePath, entries);
