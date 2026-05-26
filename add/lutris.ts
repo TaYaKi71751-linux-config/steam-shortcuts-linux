@@ -5,6 +5,7 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
@@ -20,8 +21,6 @@ const DEEPLINK_URLS = [
 	{ name: '[Lutris] Grand Theft Auto V (PS3)', url: 'lutris:grand-theft-auto-v-ps3', tags: ['Grand Theft Auto V', 'Lutris'] },
 	{ name: 'Lutris', url: '', tags: ['Lutris'] }
 ];
-
-export async function __main__ () {
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];

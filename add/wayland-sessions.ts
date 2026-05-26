@@ -5,13 +5,13 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { getWaylandSessions } from '../util/Sessions';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'wayland-sessions'
 );
-
-export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[wayland-sessions]' });
 
 	const tags = ['wayland-sessions'];

@@ -5,6 +5,8 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
+export async function __main__ () {
+
 const __GAME_NAME__ = 'NordVPN';
 const __OUT_NAME__ = 'nordvpn';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
@@ -12,8 +14,6 @@ let apps = [
 	{AppName: '[NordVPN] Install', exe: path.join(outPath, 'install.out'), StartDir: outPath, LaunchOptions: '%command%'},
 	{AppName: 'NordVPN', exe: path.join(outPath, 'launch.out'), StartDir: outPath, LaunchOptions: '%command%'},
 ];
-
-export async function __main__ () {
 
 	// Lutris
 	{

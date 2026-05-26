@@ -5,6 +5,8 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
@@ -45,8 +47,6 @@ const PAGE_URLS = [
 	{ name: 'IPv6 Test', url: 'https://test-ipv6.com', tags: ['test'] },
 	{ name: 'Speed Test(Netflix)', url: 'https://fast.com', tags: ['test'] },
 ];
-
-export async function __main__ () {
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];

@@ -6,13 +6,13 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { execSync } from 'child_process';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'tailscale'
 );
-
-export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[Tailscale]' });
 
 	const tags = ['Tailscale'];

@@ -5,13 +5,13 @@ import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import __path__ from 'path';
 
+
+export async function __main__ () {
 const outPath = __path__.join(
 	`${process.env.PWD}`,
 	'out',
 	'sameboy'
 );
-
-export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[SameBoy]' });
 	RemoveShortcutStartsWith({ AppName: '[SameBoyColor]' });
 	let outFiles = fs.readdirSync(outPath);

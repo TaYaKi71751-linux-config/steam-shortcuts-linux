@@ -7,23 +7,22 @@ import { AddCompat } from '../util/Compatibilities';
 import path,{ dirname } from 'path';
 import { setBackground, setCapsule, setLogo, setWideCapsule } from '../util/Grid';
 import fs from 'fs';
-const __GAME_NAME__ = 'NTE';
-const __OUT_NAME__ = 'nte';
-const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-let apps = [
-	{AppName: '[Lutris] Install NTE Launcher', exe: path.join(outPath, 'install_launcher.out'), StartDir: outPath, LaunchOptions: '%command%'},
-	{AppName: '[Proton] Neverness to Everness', exe: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/NTEGlobalLauncher.exe"`, StartDir: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/"`, compat:'dwproton', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/nte" %command%` },
-];
-
 export async function __main__ () {
+
+	const __GAME_NAME__ = 'NTE';
+	const __OUT_NAME__ = 'nte';
+	const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
+	let apps = [
+		{AppName: '[Lutris] Install NTE Launcher', exe: path.join(outPath, 'install_launcher.out'), StartDir: outPath, LaunchOptions: '%command%', tags: [__GAME_NAME__, 'Lutris', 'Install']},
+		{AppName: '[Proton] Neverness to Everness', exe: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/NTEGlobalLauncher.exe"`, StartDir: `"${process.env.HOME}/Games/nte/pfx/drive_c/Program Files/Neverness to Everness/"`, compat:'dwproton', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/nte" %command%`, tags: [__GAME_NAME__,'Proton'] },
+	];
 
 	// Lutris
 	{
-		const tags = [__GAME_NAME__,'Lutris'];
 		for (let i = 0; i < apps?.length; i++) {
-			const { compat, AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo, LaunchOptions }:any = apps[i];
+			const { compat, AppName, exe, StartDir, icon, background, wideCapsule, capsule, logo, LaunchOptions, tags }:any = apps[i];
 			const appid = getShortcutAppID({ AppName, exe });
-			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '', LaunchOptions });
+			AddShortcut({ appid, AppName, exe, StartDir, icon: icon ?? '', LaunchOptions, tags });
 			if(compat){
 				AddCompat({
 					appid: `${appid}`,
@@ -57,24 +56,6 @@ export async function __main__ () {
 			for (let j = 0; j < tags?.length; j++) {
 				const tag = tags[j];
 				if (!tag) continue;
-				await AddToCats(appid, tag);
-			}
-		}
-	}
-
-	// WoW Locale
-	{
-		const tags = [__GAME_NAME__];
-		const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
-		const locales = ['koKR','zhCN','enUS'];
-		for(let locale of locales){
-			const exe = path.join(outPath,'locale_wow.out');
-			const AppName = `[World of Warcraft] Set locale to ${locale}`;
-			const LaunchOptions = `export LOCALE="${locale}" && %command%`;
-			const appid = getShortcutAppID({ AppName, exe });
-			AddShortcut({ appid, AppName, exe, StartDir: outPath, LaunchOptions });
-			for(let tag of tags){
-				if(!tag) continue;
 				await AddToCats(appid, tag);
 			}
 		}

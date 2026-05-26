@@ -4,13 +4,13 @@ import { AddShortcut } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'docker'
 );
-
-export async function __main__ () {
 	const outFiles = fs.readdirSync(outPath);
 	const tags = ['Docker'];
 	for (let i = 0; i < outFiles?.length; i++) {

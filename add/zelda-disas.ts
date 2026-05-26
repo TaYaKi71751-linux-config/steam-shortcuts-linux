@@ -5,13 +5,13 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { execSync } from 'child_process';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'zelda-disas'
 );
-
-export async function __main__ () {
 	const tags = ['Zelda Install'];
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {

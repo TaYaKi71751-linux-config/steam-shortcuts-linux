@@ -6,20 +6,13 @@ import { AddCompat } from '../util/Compatibilities';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 
+
+function __check_file__ ():any {
 const yoitv_path:string = path.join(
 	`${process.env.HOME}`,
 	'.local',
 	'YoiTV'
 );
-const compatdataPath:string = path.join(
-	`${process.env.HOME}`,
-	'.steam',
-	'steam',
-	'steamapps',
-	'compatdata'
-);
-
-function __check_file__ ():any {
 	execSync(`mkdir -p ${yoitv_path}`);
 	const zip = execSync(`find / -name 'yoitv.zip' -type f || true`).toString().replaceAll('\n','');
 	console.log(zip);
@@ -37,6 +30,13 @@ function __check_file__ ():any {
 }
 
 export async function __main__ () {
+const compatdataPath:string = path.join(
+	`${process.env.HOME}`,
+	'.steam',
+	'steam',
+	'steamapps',
+	'compatdata'
+);
 	let yappid:any = null;
 	await (async function () {
 		const AppName: string = 'YoiTV';

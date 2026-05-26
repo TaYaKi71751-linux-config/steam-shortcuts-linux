@@ -4,13 +4,13 @@ import { AddShortcut, RemoveShortcutStartsWith } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'openttd-jgrpp'
 );
-
-export async function __main__ () {
 	const tags = ['openttd-jgrpp'];
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {

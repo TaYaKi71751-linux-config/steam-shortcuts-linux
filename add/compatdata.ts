@@ -3,6 +3,8 @@ import { AddShortcut } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 
+
+export async function __main__ () {
 const compatdataPath:string = path.join(
 	`${process.env.HOME}`,
 	'.steam',
@@ -10,8 +12,6 @@ const compatdataPath:string = path.join(
 	'steamapps',
 	'compatdata'
 );
-
-export async function __main__ () {
 	const StartDir: string = `${process.env.HOME}`;
 	const AppName: string = '[compatdata] Clear compatdata';
 	const exe: string = '/usr/bin/true';

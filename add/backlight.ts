@@ -4,13 +4,13 @@ import { AddShortcut } from '../util/Shortcut';
 import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 
-const outPath = path.join(
-	`${process.env.PWD}`,
-	'out',
-	'backlight'
-);
 
 export async function __main__ () {
+	const outPath = path.join(
+		`${process.env.PWD}`,
+		'out',
+		'backlight'
+	);
 	const outFiles = fs.readdirSync(outPath);
 	for (let i = 0; i < outFiles?.length; i++) {
 		const filename = outFiles[i];

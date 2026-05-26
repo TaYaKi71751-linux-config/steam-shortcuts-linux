@@ -3,6 +3,9 @@ import { AddShortcut } from '../util/Shortcut';
 import { AddToCats } from '../util/Categories';
 import { AddCompat } from '../util/Compatibilities';
 import path from 'path';
+
+export async function __main__ () {
+
 const __GAME_NAME__ = 'Netmarble';
 const __OUT_NAME__ = 'netmarble';
 const outPath = path.join(`${process.env.PWD}`, 'out', __OUT_NAME__);
@@ -14,9 +17,6 @@ let apps = [
 	{AppName: '[Proton] Netmarble Launcher', exe: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/Netmarble Launcher.exe"`, StartDir: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Launcher/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/netmarble" %command%` },
 	{AppName: '[Proton] Mongil: Star Dive', exe: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/STARDIVE.exe"`, StartDir: `"${process.env.HOME}/Games/netmarble/pfx/drive_c/Program Files/Netmarble/Netmarble Game/STARDIVE/"`, compat:'proton_experimental', LaunchOptions:`STEAM_COMPAT_DATA_PATH="${process.env.HOME}/Games/netmarble" %command%` },
 ];
-
-export async function __main__ () {
-
 	{
 		const tags = [__GAME_NAME__,'Netmarble'];
 		for (let i = 0; i < apps?.length; i++) {

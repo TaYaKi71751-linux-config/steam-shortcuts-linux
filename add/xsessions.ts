@@ -5,13 +5,13 @@ import { getShortcutAppID } from '../util/AppID';
 import { AddToCats } from '../util/Categories';
 import { getXSessions } from '../util/Sessions';
 
+
+export async function __main__ () {
 const outPath = path.join(
 	`${process.env.PWD}`,
 	'out',
 	'xsessions'
 );
-
-export async function __main__ () {
 	RemoveShortcutStartsWith({ AppName: '[xsessions]' });
 
 	const tags = ['xsessions'];
