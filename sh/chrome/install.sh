@@ -40,7 +40,24 @@ EOF
 done < <(printf '%s\n' "$PACKAGE_LINES")
 fi
 
+	}
+
+function set_default_browser(){
+	DESKTOP_ID="com.microsoft.Edge.desktop"
+
+	if ( command -v xdg-settings >/dev/null 2>&1 );then
+		xdg-settings set default-web-browser "${DESKTOP_ID}" || true
+	fi
+
+	if ( command -v xdg-mime >/dev/null 2>&1 );then
+		xdg-mime default "${DESKTOP_ID}" text/html || true
+		xdg-mime default "${DESKTOP_ID}" x-scheme-handler/http || true
+		xdg-mime default "${DESKTOP_ID}" x-scheme-handler/https || true
+	fi
+
+	echo "Set default browser to ${DESKTOP_ID}"
 }
 
 system_install_flatpak_package com.microsoft.Edge
 user_install_flatpak_package com.microsoft.Edge
+set_default_browser
