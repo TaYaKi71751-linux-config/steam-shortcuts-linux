@@ -17,7 +17,7 @@ const outPath = path.join(
 
 	const tags = ['Tailscale'];
 	const outFiles = fs.readdirSync(outPath)
-		.filter((filename) => ['up.out', 'down.out', 'install.out'].includes(filename))
+		.filter((filename) => ['logout.out','up.out', 'down.out', 'install.out'].includes(filename))
 		.sort();
 	const names: Record<string, string> = {
 		'logout.out': 'Logout',
