@@ -20,6 +20,7 @@ const outPath = path.join(
 		.filter((filename) => ['up.out', 'down.out', 'install.out'].includes(filename))
 		.sort();
 	const names: Record<string, string> = {
+		'logout.out': 'Logout',
 		'up.out': 'Up',
 		'down.out': 'Down',
 		'install.out': 'Install'
