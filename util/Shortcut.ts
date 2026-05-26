@@ -117,8 +117,10 @@ export function AddNonSteamGameShortcut (_opts:{
 			const _i = Object.entries(shortcuts).map(([index, shortcut]:any) => (
 				shortcut.AppName === _opts?.AppName ? index : undefined
 			)).filter((index) => (typeof index != 'undefined'))[0];
-			shortcuts[`${typeof _i != 'undefined' ? _i : Object.entries(shortcuts).length}`] = Object.assign(
+			const shortcutIndex = `${typeof _i != 'undefined' ? _i : Object.entries(shortcuts).length}`;
+			shortcuts[shortcutIndex] = Object.assign(
 				{},
+				shortcuts[shortcutIndex] ?? {},
 				_opts,
 				(_opts?.tags?.length ? {tags:Object.fromEntries(_opts?.tags.map((t,i:any)=>([`${i}`,t])))} : undefined
 			));
