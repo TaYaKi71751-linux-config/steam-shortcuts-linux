@@ -19,18 +19,23 @@ function install_dep(){
   pacman_log="$(mktemp)"
   sudo pacman -S --overwrite '*' "${dep}" --noconfirm 2>&1 | tee "${pacman_log}" || true
   if grep -q 'not found' "${pacman_log}";then
-    yay -S "${dep}" --noconfirm
+    if ( echo "${dep}" | grep -q "nettle3" );then
+      TMP_NETTLE3_PKG="$(mktemp -d)/nettle3.pkg.tar.zst"
+      curl -L 'https://archlinux.org/packages/extra/x86_64/nettle3/download/' -o "${TMP_NETTLE3_PKG}"
+      sudo pacman -U "${TMP_NETTLE3_PKG}" --noconfirm --overwrite '*'
+      rm -f "${TMP_NETTLE3_PKG}"
+      rm -rf "$(dirname "${TMP_NETTLE3_PKG}")"
+    else
+      yay -S "${dep}" --noconfirm
+    fi
   fi
   rm -f "${pacman_log}"
 }
 
 function install_x86_64_dep(){
   dep="$1"
-  if [ "${dep}" = "nettle3" ];then
-    sudo pacman -U 'https://archlinux.org/packages/extra/x86_64/nettle3/download/' --noconfirm --overwrite '*'
-  else
+  echo "${dep}"
     install_dep "${dep}"
-  fi
 }
 
 for dep in ${PKGBUILD_DEPENDS};do
