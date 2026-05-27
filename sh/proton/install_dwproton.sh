@@ -34,12 +34,14 @@ function install_x86_64_dep(){
 }
 
 for dep in ${PKGBUILD_DEPENDS};do
+  echo "Installing dep: ${dep}"
   install_dep "${dep}"
 done
 
 if grep -q "arch\=\(\'x86_64\'\)" PKGBUILD;then
   PKGBUILD_X86_64_DEPENDS="$(bash -c 'source PKGBUILD; printf "%s\n" "${depends_x86_64[@]}"')"
   for dep in ${PKGBUILD_X86_64_DEPENDS};do
+    echo "Installing x86_64 dep: ${dep}"
     install_x86_64_dep "${dep}"
   done
 fi
