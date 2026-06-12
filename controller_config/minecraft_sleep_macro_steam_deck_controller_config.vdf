@@ -2,11 +2,11 @@
 {
 	"version"		"3"
 	"revision"		"11"
-	"title"		"TaYaKi71751's Minecraft Macro"
+	"title"		"TaYaKi71751's Minecraft Sleep Macro"
 	"description"		"Your modified layout for this game."
 	"creator"		"76561198151328861"
 	"progenitor"		""
-	"url"		"usercloud://[minecraft]prism launcher/tayaki71751's minecraft macro_0"
+	"url"		"usercloud://[minecraft]prism launcher/tayaki71751's minecraft sleep macro_0"
 	"export_type"		"community"
 	"controller_type"		"controller_neptune"
 	"controller_caps"		"23117823"
@@ -725,7 +725,7 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button TRIGGER_RIGHT, , "
+							"binding"		"xinput_button RSTICK_DOWN, , "
 						}
 						"settings"
 						{
@@ -745,12 +745,12 @@
 					{
 						"bindings"
 						{
-							"binding"		"xinput_button SHOULDER_RIGHT, , "
+							"binding"		"xinput_button TRIGGER_LEFT, , "
 						}
 						"settings"
 						{
 							"hold_repeats"		"1"
-							"repeat_rate"		"1000"
+							"repeat_rate"		"10"
 							"toggle"		"1"
 						}
 					}
