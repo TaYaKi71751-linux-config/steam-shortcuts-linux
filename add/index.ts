@@ -11,10 +11,12 @@ let tsFiles = fs.readdirSync(tsDirectory);
 
 tsFiles = tsFiles
 	.filter((filename) => (filename.endsWith('.ts')))
-	.filter((filename) => (!basename(filename).startsWith('index')));
+	.filter((filename) => (!basename(filename).startsWith('index')))
+	.sort();
 	for (let i = 0; i < tsFiles?.length; i++) {
 		const filename = tsFiles[i];
 		const tsFilePath = path.join(tsDirectory, parse(filename).name);
+		console.log(`Run add/${filename}`);
 		const { __main__ } = require(tsFilePath);
 		await __main__();
 	}

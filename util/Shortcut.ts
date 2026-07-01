@@ -2,7 +2,6 @@ import { getShortcutUrl, readVdf, writeVdf } from 'steam-binary-vdf';
 import * as VDF from 'vdf-parser';
 import fs from 'fs';
 import path from 'path';
-import { exit } from 'process';
 
 
 const userdataPath = path.join(
@@ -31,9 +30,15 @@ export function AddSteamGameShortcut (_opts:{
 				'config',
 				'localconfig.vdf'
 			);
-			if (!fs.existsSync(config_vdf_path)) { exit(); }
+			if (!fs.existsSync(config_vdf_path)) {
+				console.warn(`Skip Steam app ${_opts.appid} for user ${user_id}: ${config_vdf_path} does not exist`);
+				return;
+			}
 			const config_vdf = fs.readFileSync(config_vdf_path);
-			if (!config_vdf.length) { exit(); }
+			if (!config_vdf.length) {
+				console.warn(`Skip Steam app ${_opts.appid} for user ${user_id}: ${config_vdf_path} is empty`);
+				return;
+			}
 			let config:any = VDF.parse(`${config_vdf}`, { types: false, arrayify: false });
 			config.UserLocalConfigStore = Object.assign({}, config.UserLocalConfigStore);
 			config.UserLocalConfigStore.Software = Object.assign({}, config.UserLocalConfigStore.Software);
