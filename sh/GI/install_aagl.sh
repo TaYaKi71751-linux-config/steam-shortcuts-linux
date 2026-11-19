@@ -89,7 +89,5 @@ fi
 # https://github.com/an-anime-team/an-anime-game-launcher/wiki/Installation#-any-distribution-flatpak
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak remote-add --if-not-exists --user launcher.moe https://gol.launcher.moe/gol.launcher.moe.flatpakrepo
-
 system_install_latest_flatpak_package org.gnome.Platform//49
-user_install_latest_flatpak_package moe.launcher.an-anime-game-launcher
+system_install_latest_flatpak_package moe.launcher.an-anime-game-launcher
