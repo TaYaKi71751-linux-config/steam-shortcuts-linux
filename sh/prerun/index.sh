@@ -471,5 +471,5 @@ bash ./build.sh
 
 
 #Add to Steam
-pnpm i
-pnpm add:steam
+npm i
+npm run add:steam
